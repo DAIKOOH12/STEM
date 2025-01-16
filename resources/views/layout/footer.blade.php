@@ -164,15 +164,15 @@
 <!-- For demo purposes – can be removed on production : End -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-hover-dropdown.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/echo.min.js"></script>
-<script src="js/jquery.easing-1.3.min.js"></script>
-<script src="js/bootstrap-slider.min.js"></script>
-<script src="js/jquery.rateit.min.js"></script>
-<script src="js/lightbox.min.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/scripts.js"></script>
+<script src="{{url('js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{url('js/bootstrap.min.js')}}"></script>
+<script src="{{url('js/bootstrap-hover-dropdown.min.js')}}"></script>
+<script src="{{url('js/owl.carousel.min.js')}}"></script>
+<script src="{{url('js/echo.min.js')}}"></script>
+<script src="{{url('js/jquery.easing-1.3.min.js')}}"></script>
+<script src="{{url('js/bootstrap-slider.min.js')}}"></script>
+<script src="{{url('js/jquery.rateit.min.js')}}"></script>
+<script src="{{url('js/lightbox.min.js')}}"></script>
+<script src="{{url('js/bootstrap-select.min.js')}}"></script>
+<script src="{{url('js/wow.min.js')}}"></script>
+<script src="{{url('js/scripts.js')}}"></script>

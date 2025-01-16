@@ -5,7 +5,7 @@
 
     <!-- ================================== TOP NAVIGATION ================================== -->
     <div class="side-menu animate-dropdown outer-bottom-xs">
-        <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+        <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Danh Mục</div>
         <nav class="yamm megamenu-horizontal">
             <ul class="nav">
                 <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-shopping-bag" aria-hidden="true"></i>ĐỒ CHƠI STEM</a>
@@ -15,57 +15,9 @@
                                 <div class="col-sm-12 col-md-3">
                                     <ul class="links list-unstyled">
                                         <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Shoes </a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Sunglasses</a></li>
-                                        <li><a href="#">Sport Wear</a></li>
-                                        <li><a href="#">Blazers</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Shorts</a></li>
                                     </ul>
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-sm-12 col-md-3">
-                                    <ul class="links list-unstyled">
-                                        <li><a href="#">Handbags</a></li>
-                                        <li><a href="#">Jwellery</a></li>
-                                        <li><a href="#">Swimwear </a></li>
-                                        <li><a href="#">Tops</a></li>
-                                        <li><a href="#">Flats</a></li>
-                                        <li><a href="#">Shoes</a></li>
-                                        <li><a href="#">Winter Wear</a></li>
-                                        <li><a href="#">Night Suits</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-sm-12 col-md-3">
-                                    <ul class="links list-unstyled">
-                                        <li><a href="#">Toys &amp; Games</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Shoes</a></li>
-                                        <li><a href="#">School Bags</a></li>
-                                        <li><a href="#">Lunch Box</a></li>
-                                        <li><a href="#">Footwear</a></li>
-                                        <li><a href="#">Wipes</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-sm-12 col-md-3">
-                                    <ul class="links list-unstyled">
-                                        <li><a href="#">Sandals </a></li>
-                                        <li><a href="#">Shorts</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Jwellery</a></li>
-                                        <li><a href="#">Bags</a></li>
-                                        <li><a href="#">Night Dress</a></li>
-                                        <li><a href="#">Swim Wear</a></li>
-                                        <li><a href="#">Toys</a></li>
-                                    </ul>
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
+                                <!-- /.row -->
                         </li>
                         <!-- /.yamm-content -->
                     </ul>
@@ -108,10 +60,7 @@
         <div class="more-info-tab clearfix ">
             <h3 class="new-product-title pull-left">Đồ chơi STEM</h3>
             <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
-                <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
-                <li><a data-transition-type="backSlide" href="#smartphone" data-toggle="tab">Clothing</a></li>
-                <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
-                <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li>
+
             </ul>
             <!-- /.nav-tabs -->
         </div>
@@ -119,27 +68,26 @@
             <div class="tab-pane in active" id="all">
                 <div class="product-slider">
                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme">
+                        @foreach($products as $item)
                         <div class="item item-carousel">
                             <div class="products">
                                 <div class="product">
                                     <div class="product-image">
                                         <div class="image">
-                                            <a href="{{route('item-detail')}}">
-                                                <img src="images/products/p1.jpg" alt="">
-                                                <img src="images/products/p1_hover.jpg" alt="" class="hover-image">
+                                            <a href="{{route('item-detail')}}/{{$item->ID_Product}}">
+                                                <img src="images/thumbs/{{$item->sDuongDan1}}" alt="">
+                                                <img src="images/thumbs/{{$item->sDuongDan2}}" alt="" class="hover-image">
                                             </a>
                                         </div>
                                         <!-- /.image -->
 
-                                        <div class="tag new"><span>new</span></div>
+                                        <div class="tag new"><span>Mới</span></div>
                                     </div>
                                     <!-- /.product-image -->
 
                                     <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{route('item-detail')}}">Floral Print Buttoned</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
-                                        <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
+                                        <h3 class="name"><a href="{{route('item-detail')}}/{{$item->ID_Product}}">{{$item->sTenSanPham}}</a></h3>
+                                        <div class="product-price"> <span class="price"> {{number_format($item->fGiaBan, 0, ',', '.')}} VNĐ</span> <span class="price-before-discount">{{number_format($item->fGiaNiemYet, 0, ',', '.')}}VNĐ</span> </div>
                                         <!-- /.product-price -->
 
                                     </div>
@@ -160,245 +108,10 @@
                                     <!-- /.cart -->
                                 </div>
                                 <!-- /.product -->
-
                             </div>
                             <!-- /.products -->
                         </div>
-                        <!-- /.item -->
-
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image">
-                                            <a href="{{route('item-detail')}}">
-                                                <img src="images/products/p4.jpg" alt="">
-                                                <img src="images/products/p4_hover.jpg" alt="" class="hover-image">
-                                            </a>
-                                        </div>
-                                        <!-- /.image -->
-
-
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{route('item-detail')}}">Floral Print Buttoned</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
-                                        <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
-                                        <!-- /.product-price -->
-
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                <li class="lnk"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image">
-                                            <a href="{{route('item-detail')}}">
-                                                <img src="images/products/p3.jpg" alt="">
-                                                <img src="images/products/p3_hover.jpg" alt="" class="hover-image">
-                                            </a>
-                                        </div>
-                                        <!-- /.image -->
-
-                                        <div class="tag sale"><span>sale</span></div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{route('item-detail')}}">Floral Print Buttoned</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
-                                        <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
-                                        <!-- /.product-price -->
-
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                <li class="lnk"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image">
-                                            <a href="{{route('item-detail')}}">
-                                                <img src="images/products/p2.jpg" alt="">
-                                                <img src="images/products/p2_hover.jpg" alt="" class="hover-image">
-                                            </a>
-                                        </div>
-                                        <!-- /.image -->
-
-
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{route('item-detail')}}">Floral Print Buttoned</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
-                                        <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
-                                        <!-- /.product-price -->
-
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                <li class="lnk"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image">
-                                            <a href="{{route('item-detail')}}">
-                                                <img src="images/products/p6.jpg" alt="">
-                                                <img src="images/products/p6_hover.jpg" alt="" class="hover-image">
-                                            </a>
-                                        </div>
-                                        <!-- /.image -->
-
-                                        <div class="tag hot"><span>hot</span></div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{route('item-detail')}}">Floral Print Buttoned</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
-                                        <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
-                                        <!-- /.product-price -->
-
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                <li class="lnk"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-
-                            </div>
-                            <!-- /.products -->
-                        </div>
-                        <!-- /.item -->
-
-                        <div class="item item-carousel">
-                            <div class="products">
-                                <div class="product">
-                                    <div class="product-image">
-                                        <div class="image">
-                                            <a href="{{route('item-detail')}}">
-                                                <img src="images/products/p5.jpg" alt="">
-                                                <img src="images/products/p5_hover.jpg" alt="" class="hover-image">
-                                            </a>
-                                        </div>
-                                        <!-- /.image -->
-
-                                        <div class="tag new"><span>new</span></div>
-                                    </div>
-                                    <!-- /.product-image -->
-
-                                    <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{route('item-detail')}}">Floral Print Buttoned</a></h3>
-                                        <div class="rating rateit-small"></div>
-                                        <div class="description"></div>
-                                        <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
-                                        <!-- /.product-price -->
-
-                                    </div>
-                                    <!-- /.product-info -->
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <ul class="list-unstyled">
-                                                <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                                </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                                                <li class="lnk"> <a class="add-to-cart" href="{{route('item-detail')}}" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                                <!-- /.product -->
-
-                            </div>
-                            <!-- /.products -->
-                        </div>
+                        @endforeach
                         <!-- /.item -->
                     </div>
                     <!-- /.home-owl-carousel -->

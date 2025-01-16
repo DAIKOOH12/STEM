@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="{{route('homepage')}}"> <img src="images/logo.png" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{{route('homepage')}}"> <img src="{{url('images/logo.png')}}" alt="logo"> </a> </div>
           <!-- /.logo -->
           <!-- ============================================================= LOGO : END ============================================================= -->
         </div>
@@ -59,44 +59,15 @@
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 animate-dropdown top-cart-row">
           <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
-          <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+          <div class="dropdown dropdown-cart"> <a href="{{route('cartpage')}}" class="dropdown-toggle lnk-cart">
               <div class="items-cart-inner">
                 <div class="basket">
                   <div class="basket-item-count"><span class="count">2</span></div>
                 </div>
               </div>
             </a>
-            <ul class="dropdown-menu">
-              <li>
-                <div class="cart-item product-summary">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="image"> <a href="{{route('item-detail')}}"><img src="images/products/p4.jpg" alt=""></a> </div>
-                    </div>
-                    <div class="col-xs-7">
-                      <h3 class="name"><a href="index8a95.html?page-detail">Simple Product</a></h3>
-                      <div class="price">$600.00</div>
-                    </div>
-                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
-                  </div>
-                </div>
-                <!-- /.cart-item -->
-                <div class="clearfix"></div>
-                <hr>
-                <div class="clearfix cart-total">
-                  <div class="pull-right"> <span class="text">Tổng tiền :</span><span class='price'>$600.00</span> </div>
-                  <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Thanh toán</a>
-                </div>
-                <!-- /.cart-total-->
 
-              </li>
-            </ul>
-            <!-- /.dropdown-menu-->
           </div>
-          <!-- /.dropdown-cart -->
-
-          <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
         </div>
         <!-- /.top-cart-row -->
       </div>
@@ -137,30 +108,37 @@
                           <!-- /.col -->
 
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}">
+                            <a href="{{route('categorypage')}}/stem-tieu-hoc">
                               <h2 class="title">STEM tiểu học</h2>
                             </a>
                             <ul class="links">
-                              <li><a href="{{route('categorypage')}}">STEM Lớp 1</a></li>
-                              <li><a href="{{route('categorypage')}}">STEM Lớp 2</a></li>
-                              <li><a href="{{route('categorypage')}}">STEM Lớp 3</a></li>
-                              <li><a href="{{route('categorypage')}}">STEM Lớp 4</a></li>
-                              <li><a href="{{route('categorypage')}}">STEM Lớp 5</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-1">STEM Lớp 1</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-2">STEM Lớp 2</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-3">STEM Lớp 3</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-4">STEM Lớp 4</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-5">STEM Lớp 5</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}">
+                            <a href="{{route('categorypage')}}/stem-trung-hoc-co-so">
                               <h2 class="title">STEM cấp 2</h2>
                             </a>
                             <ul class="links">
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-6">STEM Lớp 6</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-7">STEM Lớp 7</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-8">STEM Lớp 8</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-9">STEM Lớp 9</a></li>
                             </ul>
                           </div>
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}">
+                            <a href="{{route('categorypage')}}/trung-hoc-pho-thong">
                               <h2 class="title">STEM cấp 3</h2>
                             </a>
                             <ul class="links">
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">STEM Lớp 10</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">STEM Lớp 11</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">STEM Lớp 12</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
@@ -168,6 +146,67 @@
                       </div>
                     </li>
                   </ul>
+                </li>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">STEM Robotics <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
+                  <ul class="dropdown-menu container">
+                    <li>
+                      <div class="yamm-content ">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                            <a href="{{route('categorypage')}}/lego-education">
+                              <h2 class="title">Lego Education</h2>
+                            </a>
+                            <ul class="links">
+                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-2.0.html">Hướng dẫn Lego Wedo 2.0</a></li>
+                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-45678.html">Hướng dẫn Lego Spike Prime 45678</a></li>
+                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-9686.html">Hướng dẫn Lego 9686</a></li>
+                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-spike-4534.html">Hướng dẫn Lego Spike Essential 45345</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                            <a href="{{route('categorypage')}}/ubitech">
+                              <h2 class="title">Ubitech</h2>
+                            </a>
+                            <ul class="links">
+                              <li><a href="{{route('categorypage')}}/ubitech/humanoid">Humanoid robot - Robot hỗ trợ AI</a></li>
+                              <li><a href="{{route('categorypage')}}/ubitech/ukit-day-hoc">Ukit dạy học STEM</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Lập trình STEM <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
+                  <ul class="dropdown-menu container">
+                    <li>
+                      <div class="yamm-content ">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                            <a href="{{route('categorypage')}}/lap-trinh-arduino">
+                              <h2 class="title">Lập trình Arduino</h2>
+                            </a>
+                            <ul class="links">
+                              <li><a href="{{route('categorypage')}}/lap-trinh-arduino/huong-dan-lap-trinh-arduino">Hướng dẫn lập trình Arduino</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                            <a href="{{route('categorypage')}}/lap-trinh-bbc">
+                              <h2 class="title">Lập trình BBC Micro:Bit</h2>
+                            </a>
+                            <ul class="links">
+                              <li><a href="{{route('categorypage')}}/ubitech/humanoid">Humanoid robot - Robot hỗ trợ AI</a></li>
+                              <li><a href="{{route('categorypage')}}/ubitech/ukit-day-hoc">Ukit dạy học STEM</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">STEM LAB <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
+                </li>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('contactpage')}}" data-hover="dropdown" class="dropdown-toggle">Liên hệ</a>
                 </li>
                 <li class="dropdown"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Pages</a>
                   <ul class="dropdown-menu pages">
