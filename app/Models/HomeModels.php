@@ -31,43 +31,175 @@ class HomeModels extends Model
             ->join('category as c', 'p.ID_category', 'c.ID_category')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
             ->join('category_parent as cp', 'c.ID_category_parent', 'cp.ID_category_parent');
-        if($category_parent!==null){
-            $products->where('cp.ID_category_parent',"=", $category_parent);
+        if ($category_parent !== null) {
+            $products->where('cp.ID_category_parent', "=", $category_parent);
         }
-        if($category!==null){
-            $products->where('c.ID_category','=', $category);
+        if ($category !== null) {
+            $products->where('c.ID_category', '=', $category);
         }
-        $result=$products->get();
+        $result = $products->get();
         return $result;
     }
-    public function getCategoryWithFilter($category_parent, $category,$min_price, $max_price)
+    public function getCategoryWithFilter($category_parent, $category, $min_price, $max_price,$order=null)
     {
         $products = DB::table('product as p')
             ->select('p.*', 'c.ID_category_parent', 'i.*')
             ->join('category as c', 'p.ID_category', 'c.ID_category')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
             ->join('category_parent as cp', 'c.ID_category_parent', 'cp.ID_category_parent');
-        if($category_parent!==null){
-            $products->where('cp.ID_category_parent',"=", $category_parent);
+        if ($category_parent !== null) {
+            $products->where('cp.ID_category_parent', "=", $category_parent);
         }
-        if($category!==null){
-            $products->where('c.ID_category','=', $category);
+        if ($category !== null) {
+            $products->where('c.ID_category', '=', $category);
         }
-        if($min_price!==null){
-            $products->where('p.fGiaBan','>=', $min_price);
+        if ($min_price !== null) {
+            $products->where('p.fGiaBan', '>=', $min_price);
         }
-        if($max_price!==null){
-            $products->where('p.fGiaBan','<=', $max_price);
+        if ($max_price !== null) {
+            $products->where('p.fGiaBan', '<=', $max_price);
         }
-        $result=$products->get();
+        if ($order !== null) {
+            $products->orderBy('p.fGiaBan', $order);
+        }
+        $result = $products->get();
         return $result;
     }
 
-    public function getItemWithID($id){
-        $product=DB::table('product as p')
-        ->select('p.*','i.*')
-        ->join('image as i','p.ID_image','i.ID_image')
-        ->where('ID_product','=',$id)->first();
+    public function getItemWithID($id)
+    {
+        $product = DB::table('product as p')
+            ->select('p.*', 'i.*')
+            ->join('image as i', 'p.ID_image', 'i.ID_image')
+            ->where('ID_product', '=', $id)->first();
         return $product;
+    }
+
+    public function getHotDeals()
+    {
+        $product = DB::table('product as p')
+            ->select('p.*', 'i.*')
+            ->join('image as i', 'p.ID_image', 'i.ID_image')->orderBy('p.iLuotMua', 'desc')
+            ->limit(4)->get();
+        return $product;
+    }
+    public function singIn($account, $password)
+    {
+        $user = DB::table('member as m')
+            ->join('customer as c', 'm.ID_member', 'c.ID_member')
+            ->where('sTaiKhoan', '=', $account)
+            ->where('sMatKhau', '=', sha1($password))->first();
+        return $user;
+    }
+    public function checkAccount($email, $account)
+    {
+        $user = DB::table('member as m')
+            ->join('customer as c', 'm.ID_member', 'c.ID_member')
+            ->where('sEmail', '=', $email)
+            ->orWhere('sTaiKhoan', '=', $account)
+            ->first();
+        return $user;
+    }
+    public function getAllMem()
+    {
+        $user = DB::table('member');
+        return $user->count();
+    }
+    public function getAllCus()
+    {
+        $cus = DB::table('customer');
+        return $cus->count();
+    }
+    public function singUp($account, $password, $quyen, $hoten, $sdt, $email, $diachi)
+    {
+        DB::table('member')->insert([
+            [
+                'ID_member' => 'id_mem_' . $this->getAllMem() + 1,
+                'sXacMinhEmail' => 'verified',
+                'ID_quyen' => $quyen,
+                'sTaiKhoan' => $account,
+                'sMatKhau' => sha1($password),
+                'isLogin' => 0
+            ]
+        ]);
+        DB::table('customer')->insert([
+            [
+                'ID_customer' => 'id_cus_' . $this->getAllCus() + 1,
+                'sHoTen' => $hoten,
+                'sSoDienThoai' => $sdt,
+                'sDiaChi' => $diachi,
+                'sEmail' => $email,
+                'bIsMember' => 1,
+                'ID_member' => 'id_mem_' . $this->getAllMem()
+            ]
+        ]);
+        session(['mem_id' => 'id_mem_' . $this->getAllMem() + 1, 'mem_name' => $hoten, 'cus_id' => 'id_cus_' . $this->getAllCus() + 1]);
+            session()->save();
+    }
+    public function countCart($idCustomer)
+    {
+        $tongSo = DB::table('_order as o')
+            ->join('customer as c', 'o.ID_customer', '=', 'c.ID_customer')
+            ->join('member as m', 'c.ID_member', '=', 'm.ID_member')
+            ->join('order_detail as od', 'o.ID_order_detail', '=', 'od.ID_order_detail')
+            ->join('product as p', 'od.ID_product', '=', 'p.ID_Product')
+            ->where('od.ID_order_detail', '=', 'id_detail_' . $idCustomer)
+            ->selectRaw('COUNT(od.ID_product) as tongso')
+            ->first();
+        return $tongSo;
+    }
+    public function getCart($idCustomer)
+    {
+        $query = DB::table('_order as o')
+            ->select(
+                'od.*',
+                'o.dNgayDat',
+                'o.dNgayGiaoHang',
+                'p.sTenSanPham',
+                'p.fGiaBan',
+                'p.sTenSanPham',
+                'p.iLuotXem',
+                'p.ID_Product',
+                'i.sDuongDan1'
+            )
+            ->join('customer as c', 'o.ID_customer', '=', 'c.ID_customer')
+            ->join('member as m', 'c.ID_member', '=', 'm.ID_member')
+            ->join('order_detail as od', 'o.ID_order_detail', '=', 'od.ID_order_detail')
+            ->join('product as p', 'od.ID_product', '=', 'p.ID_Product')
+            ->join('image as i', 'p.ID_image', '=', 'i.ID_image')
+            ->where('od.ID_order_detail', '=', 'id_detail_' . $idCustomer)
+            ->get();
+        return $query;
+    }
+    public function checkProducts($id_order_detail, $id_product)
+    {
+        $order = DB::table('order_detail')
+            ->where('ID_order_detail', '=', $id_order_detail)
+            ->where('ID_product', '=', $id_product)->first();
+        return $order;
+    }
+    public function addToCart($id_order_detail, $id_product)
+    {
+        DB::table('order_detail')->insert([
+            [
+                'ID_order_detail' => $id_order_detail,
+                'ID_Product' => $id_product,
+                'iSoLuong' => 1
+            ]
+        ]);
+    }
+    public function updateCart($id_order_detail, $id_product, $quantity)
+    {
+        DB::table('order_detail')
+            ->where('ID_order_detail', $id_order_detail)
+            ->where('ID_Product', $id_product)
+            ->update(['iSoLuong' => $quantity]);
+    }
+    public function removeFromCart($id_order_detail, $id_product)
+    {
+        DB::table('order_detail')
+            ->where('ID_order_detail', $id_order_detail)
+            ->where('ID_Product', $id_product)
+            ->delete();
     }
 }

@@ -1,4 +1,7 @@
 <!-- ============================================== HEADER ============================================== -->
+@php
+//dd($user)
+@endphp
 <header class="header-style-1">
 
   <!-- ============================================== TOP MENU ============================================== -->
@@ -7,7 +10,12 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
+            @if(session('mem_id')==null)
             <li class="login"><a href="{{route('accountpage')}}"><span>Đăng ký/Đăng nhập</span></a></li>
+            @else
+            <li class="login"><a href=""><span>{{session('mem_name')}}</span></a></li>
+            <li class="login"><a href="{{route('signout')}}"><span>Đăng xuất</span></a></li>
+            @endif
           </ul>
         </div>
         <div class="clearfix"></div>
@@ -62,7 +70,9 @@
           <div class="dropdown dropdown-cart"> <a href="{{route('cartpage')}}" class="dropdown-toggle lnk-cart">
               <div class="items-cart-inner">
                 <div class="basket">
-                  <div class="basket-item-count"><span class="count">2</span></div>
+                  <div class="basket-item-count"><span class="count">
+                      {{session('count')!=null?session('count'):0}}
+                    </span></div>
                 </div>
               </div>
             </a>
@@ -207,35 +217,6 @@
                 <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">STEM LAB <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
                 </li>
                 <li class="dropdown yamm mega-menu"> <a href="{{route('contactpage')}}" data-hover="dropdown" class="dropdown-toggle">Liên hệ</a>
-                </li>
-                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Pages</a>
-                  <ul class="dropdown-menu pages">
-                    <li>
-                      <div class="yamm-content">
-                        <div class="row">
-                          <div class="col-xs-12 col-menu">
-                            <ul class="links">
-                              <li><a href="{{route('homepage')}}">Home</a></li>
-                              <li><a href="{{route('categorypage')}}">Category</a></li>
-                              <li><a href="{{route('item-detail')}}">Detail</a></li>
-                              <li><a href="{{route('cartpage')}}">Shopping Cart Summary</a></li>
-                              <li><a href="{{route('blogpage')}}">Checkout</a></li>
-                              <li><a href="{{route('blogpage')}}">Blog</a></li>
-                              <li><a href="{{route('detail-blog')}}">Blog Detail</a></li>
-                              <li><a href="{{route('contactpage')}}">Contact</a></li>
-                              <li><a href="{{route('accountpage')}}">Sign In</a></li>
-                              <li><a href="my-wishlist.html">Wishlist</a></li>
-                              <li><a href="terms-conditions.html">Terms and Condition</a></li>
-                              <li><a href="track-orders.html">Track Orders</a></li>
-                              <li><a href="product-comparison.html">Product-Comparison</a></li>
-                              <li><a href="faq.html">FAQ</a></li>
-                              <li><a href="404.html">404</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
                 </li>
               </ul>
               <!-- /.navbar-nav -->

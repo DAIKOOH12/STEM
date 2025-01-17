@@ -10,91 +10,56 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="cart-romove item">Remove</th>
-                                    <th class="cart-description item">Image</th>
-                                    <th class="cart-product-name item">Product Name</th>
-                                    <th class="cart-edit item">Edit</th>
-                                    <th class="cart-qty item">Quantity</th>
-                                    <th class="cart-sub-total item">Subtotal</th>
-                                    <th class="cart-total last-item">Grandtotal</th>
+                                    <th class="cart-romove item">Xóa</th>
+                                    <th class="cart-description item">Hình ảnh</th>
+                                    <th class="cart-product-name item">Sản phẩm
+                                    <th class="cart-qty item">Số lượng</th>
+                                    <th class="cart-sub-total item">Giá tiền</th>
+                                    <th class="cart-total last-item">Tổng số</th>
                                 </tr>
                             </thead><!-- /thead -->
 
                             <tbody>
+                                @php
+                                    $tong = 0;
+                                @endphp
+                                @foreach($cart as $item)
                                 <tr>
-                                    <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+                                    <td class="romove-item"><a href="{{route('removefromcart')}}/{{$item->ID_Product}}" title="cancel" class="icon"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a></td>
                                     <td class="cart-image">
                                         <a class="entry-thumbnail" href="detail.html">
-                                            <img src="images/products/p1.jpg" alt="">
+                                            <img src="{{url('images/thumbs/'.$item->sDuongDan1)}}" alt="">
                                         </a>
                                     </td>
                                     <td class="cart-product-name-info">
-                                        <h4 class='cart-product-description'><a href="detail.html">Floral Print Buttoned</a></h4>
+                                        <h4 class='cart-product-description'><a href="{{route('item-detail')}}/{{$item->ID_Product}}">{{$item->sTenSanPham}}</a></h4>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <div class="rating rateit-small"></div>
-                                            </div>
-                                            <div class="col-sm-12">
                                                 <div class="reviews">
-                                                    (06 Reviews)
+                                                    Lượt xem ({{$item->iLuotXem}})
                                                 </div>
                                             </div>
                                         </div><!-- /.row -->
-                                        <div class="cart-product-info">
-                                            <span class="product-color">COLOR:<span>Blue</span></span>
-                                        </div>
                                     </td>
-                                    <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
                                     <td class="cart-product-quantity">
                                         <div class="quant-input">
                                             <div class="arrows">
                                                 <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
                                                 <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
                                             </div>
-                                            <input type="text" value="1">
+                                            <input type="text" value="{{$item->iSoLuong}}">
                                         </div>
                                     </td>
-                                    <td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
-                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
+                                    <td class="cart-product-sub-total"><span class="cart-sub-total-price">{{number_format($item->fGiaBan, 0, ',', '.')}} VNĐ</span></td>
+                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">
+                                            @php
+                                            $thanhtien=$item->fGiaBan * $item->iSoLuong;
+                                            $tong+=$thanhtien;
+                                            @endphp
+                                            {{number_format($thanhtien, 0, ',', '.')}} VNĐ
+                                        </span></td>
                                 </tr>
-                                <tr>
-                                    <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
-                                    <td class="cart-image">
-                                        <a class="entry-thumbnail" href="detail.html">
-                                            <img src="images/products/p2.jpg" alt="">
-                                        </a>
-                                    </td>
-                                    <td class="cart-product-name-info">
-                                        <h4 class='cart-product-description'><a href="detail.html">Floral Print Buttoned</a></h4>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="rating rateit-small"></div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="reviews">
-                                                    (06 Reviews)
-                                                </div>
-                                            </div>
-                                        </div><!-- /.row -->
-                                        <div class="cart-product-info">
-                                            <span class="product-color">COLOR:<span>Pink</span></span>
-                                        </div>
-                                    </td>
-                                    <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
-                                    <td class="cart-product-quantity">
-                                        <div class="cart-quantity">
-                                            <div class="quant-input">
-                                                <div class="arrows">
-                                                    <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                    <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                                                </div>
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
-                                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
-                                </tr>
+                                @endforeach
                             </tbody><!-- /tbody -->
 
                             <tfoot>
@@ -123,11 +88,8 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <div class="cart-sub-total">
-                                        Subtotal<span class="inner-left-md">$600.00</span>
-                                    </div>
                                     <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">$600.00</span>
+                                        Tổng tiền<span class="inner-left-md">{{number_format($tong, 0, ',', '.')}} VNĐ</span>
                                     </div>
                                 </th>
                             </tr>

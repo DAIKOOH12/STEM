@@ -7,58 +7,71 @@
             <div class="row">
                 <!-- Sign-in -->
                 <div class="col-md-6 col-sm-6 sign-in">
-                    <h4 class="">Sign in</h4>
-                    <p class="">Hello, Welcome to your account.</p>
+                    @if(session('message')!=null)
+                    <div class="alert alert-error">{{session('message')}}</div>
+                    @endif
+                    <h4 class="">Đăng nhập</h4>
+                    <p class="">Xin chào! Hãy đăng nhập tài khoản của bạn.</p>
                     <div class="social-sign-in outer-top-xs">
-                        <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                        <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                        <a href="#" class="facebook-sign-in"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i></i> Đăng nhập bằng facebook</a>
+                        <a href="#" class="twitter-sign-in"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i> Đăng nhập bằng twitter</a>
                     </div>
-                    <form class="register-form outer-top-xs" role="form">
+                    <form class="register-form outer-top-xs" role="form" method="post" action="{{route('signin')}}">
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <label class="info-title" for="exampleInputEmail1">Tài khoản <span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" name="account" id="exampleInputEmail1" requied>
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1">
+                            <label class="info-title" for="exampleInputPassword1">Mật khẩu <span>*</span></label>
+                            <input type="password" class="form-control unicase-form-control text-input" name="password" id="exampleInputPassword1">
                         </div>
                         <div class="radio outer-xs">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Remember me!
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Nhớ mật khẩu!
                             </label>
-                            <a href="#" class="forgot-password pull-right">Forgot your Password?</a>
+                            <a href="#" class="forgot-password pull-right">Quên mật khẩu?</a>
                         </div>
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Đăng nhập</button>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                     </form>
                 </div>
                 <!-- Sign-in -->
 
                 <!-- create a new account -->
                 <div class="col-md-6 col-sm-6 create-new-account">
-                    <h4 class="checkout-subtitle">Create a new account</h4>
-                    <p class="text title-tag-line">Create your new account.</p>
-                    <form class="register-form outer-top-xs" role="form">
+                    <h4 class="checkout-subtitle">Tạo tài khoản</h4>
+                    <p class="text title-tag-line">Tạo tài khoản của bạn</p>
+                    <form class="register-form outer-top-xs" role="form" method="post" action="{{route('signup')}}">
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2">
+                            <label class="info-title" for="exampleInputEmail2">Tài khoản <span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" name="account" id="exampleInputEmail2">
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <label class="info-title" for="exampleInputEmail2">Địa chỉ email <span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" name="email" id="exampleInputEmail2">
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <label class="info-title" for="exampleInputEmail1">Họ và tên <span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" name="name" id="exampleInputEmail1">
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <label class="info-title" for="exampleInputEmail1">Số điện thoại <span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" name="phone" id="exampleInputEmail1">
                         </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <label class="info-title" for="exampleInputEmail1">Địa chỉ<span>*</span></label>
+                            <input type="text" class="form-control unicase-form-control text-input" name="diachi" id="exampleInputEmail1">
                         </div>
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">Mật khẩu <span>*</span></label>
+                            <input type="password" class="form-control unicase-form-control text-input" name="password" id="exampleInputEmail1">
+                        </div>
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">Xác nhận mật khẩu <span>*</span></label>
+                            <input type="password" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                        </div>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Đăng ký</button>
                     </form>
 
 
