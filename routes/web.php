@@ -35,3 +35,8 @@ Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 
 //Admin
 Route::get('/admin',[AdminController::class,'index'])->name('adminpage');
+Route::get('/list-products',[AdminController::class,'getListProducts'])->name('listproducts');
+Route::get('/add-product',[AdminController::class,'getAddView'])->name('addproduct');
+Route::post('/add-product',[AdminController::class,'addProduct'])->name('showaddform');
+Route::post('/edit-product',[AdminController::class,'editProduct'])->name('editproduct');
+Route::post('/del-product',[AdminController::class,'delProduct'])->name('delproduct');
