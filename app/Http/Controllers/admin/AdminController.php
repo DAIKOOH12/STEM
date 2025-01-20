@@ -69,4 +69,20 @@ class AdminController extends Controller
         $this->mAdmin->delProduct($productID);
         return response()->json(['message' => 'Thành công']);
     }
+
+
+    public function getAddBlog(){
+        $category = $this->mAdmin->getCategories();
+        return view('admin.blogs.add',compact('category'));
+    }
+    public function addBlog(Request $request){
+        $blogTitle=$request->input('blog-title');
+        $blogCategory=$request->input('blog-category');
+        $blogImage=$request->input('blog-image');
+        $blogContent=$request->input('content');
+        // dd($blogImage);
+    }
+    public function addBlogImage(Request $request){
+
+    }
 }

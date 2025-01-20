@@ -21,10 +21,10 @@ Route::get('/category/{category_parent?}/{category?}', [HomeController::class, '
 Route::get('/category/{category_parent?}/{category?}', [HomeController::class, 'category'])->name('categorypage');
 Route::get('/item-detail/{id?}', [HomeController::class, 'itemDetail'])->name('item-detail');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cartpage');
-Route::get('add-cart/{id?}', [HomeController::class, 'addToCart'])->name('addtocart');
+Route::get('add-cart/{id?}/{quantity?}', [HomeController::class, 'addToCart'])->name('addtocart');
 Route::get('del-cart/{id?}', [HomeController::class, 'removeFromCart'])->name('removefromcart');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blogpage');
-Route::get('/detail-blog', [HomeController::class, 'blogDetail'])->name('detail-blog');
+Route::get('/detail-blog/{id?}', [HomeController::class, 'blogDetail'])->name('detailblog');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contactpage');
 Route::get('/account', [AccountController::class, 'index'])->name('accountpage');
 Route::post('/account', [AccountController::class, 'signIn'])->name('signin');
@@ -40,3 +40,7 @@ Route::get('/add-product',[AdminController::class,'getAddView'])->name('addprodu
 Route::post('/add-product',[AdminController::class,'addProduct'])->name('showaddform');
 Route::post('/edit-product',[AdminController::class,'editProduct'])->name('editproduct');
 Route::post('/del-product',[AdminController::class,'delProduct'])->name('delproduct');
+
+Route::get('/add-blog',[AdminController::class,'getAddBlog'])->name('showaddblog');
+Route::post('/add-blog',[AdminController::class,'addBlog'])->name('addblog');
+Route::get('/add-blog-image',[AdminController::class,'addBlogImage'])->name('addblogimage');

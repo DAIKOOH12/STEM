@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="{{route('homepage')}}"> <img src="{{url('images/logo.png')}}" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{{route('homepage')}}"> <img src="{{url('images/logo.png')}}" alt="logo" style="max-height: 50px"> </a> </div>
           <!-- /.logo -->
           <!-- ============================================================= LOGO : END ============================================================= -->
         </div>
@@ -214,7 +214,8 @@
                     </li>
                   </ul>
                 </li>
-                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">STEM LAB <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
+                <li class="dropdown yamm mega-menu">
+                  <a href="{{route('blogpage')}}" class="dropdown-toggle">Blogs</a>
                 </li>
                 <li class="dropdown yamm mega-menu"> <a href="{{route('contactpage')}}" data-hover="dropdown" class="dropdown-toggle">Liên hệ</a>
                 </li>

@@ -83,6 +83,13 @@ class HomeModels extends Model
             ->limit(4)->get();
         return $product;
     }
+    public function getProductsWithCategory($id_category){
+        $product = DB::table('product as p')
+            ->join('image as i', 'p.ID_image', 'i.ID_image')
+            ->join('category as c', 'p.ID_category', 'c.ID_category')
+            ->where('p.ID_category','=',$id_category)->get();
+        return $product;
+    }
     public function singIn($account, $password)
     {
         $user = DB::table('member as m')
@@ -178,13 +185,22 @@ class HomeModels extends Model
             ->where('ID_product', '=', $id_product)->first();
         return $order;
     }
-    public function addToCart($id_order_detail, $id_product)
+    public function addToCart($id_order_detail, $id_product,$id_order,$id_cus,$ngaydat,$quantity)
     {
-        DB::table('order_detail')->insert([
+        DB::table('order_detail')->insertOrIgnore([
             [
                 'ID_order_detail' => $id_order_detail,
                 'ID_Product' => $id_product,
-                'iSoLuong' => 1
+                'iSoLuong' => $quantity
+            ]
+        ]);
+        DB::table('_order')->insertOrIgnore([
+            [
+                'ID_order' =>  $id_order,
+                'ID_order_detail' => $id_order_detail,
+                'ID_customer' => $id_cus,
+                'dNgayDat'=>$ngaydat,
+                'sTrangThai'=>'cho_duyet'
             ]
         ]);
     }
@@ -201,5 +217,19 @@ class HomeModels extends Model
             ->where('ID_order_detail', $id_order_detail)
             ->where('ID_Product', $id_product)
             ->delete();
+    }
+    public function getListBlog(){
+        $query=DB::table('blog as b')
+        ->join('blog_comments as bc','b.ID_blog','=','bc.ID_blog')
+        ->join('employee as e','b.ID_employee','=','e.ID_employee')
+        ->get();
+        return $query;
+    }
+    public function getBlogWithId($id){
+        $query=DB::table('blog as b')
+        ->join('employee as e','b.ID_employee','=','e.ID_employee')
+        ->where('b.ID_blog','=',$id)
+        ->get();
+        return $query;
     }
 }

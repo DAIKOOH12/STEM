@@ -4,6 +4,7 @@
 <div class="body-content outer-top-xs">
     <div class="container">
         <div class="row ">
+            @if(count($cart)>0)
             <div class="shopping-cart">
                 <div class="shopping-cart-table ">
                     <div class="table-responsive">
@@ -18,14 +19,15 @@
                                     <th class="cart-total last-item">Tổng số</th>
                                 </tr>
                             </thead><!-- /thead -->
-
                             <tbody>
                                 @php
-                                    $tong = 0;
+                                $tong = 0;
                                 @endphp
                                 @foreach($cart as $item)
                                 <tr>
-                                    <td class="romove-item"><a href="{{route('removefromcart')}}/{{$item->ID_Product}}" title="cancel" class="icon"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a></td>
+                                    <td class="romove-item">
+                                        <button title="cancel" class="icon btn-del" data-able="{{$item->ID_Product}}"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></button>
+                                    </td>
                                     <td class="cart-image">
                                         <a class="entry-thumbnail" href="detail.html">
                                             <img src="{{url('images/thumbs/'.$item->sDuongDan1)}}" alt="">
@@ -61,14 +63,13 @@
                                 </tr>
                                 @endforeach
                             </tbody><!-- /tbody -->
-
                             <tfoot>
                                 <tr>
                                     <td colspan="7">
                                         <div class="shopping-cart-btn">
                                             <span class="">
-                                                <a href="#" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
-                                                <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>
+                                                <a href="{{route('homepage')}}" class="btn btn-upper btn-primary outer-left-xs">Tiếp tục mua sắm</a>
+                                                <button class="btn btn-upper btn-primary pull-right outer-right-xs">Cập nhật giỏ hàng</button>
                                             </span>
                                         </div><!-- /.shopping-cart-btn -->
                                     </td>
@@ -98,8 +99,8 @@
                             <tr>
                                 <td>
                                     <div class="cart-checkout-btn pull-right">
-                                        <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
-                                        <span class="">Checkout with multiples address!</span>
+                                        <button type="submit" class="btn btn-primary checkout-btn">Thanh toán</button>
+                                        <span class="">Thanh toán nhanh chóng!</span>
                                     </div>
                                 </td>
                             </tr>
@@ -107,76 +108,17 @@
                     </table><!-- /table -->
                 </div><!-- /.cart-shopping-total -->
             </div><!-- /.shopping-cart -->
+            @else
+            <div class="shopping-cart text-center">
+                <h1 class="text-center">Bạn chưa có sản phẩm nào!!!</h1>
+                <a href="{{route('homepage')}}" class="btn btn-info">Mua ngay</a>
+            </div>
+            @endif
         </div> <!-- /.row -->
-        <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-        <div id="brands-carousel" class="logo-slider wow fadeInUp">
-
-            <div class="logo-slider-inner">
-                <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-                    <div class="item m-t-15">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand1.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item m-t-10">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand2.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand3.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand4.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand5.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand6.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand2.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand4.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand1.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-
-                    <div class="item">
-                        <a href="#" class="image">
-                            <img data-echo="images/brands/brand5.png" src="images/blank.gif" alt="">
-                        </a>
-                    </div><!--/.item-->
-                </div><!-- /.owl-carousel #logo-slider -->
-            </div><!-- /.logo-slider-inner -->
-
-        </div><!-- /.logo-slider -->
-        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
     </div><!-- /.container -->
 </div>
 @stop
+
+@section('script')
+<script src="{{url('js/clients/cart.js')}}"></script>
+@endsection

@@ -117,6 +117,8 @@
             <!-- /.container -->
         </div>
         @include('layout.footer')
+
+        @yield('script')
 </body>
 
 <script>

@@ -14,8 +14,8 @@ class HomeController extends Controller
     }
     public function index()
     {
-        if(session('cus_id')!=null){
-            $countcart=$this->mHome->countCart(session('cus_id'));
+        if (session('cus_id') != null) {
+            $countcart = $this->mHome->countCart(session('cus_id'));
             session(['count' => $countcart->tongso]);
         }
         $products = $this->mHome->getAllProducts();
@@ -25,61 +25,79 @@ class HomeController extends Controller
     public function category($category_parent = null, $category = null, Request $request)
     {
         $products = $this->mHome->getCategoryWithID($category_parent, $category);
-        $min_price=0;
-        $max_price=9999999;
-        if (!empty($request->query('min_price')) || !empty($request->query('max_price'))||!empty($request->query('order'))) {
+        $min_price = 0;
+        $max_price = 9999999;
+        if (!empty($request->query('min_price')) || !empty($request->query('max_price')) || !empty($request->query('order'))) {
             $min_price = $request->query('min_price');
             $max_price = $request->query('max_price');
-            $order=$request->query('order');
-            $products = $this->mHome->getCategoryWithFilter($category_parent, $category, $min_price, $max_price,$order);
+            $order = $request->query('order');
+            $products = $this->mHome->getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order);
             // dd($products);
-            return view('clients.category', compact('products','min_price','max_price'));
+            return view('clients.category', compact('products', 'min_price', 'max_price'));
         }
         // dd($products);
         // var_dump($products->count());
-        return view('clients.category', compact('products','min_price','max_price'));
+        return view('clients.category', compact('products', 'min_price', 'max_price'));
     }
     public function itemDetail($id)
     {
         $product = $this->mHome->getItemWithID($id);
-        $hotDeal=$this->mHome->getHotDeals();
-        // dd($hot_deal);
-        return view('clients.item_detail',compact('product','hotDeal'));
+        $hotDeal = $this->mHome->getHotDeals();
+        $productCate = $this->mHome->getProductsWithCategory($product->ID_category);
+        // dd($productCate);
+        return view('clients.item_detail', compact('product', 'hotDeal', 'productCate'));
     }
     public function cart()
     {
-        $cus=session('cus_id');
-        $cart=$this->mHome->getCart($cus);
-        // dd($cart);
-        return view('clients.cart',compact('cart'));
+        $cus = session('cus_id');
+        $cart = $this->mHome->getCart($cus);
+        // dd($cus);
+        return view('clients.cart', compact('cart'));
     }
-    public function addToCart($id){
-        $id_product=$id;
-        $cus=session('cus_id');
-        $order=$this->mHome->checkProducts('id_detail_'.$cus,$id_product);
-        // dd($order);
-        if($order==null){
-            $this->mHome->addToCart('id_detail_'.$cus,$id_product);
+    public function addToCart($id)
+    {
+        $new_quantity = request('quantity') ?? 1;
+        $id_product = $id;
+        // if(request('quantity')!=null){
+        //     $quantity=request('quantity');
+        // }
+        // else{
+        //     $quantity=1;
+        // }
+
+        $cus = session('cus_id');
+        $order = $this->mHome->checkProducts('id_detail_' . $cus, $id_product);
+        // dd($quantity);
+        if ($order == null) {
+            $this->mHome->addToCart('id_detail_' . $cus, $id_product, 'id_order_' . $cus, $cus, date('Y-m-d'), $new_quantity);
+        } else {
+            $quantity = $order->iSoLuong;
+            $this->mHome->updateCart('id_detail_' . $cus, $id_product, $quantity + $new_quantity);
         }
-        else{
-            $quantity=$order->iSoLuong;
-            $this->mHome->updateCart('id_detail_'.$cus,$id_product,$quantity+1);
-        }
+        $countcart = $this->mHome->countCart(session('cus_id'));
+        session(['count' => $countcart->tongso]);
         return redirect()->route('cartpage');
     }
-    public function removeFromCart($id){
-        $id_product=$id;
-        $cus=session('cus_id');
-        $this->mHome->removeFromCart('id_detail_'.$cus,$id_product);
+    public function removeFromCart($id)
+    {
+        $id_product = $id;
+        $cus = session('cus_id');
+        $this->mHome->removeFromCart('id_detail_' . $cus, $id_product);
+        $countcart = $this->mHome->countCart(session('cus_id'));
+        session(['count' => $countcart->tongso]);
         return redirect()->route('cartpage');
     }
     public function blog()
     {
-        return view('clients.blog');
+        $blogs = $this->mHome->getListBlog();
+        // dd($blogs);
+        return view('clients.blog', compact('blogs'));
     }
-    public function blogDetail()
+    public function blogDetail($id)
     {
-        return view('clients.blog_detail');
+        $blog = $this->mHome->getBlogWithId($id);
+        // dd($blog);
+        return view('clients.blog_detail', compact('blog'));
     }
     public function contact()
     {

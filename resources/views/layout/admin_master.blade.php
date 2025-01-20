@@ -120,7 +120,7 @@
         <div class="menu-inner-shadow"></div>
 
         <ul class="menu-inner py-1">
-          <!-- Dashboards -->
+          <!-- Products -->
           <li class="menu-item active open">
             <a href="" class="menu-link menu-toggle">
               <div class="text-truncate" data-i18n="Dashboards">Quản lý sản phẩm</div>
@@ -134,6 +134,25 @@
               <li class="menu-item">
                 <a href="{{route('addproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Product">Thêm sản phẩm</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Blog -->
+          <li class="menu-item">
+            <a href="" class="menu-link menu-toggle">
+              <div class="text-truncate" data-i18n="Dashboards">Quản lý bài viết</div>
+            </a>
+
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{route('listproducts')}}" class="menu-link menu-toggle">
+                  <div class="text-truncate" data-i18n="List-Blog">Danh sách bài viết</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Thêm bài viết</div>
                 </a>
               </li>
             </ul>
@@ -154,6 +173,8 @@
     <div class="layout-overlay layout-menu-toggle"></div>
   </div>
   <!-- Place this tag before closing body tag for github widget button. -->
+  <script src="https://cdn.tiny.cloud/1/utr58vrbwnq5rsau1p8ef9w36k3x7cugdbuwqolvbn9gw8uf/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="{{url('public/ckeditor/ckeditor.js')}}"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -167,7 +188,7 @@
   <script src="{{url('js/main.js')}}"></script>
 
   <!-- Custom js -->
-   @yield('script')
+  @yield('script')
 </body>
 
 </html>

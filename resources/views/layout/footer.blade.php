@@ -7,26 +7,25 @@
       <li>
         <div class="feature-box">
           <div class="icon-truck"></div>
-          <div class="content-blocks">We ship worldwide</div>
+          <div class="content-blocks">Ship toàn quốc</div>
         </div>
       </li>
       <li>
         <div class="feature-box">
           <div class="icon-support"></div>
-          <div class="content-blocks">call
-            +1 800 789 0000</div>
+          <div class="content-blocks">Gọi +0123456789</div>
         </div>
       </li>
       <li>
         <div class="feature-box">
           <div class="icon-money"></div>
-          <div class="content-blocks">Money Back Guarantee</div>
+          <div class="content-blocks">Thanh toán an toàn</div>
         </div>
       </li>
       <li>
         <div class="feature-box">
           <div class="icon-return"></div>
-          <div class="content">30 days return</div>
+          <div class="content">Hoàn trả trong 30 ngày</div>
         </div>
       </li>
 
@@ -145,11 +144,6 @@
       <div class="col-xs-12 col-sm-4 no-padding">
         <div class="clearfix payment-methods">
           <ul>
-            <li><img src="images/payments/1.png" alt=""></li>
-            <li><img src="images/payments/2.png" alt=""></li>
-            <li><img src="images/payments/3.png" alt=""></li>
-            <li><img src="images/payments/4.png" alt=""></li>
-            <li><img src="images/payments/5.png" alt=""></li>
           </ul>
         </div>
         <!-- /.payment-methods -->

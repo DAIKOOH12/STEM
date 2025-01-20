@@ -84,8 +84,8 @@
                             <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
                                 <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Sắp xếp <span class="caret"></span> </button>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li role="presentation"><a href="{{url()->current()}}?order=asc">Giá tăng dần</a></li>
-                                    <li role="presentation"><a href="{{url()->current()}}?order=desc">Giá giảm dần</a></li>
+                                    <li role="presentation"><a href="{{url()->current()}}?order=asc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá tăng dần</a></li>
+                                    <li role="presentation"><a href="{{url()->current()}}?order=desc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá giảm dần</a></li>
                                     <li role="presentation"><a href="{{url()->current()}}?order=desc&sort=views">Lượt xem</a></li>
                                 </ul>
                             </div>
