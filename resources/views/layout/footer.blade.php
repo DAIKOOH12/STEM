@@ -158,6 +158,7 @@
 <!-- For demo purposes – can be removed on production : End -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{url('js/jquery-1.11.1.min.js')}}"></script>
 <script src="{{url('js/bootstrap.min.js')}}"></script>
 <script src="{{url('js/bootstrap-hover-dropdown.min.js')}}"></script>

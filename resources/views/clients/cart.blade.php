@@ -26,7 +26,7 @@
                                 @foreach($cart as $item)
                                 <tr>
                                     <td class="romove-item">
-                                        <button title="cancel" class="icon btn-del" data-able="{{$item->ID_Product}}"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></button>
+                                        <button title="cancel" class="icon btn-del btn btn-danger" data-able="{{$item->ID_Product}}"><i class="fa-solid fa-trash" style="color: #fff;"></i></button>
                                     </td>
                                     <td class="cart-image">
                                         <a class="entry-thumbnail" href="detail.html">
@@ -46,10 +46,10 @@
                                     <td class="cart-product-quantity">
                                         <div class="quant-input">
                                             <div class="arrows">
-                                                <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                                                <div class="arrow plus gradient" data-able="{{$item->ID_Product}}"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+                                                <div class="arrow minus gradient" data-able="{{$item->ID_Product}}"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
                                             </div>
-                                            <input type="text" value="{{$item->iSoLuong}}">
+                                            <input type="text" value="{{$item->iSoLuong}}" class="quantity">
                                         </div>
                                     </td>
                                     <td class="cart-product-sub-total"><span class="cart-sub-total-price">{{number_format($item->fGiaBan, 0, ',', '.')}} VNĐ</span></td>

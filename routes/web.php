@@ -22,6 +22,7 @@ Route::get('/category/{category_parent?}/{category?}', [HomeController::class, '
 Route::get('/item-detail/{id?}', [HomeController::class, 'itemDetail'])->name('item-detail');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cartpage');
 Route::get('add-cart/{id?}/{quantity?}', [HomeController::class, 'addToCart'])->name('addtocart');
+Route::get('update-cart/{id?}/{quantity?}', [HomeController::class, 'updateCart'])->name('updatecart');
 Route::get('del-cart/{id?}', [HomeController::class, 'removeFromCart'])->name('removefromcart');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blogpage');
 Route::get('/detail-blog/{id?}', [HomeController::class, 'blogDetail'])->name('detailblog');

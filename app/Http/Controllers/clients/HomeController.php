@@ -67,7 +67,7 @@ class HomeController extends Controller
 
         $cus = session('cus_id');
         $order = $this->mHome->checkProducts('id_detail_' . $cus, $id_product);
-        // dd($quantity);
+        // dd($new_quantity);
         if ($order == null) {
             $this->mHome->addToCart('id_detail_' . $cus, $id_product, 'id_order_' . $cus, $cus, date('Y-m-d'), $new_quantity);
         } else {
@@ -78,11 +78,18 @@ class HomeController extends Controller
         session(['count' => $countcart->tongso]);
         return redirect()->route('cartpage');
     }
+    public function updateCart($id,$quantity){
+        $cus = session('cus_id');
+        // dd($quantity);
+        $this->mHome->updateCart('id_detail_' . $cus, $id, $quantity);
+        return redirect()->route('cartpage');
+    }
     public function removeFromCart($id)
     {
         $id_product = $id;
         $cus = session('cus_id');
         $this->mHome->removeFromCart('id_detail_' . $cus, $id_product);
+        // dd($id_product);
         $countcart = $this->mHome->countCart(session('cus_id'));
         session(['count' => $countcart->tongso]);
         return redirect()->route('cartpage');
