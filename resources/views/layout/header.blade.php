@@ -54,7 +54,7 @@
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Search here..." />
+                <input class="search-field" placeholder="Tìm kiếm..." />
                 <a class="search-button" href="#"></a>
               </div>
             </form>
