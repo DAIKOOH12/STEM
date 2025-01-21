@@ -64,25 +64,74 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Thành công']);
     }
-    public function delProduct(Request $request){
+    public function delProduct(Request $request)
+    {
         $productID = $request->input('product-id');
         $this->mAdmin->delProduct($productID);
         return response()->json(['message' => 'Thành công']);
     }
 
 
-    public function getAddBlog(){
-        $category = $this->mAdmin->getCategories();
-        return view('admin.blogs.add',compact('category'));
-    }
-    public function addBlog(Request $request){
-        $blogTitle=$request->input('blog-title');
-        $blogCategory=$request->input('blog-category');
-        $blogImage=$request->input('blog-image');
-        $blogContent=$request->input('content');
-        // dd($blogImage);
-    }
-    public function addBlogImage(Request $request){
 
+    public function showListBlogs()
+    {
+        $category = $this->mAdmin->getCategories();
+        $blogs = $this->mAdmin->showBlogs();
+        // dd($blogs);
+        return view('admin.blogs.list', compact('category', 'blogs'));
+    }
+    public function getAddBlog()
+    {
+        $category = $this->mAdmin->getCategories();
+        return view('admin.blogs.add', compact('category'));
+    }
+    public function addBlog(Request $request)
+    {
+        $blogTitle = $request->input('blog-title');
+        $blogCategory = $request->input('blog-category');
+        $blogImage = $request->file('blog-image');
+        $blogContent = $request->input('content');
+        // dd($request->all());
+        // dd($blogImage);
+        $destinationPath = base_path('public/images/blogs');
+        $image_name = time() . '_' . $blogImage->getClientOriginalName();
+        $blogImage->move($destinationPath, $image_name);
+        $this->mAdmin->addBlog($blogTitle, $blogCategory, $image_name, $blogContent);
+        return redirect()->route('addblog');
+    }
+    public function getEditBlog()
+    {
+        if (request('blogID')) {
+            $blogID = request('blogID');
+            $blogEdit = $this->mAdmin->getBlogWithId($blogID);
+            // dd($blogEdit);
+            return view('admin.blogs.edit', compact('blogEdit'));
+        }
+        return redirect()->route('showlistblog');
+    }
+    public function updateBlog()
+    {
+        $blogTitle = request()->input('blog-title');
+        $blogID = request()->input('blog-id');
+        $blogImage = request()->file('blog-image');
+        $blogContent = request()->input('content');
+        $blogStatus = request()->input('blog-status');
+
+
+        if($blogImage!=null){
+            $destinationPath = base_path('public/images/blogs');
+            $image_name = time() . '_' . $blogImage->getClientOriginalName();
+            $blogImage->move($destinationPath, $image_name);
+            dd($image_name);
+            $this->mAdmin->updateBlog($blogID,$blogTitle,$image_name,$blogContent,$blogStatus);
+        }
+        $this->mAdmin->updateBlog($blogID,$blogTitle,$image_name=null,$blogContent,$blogStatus);
+        return redirect()->route('showlistblog');
+    }
+    public function updateBlogCategory(){
+        $category=request()->input('category');
+        $id=request()->input('id');
+        $this->mAdmin->updateBlogCategory($category,$id);
+        return response()->json(['category'=>$category]);
     }
 }

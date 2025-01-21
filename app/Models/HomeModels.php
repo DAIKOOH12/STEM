@@ -220,8 +220,8 @@ class HomeModels extends Model
     }
     public function getListBlog(){
         $query=DB::table('blog as b')
-        ->join('blog_comments as bc','b.ID_blog','=','bc.ID_blog')
         ->join('employee as e','b.ID_employee','=','e.ID_employee')
+        ->where('b.sTrangThai','=','duyet')
         ->get();
         return $query;
     }

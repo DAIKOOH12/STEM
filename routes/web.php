@@ -34,7 +34,7 @@ Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 
 
 
-//Admin
+//Admin-Products
 Route::get('/admin',[AdminController::class,'index'])->name('adminpage');
 Route::get('/list-products',[AdminController::class,'getListProducts'])->name('listproducts');
 Route::get('/add-product',[AdminController::class,'getAddView'])->name('addproduct');
@@ -42,6 +42,10 @@ Route::post('/add-product',[AdminController::class,'addProduct'])->name('showadd
 Route::post('/edit-product',[AdminController::class,'editProduct'])->name('editproduct');
 Route::post('/del-product',[AdminController::class,'delProduct'])->name('delproduct');
 
+//Admin-Blogs
+Route::get('/list-blogs',[AdminController::class,'showListBlogs'])->name('showlistblog');
 Route::get('/add-blog',[AdminController::class,'getAddBlog'])->name('showaddblog');
 Route::post('/add-blog',[AdminController::class,'addBlog'])->name('addblog');
-Route::get('/add-blog-image',[AdminController::class,'addBlogImage'])->name('addblogimage');
+Route::get('/edit-blog',[AdminController::class,'getEditBlog'])->name('geteditblog');
+Route::post('/edit-blog',[AdminController::class,'updateBlog'])->name('editblog');
+Route::post('/edit-blog-category',[AdminController::class,'updateBlogCategory'])->name('editblogcategory');

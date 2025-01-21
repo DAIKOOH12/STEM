@@ -5,7 +5,7 @@
     <div class="col-xs-12 col-sm-9 col-md-9 rht-col">
         @foreach($blog as $detail)
         <div class="blog-post wow fadeInUp">
-            <img class="img-responsive" src="images/blog-post/blog_big_01.jpg" alt="">
+            <img class="img-responsive" src="{{url('images/blogs')}}/{{$detail->sDuongDan1}}" alt="">
             <h1>{{$detail->sTieuDe}}</h1>
             <span class="author">{{$detail->sHoTen}}</span>
             <span class="date-time">{{$detail->dCreateAt}}</span>

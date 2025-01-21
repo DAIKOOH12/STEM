@@ -122,13 +122,19 @@
 </body>
 
 <script>
-    var loader = document.getElementById("loader");
-    var container = document.getElementById("container_body");
-    container.style.display = "none";
-    setTimeout(function() {
-        loader.style.display = "none";
-        container.style.display = "block";
-    }, 300);
+    $(document).ready(function() {
+        var loader = document.getElementById("loader");
+        var container = document.getElementById("container_body");
+        container.style.display = "none";
+        setTimeout(function() {
+            loader.style.display = "none";
+            container.style.display = "block";
+        }, 300);
+    });
+    $('#search-key').on('keyup',function(){
+        console.log($(this).val());
+
+    })
 </script>
 
 </html>

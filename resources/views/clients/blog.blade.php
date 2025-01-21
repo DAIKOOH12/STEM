@@ -7,13 +7,14 @@
             <div class="blog-page">
                 <div class="col-xs-12 col-sm-9 col-md-9 rht-col">
                     @foreach($blogs as $blog)
-                    <div class="blog-post  wow fadeInUp">
-                        <a href="{{route('detailblog')}}/{{$blog->ID_blog}}"><img class="img-responsive" src="{{url('images/thumbs')}}/{{$blog->sDuongDan1}}" alt="" style="max-width:300px"></a>
+                    <div class="blog-post  wow fadeInUp" style="margin-bottom:15px">
+                        <a href="{{route('detailblog')}}/{{$blog->ID_blog}}"><img class="img-responsive" src="{{url('images/blogs')}}/{{$blog->sDuongDan1}}" alt="" style="max-width:300px"></a>
                         <h1><a href="{{route('detailblog')}}/{{$blog->ID_blog}}">{{$blog->sTieuDe}}</a></h1>
                         <span class="author">{{$blog->sHoTen}}</span>
                         <span class="date-time">{{$blog->dCreateAt}}</span>
                         <p>{{$blog->sTieuDe}}</p>
                         <a href="{{route('detailblog')}}/{{$blog->ID_blog}}" class="btn btn-upper btn-primary read-more">Đọc thêm</a>
+                        <br>
                     </div>
                     @endforeach
 
