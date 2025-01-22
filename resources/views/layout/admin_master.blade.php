@@ -66,7 +66,12 @@
           <a href="{{route('adminpage')}}"> <img src="https://cdn-icons-png.flaticon.com/512/906/906343.png" alt="logo" style="max-height: 50px"> </a>
           <span class="app-brand-text demo menu-text fw-bold ms-2">Quản Trị</span>
         </div>
-        <div class="menu-inner-shadow"></div>
+        <div class="menu-block my-2 d-flex align-items-center">
+          <h5 class="menu-text" style="margin:0;">Xin chào, {{session('isUser')}}</h5>
+          <div class="small">
+            <a class="menu-link btn btn-danger" href="{{route('adminsingout')}}" style="color: white;font-size: 12px">Đăng xuất</a>
+          </div>
+        </div>
         <ul class="menu-inner py-1">
           <!-- Products -->
           <li class="menu-item active open">
@@ -82,6 +87,11 @@
               <li class="menu-item">
                 <a href="{{route('addproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Product">Thêm sản phẩm</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('addproduct')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Product">Nhập kho hàng</div>
                 </a>
               </li>
             </ul>
@@ -101,6 +111,42 @@
               <li class="menu-item">
                 <a href="{{route('showaddblog')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Blog">Thêm bài viết</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Employee -->
+          <li class="menu-item">
+            <a href="" class="menu-link menu-toggle">
+              <div class="text-truncate" data-i18n="Dashboards">Quản lý nhân viên</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{route('showlistblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="List-Blog">Danh sách nhân viên</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Thêm nhân viên</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Analytics -->
+          <li class="menu-item">
+            <a href="" class="menu-link menu-toggle">
+              <div class="text-truncate" data-i18n="Dashboards">Thống kê</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{route('showlistblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="List-Blog">Thống kê hàng tồn</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
                 </a>
               </li>
             </ul>

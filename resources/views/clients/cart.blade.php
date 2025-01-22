@@ -79,6 +79,20 @@
                     </div>
                 </div><!-- /.shopping-cart-table -->
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="4">Địa chỉ nhận hàng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{$cusInfo->sHoTen}} ({{$cusInfo->sSoDienThoai}})</th>
+                                <td colspan="2">{{$cusInfo->sDiaChi}}</td>
+                                <td><button class="btn btn-info">Thay đổi</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div><!-- /.estimate-ship-tax -->
 
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
@@ -99,7 +113,12 @@
                             <tr>
                                 <td>
                                     <div class="cart-checkout-btn pull-right">
-                                        <button type="submit" class="btn btn-primary checkout-btn">Thanh toán</button>
+                                        <form action="{{route('payment')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="tenkh" value="{{$cusInfo->sHoTen}}">
+                                            <input type="hidden" name="tongtien" value="{{$tong}}">
+                                            <button type="submit" name="redirect" class="btn btn-primary checkout-btn">Thanh toán</button>
+                                        </form>
                                         <span class="">Thanh toán nhanh chóng!</span>
                                     </div>
                                 </td>

@@ -1,4 +1,5 @@
-let table = new DataTable("#product-table", {
+new DataTable("#product-table", {
+    lengthMenu: [5, 10, 25, 50, { label: "Tất cả", value: -1 }],
     language: {
         processing: "Đang xử lý...",
         aria: {

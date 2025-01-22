@@ -51,8 +51,9 @@ class HomeController extends Controller
     {
         $cus = session('cus_id');
         $cart = $this->mHome->getCart($cus);
-        // dd($cus);
-        return view('clients.cart', compact('cart'));
+        $cusInfo=$this->mHome->getCusInfo($cus);
+        // dd($cusInfo);
+        return view('clients.cart', compact('cart','cusInfo'));
     }
     public function addToCart($id)
     {
@@ -109,5 +110,13 @@ class HomeController extends Controller
     public function contact()
     {
         return view('clients.contact');
+    }
+
+    public function paidBill(){
+        $cus=session('cus_id');
+
+        $this->mHome->addBillPayment( request()->all(),$cus);
+
+        return redirect()->route('homepage');
     }
 }

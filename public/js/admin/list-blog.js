@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    let table = new DataTable("#product-table", {
+    new DataTable("#blog-table", {
+        lengthMenu: [5, 10, 25, 50, { label: "Tất cả", value: -1 }],
         language: {
             processing: "Đang xử lý...",
             aria: {
@@ -248,13 +249,15 @@ $(document).ready(function () {
         },
     });
 
-    $("#blog-category").on("change", function () {
+    $(".blog-category").on("change", function () {
         var row = $(this).parent("td");
         var id = row.siblings(".title").attr("data-able");
+        var category=$(".blog-category").val();
 
         var data = new FormData();
-        data.append("category", $("#blog-category").val());
+        data.append("category", $(".blog-category").val());
         data.append("id", id);
+
 
         fetch("./edit-blog-category", {
             method: "POST",
@@ -265,7 +268,9 @@ $(document).ready(function () {
         })
             .then((response) => response.json())
             .then((response) => {
-                toastr.success("Cập nhật thành công!");
+                console.log(response['category']);
+
+                toastr.success(response["message"]);
             });
     });
 });

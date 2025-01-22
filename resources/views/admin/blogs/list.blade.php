@@ -4,7 +4,7 @@
 <div class="card" style="padding:10px">
     <h5 class="card-header">Danh sách bài viết</h5>
     <div class="table-responsive text-nowrap">
-        <table class="table" id="product-table">
+        <table class="table" id="blog-table">
             <thead>
                 <tr>
                     <th>Tiêu đề</th>
@@ -26,7 +26,7 @@
                     <td class=" text-collapse updateat">{{$item->dUpdateAt}}</td>
                     <td class=" text-collapse updateat">{{$item->sHoTen}}</td>
                     <td class="text-collapse category">
-                        <select class="form-control form-control-lg" id="blog-category">
+                        <select class="form-control form-control-lg blog-category">
                             @foreach($category as $cate)
                             <option value="{{$cate->ID_category}}" {{$cate->ID_category==$item->ID_category?"selected":""}}>{{$cate->sTenChuDe}}</option>
                             @endforeach

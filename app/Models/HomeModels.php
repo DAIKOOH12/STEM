@@ -40,7 +40,7 @@ class HomeModels extends Model
         $result = $products->get();
         return $result;
     }
-    public function getCategoryWithFilter($category_parent, $category, $min_price, $max_price,$order=null)
+    public function getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order = null)
     {
         $products = DB::table('product as p')
             ->select('p.*', 'c.ID_category_parent', 'i.*')
@@ -83,11 +83,12 @@ class HomeModels extends Model
             ->limit(4)->get();
         return $product;
     }
-    public function getProductsWithCategory($id_category){
+    public function getProductsWithCategory($id_category)
+    {
         $product = DB::table('product as p')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
             ->join('category as c', 'p.ID_category', 'c.ID_category')
-            ->where('p.ID_category','=',$id_category)->get();
+            ->where('p.ID_category', '=', $id_category)->get();
         return $product;
     }
     public function singIn($account, $password)
@@ -117,6 +118,14 @@ class HomeModels extends Model
         $cus = DB::table('customer');
         return $cus->count();
     }
+    public function getCusInfo($id)
+    {
+        $cus = DB::table('customer as c')
+            ->join('member as m', 'c.ID_member', 'm.ID_member')
+            ->where('c.ID_customer', '=', $id)
+            ->first();
+        return $cus;
+    }
     public function singUp($account, $password, $quyen, $hoten, $sdt, $email, $diachi)
     {
         DB::table('member')->insert([
@@ -141,7 +150,7 @@ class HomeModels extends Model
             ]
         ]);
         session(['mem_id' => 'id_mem_' . $this->getAllMem() + 1, 'mem_name' => $hoten, 'cus_id' => 'id_cus_' . $this->getAllCus() + 1]);
-            session()->save();
+        session()->save();
     }
     public function countCart($idCustomer)
     {
@@ -185,7 +194,7 @@ class HomeModels extends Model
             ->where('ID_product', '=', $id_product)->first();
         return $order;
     }
-    public function addToCart($id_order_detail, $id_product,$id_order,$id_cus,$ngaydat,$quantity)
+    public function addToCart($id_order_detail, $id_product, $id_order, $id_cus, $ngaydat, $quantity)
     {
         DB::table('order_detail')->insertOrIgnore([
             [
@@ -199,8 +208,8 @@ class HomeModels extends Model
                 'ID_order' =>  $id_order,
                 'ID_order_detail' => $id_order_detail,
                 'ID_customer' => $id_cus,
-                'dNgayDat'=>$ngaydat,
-                'sTrangThai'=>'cho_duyet'
+                'dNgayDat' => $ngaydat,
+                'sTrangThai' => 'cho_duyet'
             ]
         ]);
     }
@@ -218,18 +227,43 @@ class HomeModels extends Model
             ->where('ID_Product', $id_product)
             ->delete();
     }
-    public function getListBlog(){
-        $query=DB::table('blog as b')
-        ->join('employee as e','b.ID_employee','=','e.ID_employee')
-        ->where('b.sTrangThai','=','duyet')
-        ->get();
+
+    public function addBillPayment($arr, $cus)
+    {
+        // dd($arr);
+        $data['vnp_Txnref'] = $arr['vnp_TxnRef'];
+        $data['vnp_Amount'] = $arr['vnp_Amount'];
+        $data['vnp_BankCode'] = $arr['vnp_BankCode'];
+        $data['vnp_CardType'] = $arr['vnp_CardType'];
+        $data['vnp_OrderInfo'] = $arr['vnp_OrderInfo'];
+        $data['vnp_PayDate'] = $arr['vnp_PayDate'];
+        $data['vnp_ResponseCode'] = $arr['vnp_ResponseCode'];
+        $data['vnp_TmnCode'] = $arr['vnp_TmnCode'];
+        $data['vnp_TransactionNo'] = $arr['vnp_TransactionNo'];
+        $data['vnp_TransactionStatus'] = $arr['vnp_TransactionStatus'];
+        $data['vnp_SecureHash'] = $arr['vnp_SecureHash'];
+        $data['ID_order'] = "id_order_" . $cus;
+        DB::table('payments')->insert($data);
+
+        DB::table('order_detail')
+        ->where('ID_order_detail', 'id_detail_' . $cus)
+        ->delete();
+    }
+
+    public function getListBlog()
+    {
+        $query = DB::table('blog as b')
+            ->join('employee as e', 'b.ID_employee', '=', 'e.ID_employee')
+            ->where('b.sTrangThai', '=', 'duyet')
+            ->get();
         return $query;
     }
-    public function getBlogWithId($id){
-        $query=DB::table('blog as b')
-        ->join('employee as e','b.ID_employee','=','e.ID_employee')
-        ->where('b.ID_blog','=',$id)
-        ->get();
+    public function getBlogWithId($id)
+    {
+        $query = DB::table('blog as b')
+            ->join('employee as e', 'b.ID_employee', '=', 'e.ID_employee')
+            ->where('b.ID_blog', '=', $id)
+            ->get();
         return $query;
     }
 }

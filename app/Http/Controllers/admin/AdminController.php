@@ -14,8 +14,47 @@ class AdminController extends Controller
     }
     public function index()
     {
+        $isUser=session('isUser');
+        if($isUser==null){
+            return redirect()->route('loginpage');
+        }
         return view('admin.index');
     }
+    public function signInForm()
+    {
+        if(session('isUser')!=null){
+            return redirect()->route('adminpage');
+        }
+        return view('admin.roles.login');
+    }
+    public function signIn(Request $request)
+    {
+        $account = $request->input('account');
+        $password = $request->input('password');
+
+        $isUser = $this->mAdmin->signIn($account, $password);
+        // dd($isUser);
+        if ($isUser != null) {
+            session()->put('isUser', $isUser->sTaiKhoan);
+            session()->put('role', $isUser->ID_quyen);
+            session()->forget('message');
+            session()->save();
+            return redirect()->route('adminpage');
+        } else {
+            session()->put('message', 'Tài khoản hoặc mật khẩu không đúng');
+            session()->save();
+            return redirect()->route('loginpage');
+        }
+        // dd($request->all());
+    }
+
+    public function signOut(){
+        session()->forget('isUser');
+        session()->save();
+        return redirect()->route('loginpage');
+    }
+
+
     public function getListProducts()
     {
         $products = $this->mAdmin->getListProducts();
@@ -118,20 +157,23 @@ class AdminController extends Controller
         $blogStatus = request()->input('blog-status');
 
 
-        if($blogImage!=null){
+        if ($blogImage != null) {
             $destinationPath = base_path('public/images/blogs');
             $image_name = time() . '_' . $blogImage->getClientOriginalName();
             $blogImage->move($destinationPath, $image_name);
             dd($image_name);
-            $this->mAdmin->updateBlog($blogID,$blogTitle,$image_name,$blogContent,$blogStatus);
+            $this->mAdmin->updateBlog($blogID, $blogTitle, $image_name, $blogContent, $blogStatus);
         }
-        $this->mAdmin->updateBlog($blogID,$blogTitle,$image_name=null,$blogContent,$blogStatus);
-        return redirect()->route('showlistblog');
+        $this->mAdmin->updateBlog($blogID, $blogTitle, $image_name = null, $blogContent, $blogStatus);
+        return  redirect()->back();
     }
-    public function updateBlogCategory(){
-        $category=request()->input('category');
-        $id=request()->input('id');
-        $this->mAdmin->updateBlogCategory($category,$id);
-        return response()->json(['category'=>$category]);
+    public function updateBlogCategory()
+    {
+        $category = request()->input('category');
+        $id = request()->input('id');
+
+        // dd($category);
+        $this->mAdmin->updateBlogCategory($category, $id);
+        return response()->json(['message' => 'Cập nhật thành công', 'category' => $category]);
     }
 }

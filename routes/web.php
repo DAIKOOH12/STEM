@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\clients\AccountController;
 use App\Http\Controllers\clients\HomeController;
+use App\Http\Controllers\clients\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,12 @@ Route::get('/account', [AccountController::class, 'index'])->name('accountpage')
 Route::post('/account', [AccountController::class, 'signIn'])->name('signin');
 Route::post('/signup', [AccountController::class, 'signUp'])->name('signup');
 Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
+Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
 
+//Admin Role
+Route::get('/admin/login',[AdminController::class,'signInForm'])->name('loginpage');
+Route::post('/admin/login',[AdminController::class,'signIn'])->name('adminsignin');
+Route::get('/admin/signout',[AdminController::class,'signOut'])->name('adminsingout');
 
 
 //Admin-Products
@@ -49,3 +55,7 @@ Route::post('/add-blog',[AdminController::class,'addBlog'])->name('addblog');
 Route::get('/edit-blog',[AdminController::class,'getEditBlog'])->name('geteditblog');
 Route::post('/edit-blog',[AdminController::class,'updateBlog'])->name('editblog');
 Route::post('/edit-blog-category',[AdminController::class,'updateBlogCategory'])->name('editblogcategory');
+
+
+//VNPay Payment
+Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');

@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 class AdminModels extends Model
 {
     use HasFactory;
+    public function signIn($account,$password){
+        $query=DB::table('employee')
+        ->where('sTaiKhoan','=',$account)
+        ->where('sMatKhau','=',sha1($password))
+        ->first();
+        return $query;
+    }
     public function getListProducts(){
         $query=DB::table('product as p')
         ->join('category as c', 'p.ID_category', 'c.ID_category')
