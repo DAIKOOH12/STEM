@@ -1012,106 +1012,28 @@
     <!-- ============================================== SCROLL TABS : END ============================================== -->
     <!-- ============================================== BLOG SLIDER ============================================== -->
     <section class="section latest-blog outer-bottom-vs">
-        <h3 class="section-title">Tin tức</h3>
+        <h3 class="section-title">Blogs</h3>
         <div class="blog-slider-container outer-top-xs">
             <div class="owl-carousel blog-slider custom-carousel">
+                @foreach($blogs as $item)
                 <div class="item">
                     <div class="blog-post">
                         <div class="blog-post-image">
-                            <div class="image"> <a href="blog.html"><img src="images/blog-post/blog_big_01.jpg" alt=""></a> </div>
+                            <div class="image"> <a href="{{route('detailblog')}}/{{$item->ID_blog}}"><img src="{{url('images/blogs')}}/{{$item->sDuongDan1}}" alt="" style="min-height: 200px;max-height:200px"></a> </div>
                         </div>
                         <!-- /.blog-post-image -->
 
-                        <div class="blog-post-info text-left">
-                            <h3 class="name"><a href="#">Voluptatem accusantium doloremque laudantium</a></h3>
-                            <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                            <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                        <div class="blog-post-info text-left text-collapse">
+                            <h3 class="name"><a href="{{route('detailblog')}}/{{$item->ID_blog}}">{{$item->sTieuDe}}</a></h3>
+                            <span class="info">{{$item->sHoTen}} &nbsp;|&nbsp; {{$item->dCreateAt==null?$item->dCreateAt:$item->dCreateAt}} </span>
+                            <p style="text-overflow:ellipsis">{!! $item->sTomTat !!}</p>
                         </div>
                         <!-- /.blog-post-info -->
-
                     </div>
                     <!-- /.blog-post -->
                 </div>
                 <!-- /.item -->
-
-                <div class="item">
-                    <div class="blog-post">
-                        <div class="blog-post-image">
-                            <div class="image"> <a href="blog.html"><img src="images/blog-post/blog_big_02.jpg" alt=""></a> </div>
-                        </div>
-                        <!-- /.blog-post-image -->
-
-                        <div class="blog-post-info text-left">
-                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                            <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                        </div>
-                        <!-- /.blog-post-info -->
-
-                    </div>
-                    <!-- /.blog-post -->
-                </div>
-                <!-- /.item -->
-
-                <!-- /.item -->
-
-                <div class="item">
-                    <div class="blog-post">
-                        <div class="blog-post-image">
-                            <div class="image"> <a href="blog.html"><img src="images/blog-post/blog_big_03.jpg" alt=""></a> </div>
-                        </div>
-                        <!-- /.blog-post-image -->
-
-                        <div class="blog-post-info text-left">
-                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                            <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                        </div>
-                        <!-- /.blog-post-info -->
-
-                    </div>
-                    <!-- /.blog-post -->
-                </div>
-                <!-- /.item -->
-
-                <div class="item">
-                    <div class="blog-post">
-                        <div class="blog-post-image">
-                            <div class="image"> <a href="blog.html"><img src="images/blog-post/blog_big_01.jpg" alt=""></a> </div>
-                        </div>
-                        <!-- /.blog-post-image -->
-
-                        <div class="blog-post-info text-left">
-                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                            <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                        </div>
-                        <!-- /.blog-post-info -->
-
-                    </div>
-                    <!-- /.blog-post -->
-                </div>
-                <!-- /.item -->
-
-                <div class="item">
-                    <div class="blog-post">
-                        <div class="blog-post-image">
-                            <div class="image"> <a href="blog.html"><img src="images/blog-post/blog_big_02.jpg" alt=""></a> </div>
-                        </div>
-                        <!-- /.blog-post-image -->
-
-                        <div class="blog-post-info text-left">
-                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                            <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                        </div>
-                        <!-- /.blog-post-info -->
-
-                    </div>
-                    <!-- /.blog-post -->
-                </div>
-                <!-- /.item -->
-
+                @endforeach
             </div>
             <!-- /.owl-carousel -->
         </div>
@@ -1128,34 +1050,34 @@
 <div id="brands-carousel" class="logo-slider">
     <div class="logo-slider-inner">
         <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-            <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="images/brands/brand1.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="images/brands/brand2.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand3.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand4.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand5.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand6.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand2.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand4.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand1.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
 
-            <div class="item"> <a href="#" class="image"> <img data-echo="images/brands/brand5.png" src="images/blank.gif" alt=""> </a> </div>
+            <div class="item"> <a href="#" class="image"> <img data-echo="" src="" alt=""> </a> </div>
             <!--/.item-->
         </div>
         <!-- /.owl-carousel #logo-slider -->

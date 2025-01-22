@@ -22,6 +22,12 @@
                         </div>
                     </div>
                     <div class="row mb-6">
+                        <label class="col-sm-2 col-form-label" for="blog-title">Nội dung tóm tắt</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="blog-summary" id="blog-summary" value="{{$item->sTomTat}}" placeholder="Tóm tắt" />
+                        </div>
+                    </div>
+                    <div class="row mb-6">
                         <label class="col-sm-2 col-form-label" for="blog-title">Ảnh đại diện</label>
                         <div class="col-sm-8">
                             <input type="file" class="form-control" value="{{$item->sDuongDan1}}" name="blog-image" id="blog-image" accept="image/png, image/gif, image/jpeg" />

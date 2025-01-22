@@ -14,15 +14,15 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $isUser=session('isUser');
-        if($isUser==null){
+        $isUser = session('isUser');
+        if ($isUser == null) {
             return redirect()->route('loginpage');
         }
         return view('admin.index');
     }
     public function signInForm()
     {
-        if(session('isUser')!=null){
+        if (session('isUser') != null) {
             return redirect()->route('adminpage');
         }
         return view('admin.roles.login');
@@ -39,6 +39,7 @@ class AdminController extends Controller
             session()->put('role', $isUser->ID_quyen);
             session()->forget('message');
             session()->save();
+            // dd(session('role'));
             return redirect()->route('adminpage');
         } else {
             session()->put('message', 'Tài khoản hoặc mật khẩu không đúng');
@@ -48,7 +49,8 @@ class AdminController extends Controller
         // dd($request->all());
     }
 
-    public function signOut(){
+    public function signOut()
+    {
         session()->forget('isUser');
         session()->save();
         return redirect()->route('loginpage');
@@ -130,12 +132,14 @@ class AdminController extends Controller
         $blogCategory = $request->input('blog-category');
         $blogImage = $request->file('blog-image');
         $blogContent = $request->input('content');
+        $blogSummary = $request->input('blog-summary');
+
         // dd($request->all());
         // dd($blogImage);
         $destinationPath = base_path('public/images/blogs');
         $image_name = time() . '_' . $blogImage->getClientOriginalName();
         $blogImage->move($destinationPath, $image_name);
-        $this->mAdmin->addBlog($blogTitle, $blogCategory, $image_name, $blogContent);
+        $this->mAdmin->addBlog($blogTitle, $blogCategory, $image_name, $blogContent, $blogSummary);
         return redirect()->route('addblog');
     }
     public function getEditBlog()
@@ -155,16 +159,18 @@ class AdminController extends Controller
         $blogImage = request()->file('blog-image');
         $blogContent = request()->input('content');
         $blogStatus = request()->input('blog-status');
+        $blogSummary = request()->input('blog-summary');
 
 
         if ($blogImage != null) {
             $destinationPath = base_path('public/images/blogs');
             $image_name = time() . '_' . $blogImage->getClientOriginalName();
             $blogImage->move($destinationPath, $image_name);
-            dd($image_name);
-            $this->mAdmin->updateBlog($blogID, $blogTitle, $image_name, $blogContent, $blogStatus);
+            // dd($image_name);
+            $this->mAdmin->updateBlog($blogID, $blogTitle, $image_name, $blogContent, $blogStatus, $blogSummary);
         }
-        $this->mAdmin->updateBlog($blogID, $blogTitle, $image_name = null, $blogContent, $blogStatus);
+        // dd(request()->all());
+        $this->mAdmin->updateBlog($blogID, $blogTitle, $image_name = null, $blogContent, $blogStatus, $blogSummary);
         return  redirect()->back();
     }
     public function updateBlogCategory()

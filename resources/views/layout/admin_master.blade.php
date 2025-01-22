@@ -73,6 +73,8 @@
           </div>
         </div>
         <ul class="menu-inner py-1">
+          @switch(session('role'))
+          @case(session('role')==='1')
           <!-- Products -->
           <li class="menu-item active open">
             <a href="" class="menu-link menu-toggle">
@@ -94,6 +96,11 @@
                   <div class="text-truncate" data-i18n="Add-Product">Nhập kho hàng</div>
                 </a>
               </li>
+              <li class="menu-item">
+                <a href="{{route('addproduct')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Product">Thống kê hàng tồn</div>
+                </a>
+              </li>
             </ul>
           </li>
           <!-- Blog -->
@@ -101,7 +108,6 @@
             <a href="" class="menu-link menu-toggle">
               <div class="text-truncate" data-i18n="Dashboards">Quản lý bài viết</div>
             </a>
-
             <ul class="menu-sub">
               <li class="menu-item">
                 <a href="{{route('showlistblog')}}" class="menu-link">
@@ -136,7 +142,7 @@
           <!-- Analytics -->
           <li class="menu-item">
             <a href="" class="menu-link menu-toggle">
-              <div class="text-truncate" data-i18n="Dashboards">Thống kê</div>
+              <div class="text-truncate" data-i18n="Dashboards">Báo cáo & Thống kê</div>
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
@@ -149,8 +155,88 @@
                   <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
                 </a>
               </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Quản lí hóa đơn</div>
+                </a>
+              </li>
             </ul>
           </li>
+          @break
+          @case(session('role')==='2')
+          <!-- Blog -->
+          <li class="menu-item">
+            <a href="" class="menu-link menu-toggle">
+              <div class="text-truncate" data-i18n="Dashboards">Quản lý bài viết</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{route('showlistblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="List-Blog">Danh sách bài viết</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Thêm bài viết</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Analytics -->
+          <li class="menu-item">
+            <a href="" class="menu-link menu-toggle">
+              <div class="text-truncate" data-i18n="Dashboards">Báo cáo & Thống kê</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{route('showlistblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="List-Blog">Thống kê hàng tồn</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('showaddblog')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Quản lí hóa đơn</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @break
+          @case(session('role')==='3')
+          <!-- Products -->
+          <li class="menu-item active open">
+            <a href="" class="menu-link menu-toggle">
+              <div class="text-truncate" data-i18n="Dashboards">Quản lý sản phẩm</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="{{route('listproducts')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="List-Product">Danh sách sản phẩm</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('addproduct')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Product">Thêm sản phẩm</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('addproduct')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Product">Nhập kho hàng</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{route('addproduct')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Product">Thống kê hàng tồn</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @break
+          @endswitch
         </ul>
       </aside>
       <!-- / Menu -->

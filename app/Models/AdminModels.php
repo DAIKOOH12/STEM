@@ -81,7 +81,7 @@ class AdminModels extends Model
         ->get();
         return $query;
     }
-    public function addBlog($name,$category,$image,$content){
+    public function addBlog($name,$category,$image,$content,$summary){
         $id_blog='id_blog_'.count(DB::table('blog')->get())+1;
         DB::table('blog')
         ->insert([
@@ -92,7 +92,8 @@ class AdminModels extends Model
             'dCreateAt'=>date('Y-m-d H:i:s'),
             'sNoiDung'=>$content,
             'ID_employee'=>'id_emp_1',
-            'sTrangThai'=>'cho_duyet'
+            'sTrangThai'=>'cho_duyet',
+            'sTomTat'=>$summary
         ]);
     }
     public function getBlogWithId($id){
@@ -102,7 +103,7 @@ class AdminModels extends Model
         ->get();
         return $query;
     }
-    public function updateBlog($id,$title,$image,$content,$status){
+    public function updateBlog($id,$title,$image,$content,$status,$summary){
         $data['dUpdateAt']=date('Y-m-d H:i:s');
         if($title!=null){
             $data['sTieuDe']=$title;
@@ -115,6 +116,9 @@ class AdminModels extends Model
         }
         if($status!=null){
             $data['sTrangThai']=$status;
+        }
+        if($summary!=null){
+            $data['sTomTat']=$summary;
         }
         // dd($data);
         DB::table('blog')

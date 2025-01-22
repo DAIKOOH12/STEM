@@ -19,8 +19,9 @@ class HomeController extends Controller
             session(['count' => $countcart->tongso]);
         }
         $products = $this->mHome->getAllProducts();
+        $blogs=$this->mHome->getListBlog();
         // dd($products);
-        return view('clients.home', compact('products'));
+        return view('clients.home', compact('products','blogs'));
     }
     public function category($category_parent = null, $category = null, Request $request)
     {
