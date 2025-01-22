@@ -41,7 +41,7 @@
           <!-- /.contact-row -->
           <!-- ============================================================= SEARCH AREA ============================================================= -->
           <div class="search-area">
-            <form>
+            <form action="{{route('searchproduct')}}">
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
                   <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('categorypage')}}">Danh mục <b class="caret"></b></a>
@@ -54,8 +54,9 @@
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Tìm kiếm..." id="search-key" />
-                <a class="search-button" href="#"></a>
+                <input class="search-field" placeholder="Tìm kiếm..." id="keyword" name="keyword" />
+                <!-- <a class="search-button" href="#"></a> -->
+                <button class="search-button btn" type="submit"></button>
               </div>
             </form>
           </div>

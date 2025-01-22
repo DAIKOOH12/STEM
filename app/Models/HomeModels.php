@@ -24,6 +24,31 @@ class HomeModels extends Model
             })->get();
         return $products;
     }
+    public function getProductFromSearch($keyword, $min_price, $max_price, $views, $order_by)
+    {
+        $products = DB::table('product as p')
+            ->select('p.*', 'c.ID_category_parent', 'i.*')
+            ->join('category as c', 'p.ID_category', 'c.ID_category')
+            ->join('image as i', 'p.ID_image', 'i.ID_image')
+            ->join('category_parent as cp', 'c.ID_category_parent', 'cp.ID_category_parent');
+        if ($keyword !== null) {
+            $products->where('p.sTenSanPham', 'like', '%' . $keyword . '%');
+        }
+        if ($min_price !== null) {
+            $products->where('p.fGiaBan', '>=', $min_price);
+        }
+        if ($max_price !== null) {
+            $products->where('p.fGiaBan', '<=', $max_price);
+        }
+        if ($order_by !== null) {
+            $products->orderBy('p.fGiaBan', $order_by);
+        }
+        if($views !== null){
+            $products->orderBy('p.iLuotXem', 'desc');
+        }
+        $result = $products->get();
+        return $result;
+    }
     public function getCategoryWithID($category_parent, $category)
     {
         $products = DB::table('product as p')
@@ -246,8 +271,8 @@ class HomeModels extends Model
         DB::table('payments')->insert($data);
 
         DB::table('order_detail')
-        ->where('ID_order_detail', 'id_detail_' . $cus)
-        ->delete();
+            ->where('ID_order_detail', 'id_detail_' . $cus)
+            ->delete();
     }
 
     public function getListBlog()

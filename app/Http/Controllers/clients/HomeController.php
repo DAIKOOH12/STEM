@@ -23,6 +23,24 @@ class HomeController extends Controller
         // dd($products);
         return view('clients.home', compact('products','blogs'));
     }
+
+    public function searchProduct(){
+        $key_word=request()->input('keyword');
+        $min_price = request()->input('min_price');
+        $max_price = request()->input('max_price');
+        $views=request()->input('views');
+        $order_by=request()->input('order_by');
+        if($min_price==null){
+            $min_price=0;
+        }
+        if($max_price==null){
+            $max_price=9999999;
+        }
+        $products=$this->mHome->getProductFromSearch($key_word,$min_price,$max_price,$views,$order_by);
+        // dd($products);
+        return view('clients.search_product',compact('products','min_price','max_price'));
+    }
+
     public function category($category_parent = null, $category = null, Request $request)
     {
         $products = $this->mHome->getCategoryWithID($category_parent, $category);
@@ -60,13 +78,6 @@ class HomeController extends Controller
     {
         $new_quantity = request('quantity') ?? 1;
         $id_product = $id;
-        // if(request('quantity')!=null){
-        //     $quantity=request('quantity');
-        // }
-        // else{
-        //     $quantity=1;
-        // }
-
         $cus = session('cus_id');
         $order = $this->mHome->checkProducts('id_detail_' . $cus, $id_product);
         // dd($new_quantity);

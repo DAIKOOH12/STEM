@@ -36,6 +36,7 @@
             <div class="sidebar-widget">
                 <h3 class="section-title">Bộ lọc sản phẩm</h3>
                 <form action="{{url()->current()}}">
+                    <input type="hidden" name="keyword" value="{{request()->input('keyword')}}">
                     <div class="form-group">
                         <label for="formGroupExampleInput">Từ</label>
                         <input type="text" class="form-control" name="min_price" value="{{$min_price}}" id="formGroupExampleInput" placeholder="Example input">
@@ -84,9 +85,9 @@
                             <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
                                 <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Sắp xếp <span class="caret"></span> </button>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li role="presentation"><a href="{{url()->current()}}?order=asc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá tăng dần</a></li>
-                                    <li role="presentation"><a href="{{url()->current()}}?order=desc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá giảm dần</a></li>
-                                    <li role="presentation"><a href="{{url()->current()}}?order=desc&sort=views">Lượt xem</a></li>
+                                    <li role="presentation"><a href="{{url()->current()}}?keyword={{Request::get('keyword')}}&order_by=asc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá tăng dần</a></li>
+                                    <li role="presentation"><a href="{{url()->current()}}?keyword={{Request::get('keyword')}}&order=desc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá giảm dần</a></li>
+                                    <li role="presentation"><a href="?keyword={{Request::get('keyword')}}&views=yes&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Lượt xem</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -118,16 +119,18 @@
                                                 </a>
                                             </div>
                                             <!-- /.image -->
-
                                             <div class="tag new"><span>Mới</span></div>
                                         </div>
                                         <!-- /.product-image -->
 
                                         <div class="product-info text-left">
                                             <h3 class="name"><a href="{{route('item-detail')}}/{{$product->ID_Product}}">{{$product->sTenSanPham}}</a></h3>
-                                            <div class="product-price"> <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}}VNĐ</span> <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}}VNĐ</span> </div>
+                                            <div class="description m-t-10">Lượt xem ({{$product->iLuotXem}})</div>
+                                            <div class="product-price">
+                                                <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}}VNĐ</span>
+                                                <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}}VNĐ</span>
+                                            </div>
                                             <!-- /.product-price -->
-
                                         </div>
                                         <!-- /.product-info -->
                                         <div class="cart clearfix animate-effect">
@@ -177,6 +180,7 @@
                                     <div class="col col-sm-9 col-lg-9">
                                         <div class="product-info">
                                             <h3 class="name"><a href="{{route('item-detail')}}/{{$product->ID_Product}}">{{$product->sTenSanPham}}</a></h3>
+                                            <div class="description m-t-10">Lượt xem ({{$product->iLuotXem}})</div>
                                             <div class="product-price"> <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}} VNĐ</span> <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}} VNĐ</span> </div>
                                             <!-- /.product-price -->
                                             <div class="description m-t-10">{!! $product->sMoTa !!}</div>
@@ -230,13 +234,10 @@
                 <!-- /.pagination-container -->
             </div>
             <!-- /.text-right -->
-
         </div>
         <!-- /.filters-container -->
-
     </div>
     <!-- /.search-result-container -->
-
 </div>
 @endif
 @stop

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Clients
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
+Route::get('/product', [HomeController::class, 'searchProduct'])->name('searchproduct');
 Route::get('/category/{category_parent?}/{category?}', [HomeController::class, 'category'])->name('categorypage');
 Route::get('/category/{category_parent?}/{category?}', [HomeController::class, 'category'])->name('categorypage');
 Route::get('/item-detail/{id?}', [HomeController::class, 'itemDetail'])->name('item-detail');
@@ -38,6 +39,7 @@ Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
 Route::get('/admin/login',[AdminController::class,'signInForm'])->name('loginpage');
 Route::post('/admin/login',[AdminController::class,'signIn'])->name('adminsignin');
 Route::get('/admin/signout',[AdminController::class,'signOut'])->name('adminsingout');
+Route::get('/list-employee',[AdminController::class,'showListEmployee'])->name('listemployee');
 
 
 //Admin-Products
