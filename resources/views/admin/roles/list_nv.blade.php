@@ -1,93 +1,95 @@
 @extends('layout.admin_master')
 
+@section('style')
+@endsection
 @section('content')
-<!-- Basic Layout & Basic with Icons -->
-<div class="row">
-    <!-- Basic Layout -->
-    <div class="col-xxl">
-        <div class="card mb-6">
-            @if(session('success')!=null)
-            <div class="alert alert-success">{{session('message')}}</div>
-            @endif
-            <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Thêm sản phẩm</h5>
+<div class="card" style="padding:10px">
+    <h5 class="card-header">Danh sách bài viết</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table" id="employee-table">
+            <thead>
+                <tr>
+                    <th>Họ tên</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Chức vụ</th>
+                    <th>Tài khoản</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach($emp as $item)
+                <tr>
+                    <td class="name" data-able="{{$item->ID_employee}}">{{$item->sHoTen}}</td>
+                    <td class="address">{{$item->sDiaChi}}</td>
+                    <td class="email">{{$item->sEmail}}</td>
+                    <td class="phone">{{$item->sSdt}}</td>
+                    <td class="role" data-able="{{$item->ID_quyen}}">{{$item->sTenQuyen}}</td>
+                    <td class="account">{{$item->sTaiKhoan}}</td>
+                    <td><button class="btn btn-info edit-employee"><i class="fa-solid fa-wrench" style="color: #fff;"></i></button>
+                        <button class="btn btn-danger del-employee"><i class="fa-solid fa-trash" style="color: #fff;"></i></button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin</h5>
             </div>
-            <div class="card-body">
-                <form action="{{route('showaddform')}}" method="POST">
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-name">Tên sản phẩm</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="product-name" id="product-name" placeholder="Tên sản phẩm..." />
-                        </div>
+            <div class="modal-body">
+                <form id="form-update-employee">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Tên nhân viên</label>
+                        <input type="text" class="form-control" id="employee-name">
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-category">Danh mục</label>
-                        <div class="col-sm-10">
-                            <select class="form-control form-control-lg" id="product-category" name="product-category">
-                                @foreach($category as $cate)
-                                <option value="{{$cate->ID_category}}">{{$cate->sTenChuDe}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="employee-adrress">
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-old-price">Giá niêm yết</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="product-old-price" name="product-old-price" placeholder="9999999" />
-                        </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+                        <input type="number" class="form-control" id="employee-phone">
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-sale-price">Giá bán</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="product-sale-price" name="product-sale-price" placeholder="9999999" />
-                        </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="employee-email">
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-quantity">Số lượng</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="product-quantity" id="product-quantity" placeholder="99" />
-                        </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Chức vụ</label>
+                        <select class="form-control form-control-lg" name="" id="employee-role">
+                            @foreach($quyen as $q)
+                            <option value="{{$q->ID_quyen}}">{{$q->sTenQuyen}}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-description">Mô tả</label>
-                        <div class="col-sm-10">
-                            <textarea
-                                id="product-description"
-                                name="product-description"
-                                class="form-control"
-                                placeholder="Nhập mô tả....."
-                                aria-describedby="basic-icon-default-message2"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Tài khoản</label>
+                        <small>(*Không thể thay đổi)</small>
+                        <input type="text" class="form-control firstSpan" id="employee-account" readonly="readonly" disabled>
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-age">Độ tuổi</label>
-                        <div class="col-sm-10">
-                            <select class="form-control form-control-lg" id="product-age" name="product-age">
-                                @foreach($age as $age_item)
-                                <option value="{{$age_item->ID_age}}">{{$age_item->sDoTuoi}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="change-password">
+                        <label class="form-check-label" for="change-password">
+                            Đặt lại mật khẩu
+                        </label>
                     </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-gender">Giới tính</label>
-                        <div class="col-sm-10">
-                            <select class="form-control form-control-lg" id="product-gender" name="product-gender">
-                                @foreach($gender as $gender_item)
-                                <option value="{{$gender_item->ID_gender}}">{{$gender_item->sGioiTinh}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row justify-content-end">
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Thêm mới</button>
-                        </div>
-                    </div>
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-save">Cập nhật</button>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section(section: 'script')
+<script src="{{url('js/admin/list-employee.js')}}"></script>
 @endsection

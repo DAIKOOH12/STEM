@@ -46,7 +46,7 @@ class HomeModels extends Model
         if($views !== null){
             $products->orderBy('p.iLuotXem', 'desc');
         }
-        $result = $products->get();
+        $result = $products->paginate(8)->withQueryString();
         return $result;
     }
     public function getCategoryWithID($category_parent, $category)
@@ -56,13 +56,10 @@ class HomeModels extends Model
             ->join('category as c', 'p.ID_category', 'c.ID_category')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
             ->join('category_parent as cp', 'c.ID_category_parent', 'cp.ID_category_parent');
-        if ($category_parent !== null) {
-            $products->where('cp.ID_category_parent', "=", $category_parent);
-        }
-        if ($category !== null) {
+        if ($category != null) {
             $products->where('c.ID_category', '=', $category);
         }
-        $result = $products->get();
+        $result = $products->paginate(8)->withQueryString();
         return $result;
     }
     public function getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order = null)
@@ -87,7 +84,7 @@ class HomeModels extends Model
         if ($order !== null) {
             $products->orderBy('p.fGiaBan', $order);
         }
-        $result = $products->get();
+        $result = $products->paginate(8)->withQueryString();
         return $result;
     }
 
@@ -280,7 +277,8 @@ class HomeModels extends Model
         $query = DB::table('blog as b')
             ->join('employee as e', 'b.ID_employee', '=', 'e.ID_employee')
             ->where('b.sTrangThai', '=', 'duyet')
-            ->get();
+            ->paginate(2)
+            ->withQueryString();
         return $query;
     }
     public function getBlogWithId($id)

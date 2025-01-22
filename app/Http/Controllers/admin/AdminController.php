@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         $isUser = session('isUser');
-        if ($isUser == null) {
+        if ($isUser == null||$isUser=='') {
             return redirect()->route('loginpage');
         }
         return view('admin.index');
@@ -51,11 +51,11 @@ class AdminController extends Controller
 
     public function signOut()
     {
-        session()->forget('isUser');
+        // session()->forget('isUser');
+        session()->flush();
         session()->save();
         return redirect()->route('loginpage');
     }
-
 
     public function getListProducts()
     {
@@ -181,5 +181,44 @@ class AdminController extends Controller
         // dd($category);
         $this->mAdmin->updateBlogCategory($category, $id);
         return response()->json(['message' => 'Cập nhật thành công', 'category' => $category]);
+    }
+
+    public function getListEmployee(){
+        $emp=$this->mAdmin->getListEmployee();
+        $quyen=$this->mAdmin->getQuyen();
+        // dd($quyen);
+        return view('admin.roles.list_nv',compact('emp','quyen'));
+    }
+    public function getAddEmployee(){
+        $quyen=$this->mAdmin->getQuyen();
+        return view('admin.roles.add_nv',compact('quyen'));
+    }
+    public function addEmployee(Request $request){
+        $arr= $request->all();
+        // $data['ID_employee']=$arr[];
+        $data['sHoTen']=$arr["employee-name"];
+        $data['sDiaChi']=$arr["employee-address"];
+        $data['sEmail']=$arr["employee-email"];
+        $data['sSdt']=$arr["employee-phone"];
+        $data['bIsActive']=1;
+        $data['ID_quyen']=$arr["employee-role"];
+        $data['bIsLogin']=1;
+        $data['sTaiKhoan']=$arr["employee-account"];
+        $data['sMatKhau']=sha1($arr["employee-password"]);
+        // dd($data);
+        $this->mAdmin->addEmployee($data);
+        return redirect()->route('listemployee');
+    }
+    public function updateEmployee(Request $request){
+        $data= $request->all();
+        $this->mAdmin->updateEmployee($data);
+
+        return response()->json(['message' => request()->all()]);
+    }
+    public function delEmployee(Request $request){
+        $data= $request->all();
+        $this->mAdmin->delEmployee($data);
+        // dd($data);
+        return response()->json(['message'=>'Thành công']);
     }
 }

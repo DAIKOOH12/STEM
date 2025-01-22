@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-3">
                                     <ul class="links list-unstyled">
-                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="{{route('searchproduct')}}">Sản phẩm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -216,17 +216,7 @@
         <!-- /.tab-content -->
         <div class="clearfix filters-container bottom-row">
             <div class="text-right">
-                <div class="pagination-container">
-                    <ul class="list-inline list-unstyled">
-                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                    <!-- /.list-inline -->
-                </div>
+                {{$products->links()}}
                 <!-- /.pagination-container -->
             </div>
             <!-- /.text-right -->

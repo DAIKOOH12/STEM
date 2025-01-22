@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-3">
                                     <ul class="links list-unstyled">
-                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="{{route('searchproduct')}}">Sản phẩm</a></li>
                                     </ul>
                                 </div>
                                 <!-- /.row -->

@@ -4,12 +4,14 @@
 <div class="blog-page">
     <div class="col-xs-12 col-sm-9 col-md-9 rht-col">
         @foreach($blog as $detail)
-        <div class="blog-post wow fadeInUp">
-            <img class="img-responsive" src="{{url('images/blogs')}}/{{$detail->sDuongDan1}}" alt="">
-            <h1>{{$detail->sTieuDe}}</h1>
-            <span class="author">{{$detail->sHoTen}}</span>
-            <span class="date-time">{{$detail->dCreateAt}}</span>
-            <p>{!! $detail->sNoiDung !!}</p>
+        <div class="blog-post wow fadeInUp" style="display:flex;flex-wrap:wrap;justify-content:center">
+            <img class="img-responsive" src="{{url('images/blogs')}}/{{$detail->sDuongDan1}}" alt="" style="max-width:500px;max-height:300px;">
+            <div class="text-start" style="min-width:100%;padding:10px 100px">
+                <h1>{{$detail->sTieuDe}}</h1>
+                <span class="author">{{$detail->sHoTen}}</span>
+                <span class="date-time">{{$detail->dCreateAt}}</span>
+                <p>{!! $detail->sNoiDung !!}</p>
+            </div>
         </div>
         @endforeach
 
@@ -49,9 +51,6 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-3 col-md-3 sidebar">
-
-
-
         <div class="sidebar-module-container">
             <div class="search-area outer-bottom-small">
                 <form>

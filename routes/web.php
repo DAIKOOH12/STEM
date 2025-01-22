@@ -5,6 +5,7 @@ use App\Http\Controllers\clients\AccountController;
 use App\Http\Controllers\clients\HomeController;
 use App\Http\Controllers\clients\PaymentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RevalidateBackHistory;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,29 +36,35 @@ Route::post('/signup', [AccountController::class, 'signUp'])->name('signup');
 Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
 
-//Admin Role
-Route::get('/admin/login',[AdminController::class,'signInForm'])->name('loginpage');
-Route::post('/admin/login',[AdminController::class,'signIn'])->name('adminsignin');
-Route::get('/admin/signout',[AdminController::class,'signOut'])->name('adminsingout');
-Route::get('/list-employee',[AdminController::class,'showListEmployee'])->name('listemployee');
+Route::middleware(['preventBackHistory',
+RevalidateBackHistory::class])->group(function () {
+    //Admin Role
+    Route::get('/admin/login', [AdminController::class, 'signInForm'])->name('loginpage');
+    Route::post('/admin/login', [AdminController::class, 'signIn'])->name('adminsignin');
+    Route::get('/admin/signout', [AdminController::class, 'signOut'])->name('adminsingout');
+    Route::get('/list-employee', [AdminController::class, 'getListEmployee'])->name('listemployee');
+    Route::post('/updagte-employee',[AdminController::class,'updateEmployee'])->name('updateemployee');
+    Route::post('/del-employee',[AdminController::class,'delEmployee'])->name('delemployee');
+    Route::get('/add-employee', [AdminController::class, 'getAddEmployee'])->name('addemployee');
+    Route::post('/add-employee', [AdminController::class, 'addEmployee'])->name('addemployee');
+
+    //Admin-Products
+    Route::get('/admin', [AdminController::class, 'index'])->name('adminpage');
+    Route::get('/list-products', [AdminController::class, 'getListProducts'])->name('listproducts');
+    Route::get('/add-product', [AdminController::class, 'getAddView'])->name('addproduct');
+    Route::post('/add-product', [AdminController::class, 'addProduct'])->name('showaddform');
+    Route::post('/edit-product', [AdminController::class, 'editProduct'])->name('editproduct');
+    Route::post('/del-product', [AdminController::class, 'delProduct'])->name('delproduct');
+
+    //Admin-Blogs
+    Route::get('/list-blogs', [AdminController::class, 'showListBlogs'])->name('showlistblog');
+    Route::get('/add-blog', [AdminController::class, 'getAddBlog'])->name('showaddblog');
+    Route::post('/add-blog', [AdminController::class, 'addBlog'])->name('addblog');
+    Route::get('/edit-blog', [AdminController::class, 'getEditBlog'])->name('geteditblog');
+    Route::post('/edit-blog', [AdminController::class, 'updateBlog'])->name('editblog');
+    Route::post('/edit-blog-category', [AdminController::class, 'updateBlogCategory'])->name('editblogcategory');
 
 
-//Admin-Products
-Route::get('/admin',[AdminController::class,'index'])->name('adminpage');
-Route::get('/list-products',[AdminController::class,'getListProducts'])->name('listproducts');
-Route::get('/add-product',[AdminController::class,'getAddView'])->name('addproduct');
-Route::post('/add-product',[AdminController::class,'addProduct'])->name('showaddform');
-Route::post('/edit-product',[AdminController::class,'editProduct'])->name('editproduct');
-Route::post('/del-product',[AdminController::class,'delProduct'])->name('delproduct');
-
-//Admin-Blogs
-Route::get('/list-blogs',[AdminController::class,'showListBlogs'])->name('showlistblog');
-Route::get('/add-blog',[AdminController::class,'getAddBlog'])->name('showaddblog');
-Route::post('/add-blog',[AdminController::class,'addBlog'])->name('addblog');
-Route::get('/edit-blog',[AdminController::class,'getEditBlog'])->name('geteditblog');
-Route::post('/edit-blog',[AdminController::class,'updateBlog'])->name('editblog');
-Route::post('/edit-blog-category',[AdminController::class,'updateBlogCategory'])->name('editblogcategory');
-
-
-//VNPay Payment
-Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');
+    //VNPay Payment
+    Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');
+});

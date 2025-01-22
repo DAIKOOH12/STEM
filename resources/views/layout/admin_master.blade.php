@@ -53,6 +53,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js" integrity="sha512-/HL24m2nmyI2+ccX+dSHphAHqLw60Oj5sK8jf59VWtFWZi9vx7jzoxbZmcBeeTeCUc7z1mTs3LfyXGuBU32t+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Quill CSS -->
   <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+
+  <!-- Custom css -->
+   @yield('style')
 </head>
 
 <body>
@@ -128,13 +131,13 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="{{route('showlistblog')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="List-Blog">Danh sách nhân viên</div>
+                <a href="{{route('listemployee')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="List-Employee">Danh sách nhân viên</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="{{route('showaddblog')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="Add-Blog">Thêm nhân viên</div>
+                <a href="{{route('addemployee')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Employee">Thêm nhân viên</div>
                 </a>
               </li>
             </ul>
@@ -206,7 +209,7 @@
             </ul>
           </li>
           @break
-          @case(session('role')==='3')
+          @case(session('role')==='4')
           <!-- Products -->
           <li class="menu-item active open">
             <a href="" class="menu-link menu-toggle">

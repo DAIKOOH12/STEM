@@ -123,11 +123,11 @@
                               <h2 class="title">STEM tiểu học</h2>
                             </a>
                             <ul class="links">
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-1">STEM Lớp 1</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-2">STEM Lớp 2</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-3">STEM Lớp 3</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-4">STEM Lớp 4</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/lop-5">STEM Lớp 5</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-1">STEM Lớp 1</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-2">STEM Lớp 2</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-3">STEM Lớp 3</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-4">STEM Lớp 4</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-5">STEM Lớp 5</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
