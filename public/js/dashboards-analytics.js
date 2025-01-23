@@ -568,7 +568,7 @@
   const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
     orderChartConfig = {
       chart: {
-        height: 145,
+        height: 120,
         width: 110,
         type: 'donut'
       },

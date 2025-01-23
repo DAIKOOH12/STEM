@@ -100,7 +100,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="{{route('addproduct')}}" class="menu-link">
+                <a href="{{route('analysisproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Product">Thống kê hàng tồn</div>
                 </a>
               </li>
@@ -148,11 +148,6 @@
               <div class="text-truncate" data-i18n="Dashboards">Báo cáo & Thống kê</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="{{route('showlistblog')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="List-Blog">Thống kê hàng tồn</div>
-                </a>
-              </li>
               <li class="menu-item">
                 <a href="{{route('showaddblog')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
@@ -261,8 +256,8 @@
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{url('js/menu.js')}}"></script>
-  <script src="{{url('js/dashboards-analytics.js')}}"></script>
   <script src="{{url('js/apexcharts.js')}}"></script>
+  <script src="{{url('js/dashboards-analytics.js')}}"></script>
   <script src="{{url('js/jquery.js')}}"></script>
   <script src="{{url('js/popper.js')}}"></script>
   <script src="{{url('js/bootstrap_sneat.js')}}"></script>

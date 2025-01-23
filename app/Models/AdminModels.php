@@ -179,4 +179,26 @@ class AdminModels extends Model
         ->where('ID_employee', '=', $data['ID_employee'])
         ->delete();
     }
+    public function getTotalValue(){
+        $query=DB::table('payments')->sum('vnp_Amount');
+        return $query;
+    }
+    public function getTotalSale(){
+        $query=DB::table('product')->sum('iLuotMua');
+        return $query;
+    }
+    public function totalOrders(){
+        $query=DB::table('order_detail')->sum('iSoLuong');
+        return $query;
+    }
+    public function getSoldProductsAmount(){
+        $query = DB::table('product as p')
+            ->join('category as c', 'p.ID_category', 'c.ID_category')
+            ->join('image as i', 'p.ID_image', 'i.ID_image')
+            ->join('age as a', 'p.ID_age', 'a.ID_age')
+            ->join('gender as g', 'p.ID_gender', 'g.ID_gender')
+            ->orderBy('p.iLuotMua','desc')->limit(3)
+            ->get();
+        return $query;
+    }
 }

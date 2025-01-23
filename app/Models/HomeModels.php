@@ -309,7 +309,7 @@ class HomeModels extends Model
     {
         // dd($arr);
         $data['vnp_Txnref'] = $arr['vnp_TxnRef'];
-        $data['vnp_Amount'] = $arr['vnp_Amount'];
+        $data['vnp_Amount'] = $arr['vnp_Amount']/100;
         $data['vnp_BankCode'] = $arr['vnp_BankCode'];
         $data['vnp_CardType'] = $arr['vnp_CardType'];
         $data['vnp_OrderInfo'] = $arr['vnp_OrderInfo'];

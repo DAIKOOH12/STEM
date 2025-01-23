@@ -64,7 +64,9 @@ RevalidateBackHistory::class])->group(function () {
     Route::post('/edit-blog', [AdminController::class, 'updateBlog'])->name('editblog');
     Route::post('/edit-blog-category', [AdminController::class, 'updateBlogCategory'])->name('editblogcategory');
 
+    //Admin-Analysis
+    Route::get('/analysis-product',[AdminController::class,'analysisProduct'])->name('analysisproduct');
 
-    //VNPay Payment
-    Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');
 });
+//VNPay Payment
+Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');
