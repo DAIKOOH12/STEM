@@ -19,26 +19,27 @@ class HomeController extends Controller
             session(['count' => $countcart->tongso]);
         }
         $products = $this->mHome->getAllProducts();
-        $blogs=$this->mHome->getListBlog();
-        // dd($products);
-        return view('clients.home', compact('products','blogs'));
+        $blogs = $this->mHome->getListBlogHome();
+        // dd($blogs);
+        return view('clients.home', compact('products', 'blogs'));
     }
 
-    public function searchProduct(){
-        $key_word=request()->input('keyword');
+    public function searchProduct()
+    {
+        $key_word = request()->input('keyword');
         $min_price = request()->input('min_price');
         $max_price = request()->input('max_price');
-        $views=request()->input('views');
-        $order_by=request()->input('order_by');
-        if($min_price==null){
-            $min_price=0;
+        $views = request()->input('views');
+        $order_by = request()->input('order_by');
+        if ($min_price == null) {
+            $min_price = 0;
         }
-        if($max_price==null){
-            $max_price=9999999;
+        if ($max_price == null) {
+            $max_price = 9999999;
         }
-        $products=$this->mHome->getProductFromSearch($key_word,$min_price,$max_price,$views,$order_by);
+        $products = $this->mHome->getProductFromSearch($key_word, $min_price, $max_price, $views, $order_by);
         // dd($products);
-        return view('clients.search_product',compact('products','min_price','max_price'));
+        return view('clients.search_product', compact('products', 'min_price', 'max_price'));
     }
 
     public function category($category_parent = null, $category = null, Request $request)
@@ -63,16 +64,16 @@ class HomeController extends Controller
         $product = $this->mHome->getItemWithID($id);
         $hotDeal = $this->mHome->getHotDeals();
         $productCate = $this->mHome->getProductsWithCategory($product->ID_category);
-        // dd($productCate);
+        // dd($product);
         return view('clients.item_detail', compact('product', 'hotDeal', 'productCate'));
     }
     public function cart()
     {
         $cus = session('cus_id');
         $cart = $this->mHome->getCart($cus);
-        $cusInfo=$this->mHome->getCusInfo($cus);
+        $cusInfo = $this->mHome->getCusInfo($cus);
         // dd($cusInfo);
-        return view('clients.cart', compact('cart','cusInfo'));
+        return view('clients.cart', compact('cart', 'cusInfo'));
     }
     public function addToCart($id)
     {
@@ -84,17 +85,18 @@ class HomeController extends Controller
         if ($order == null) {
             $this->mHome->addToCart('id_detail_' . $cus, $id_product, 'id_order_' . $cus, $cus, date('Y-m-d'), $new_quantity);
         } else {
-            $quantity = $order->iSoLuong;
-            $this->mHome->updateCart('id_detail_' . $cus, $id_product, $quantity + $new_quantity);
+            $this->mHome->updateCart('id_detail_' . $cus, $id_product, $new_quantity);
         }
         $countcart = $this->mHome->countCart(session('cus_id'));
         session(['count' => $countcart->tongso]);
         return redirect()->route('cartpage');
     }
-    public function updateCart($id,$quantity){
+    public function updateCart($id, $quantity)
+    {
+        // $quantity = 1;
         $cus = session('cus_id');
         // dd($quantity);
-        $this->mHome->updateCart('id_detail_' . $cus, $id, $quantity);
+        $this->mHome->updateCartWithButton('id_detail_' . $cus, $id, $quantity);
         return redirect()->route('cartpage');
     }
     public function removeFromCart($id)
@@ -124,10 +126,11 @@ class HomeController extends Controller
         return view('clients.contact');
     }
 
-    public function paidBill(){
-        $cus=session('cus_id');
+    public function paidBill()
+    {
+        $cus = session('cus_id');
 
-        $this->mHome->addBillPayment( request()->all(),$cus);
+        $this->mHome->addBillPayment(request()->all(), $cus);
 
         return redirect()->route('homepage');
     }

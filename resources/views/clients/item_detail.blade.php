@@ -59,13 +59,12 @@
                                 <div id="owl-single-product">
                                     <div class="single-product-gallery-item" id="slide1">
                                         <a data-lightbox="image-1" data-title="Gallery" href="{{url('images/thumbs')}}/{{$product->sDuongDan2}}">
-                                            <img class="img-responsive" alt="" src="{{url('images/thumbs')}}/{{$product->sDuongDan1}}" data-echo="{{url('images/thumbs/'.$product->sDuongDan1)}}"/>
+                                            <img class="img-responsive" alt="" src="{{url('images/thumbs')}}/{{$product->sDuongDan1}}" data-echo="{{url('images/thumbs/'.$product->sDuongDan1)}}" />
                                         </a>
                                     </div><!-- /.single-product-gallery-item -->
                                     <div class="single-product-gallery-item" id="slide2">
                                         <a data-lightbox="image-1" data-title="Gallery" href="{{url('images/thumbs')}}/{{$product->sDuongDan2}}">
-                                            <img class="img-responsive" alt="" src="{{url('images/thumbs')}}/{{$product->sDuongDan2}}"
-                                                 />
+                                            <img class="img-responsive" alt="" src="{{url('images/thumbs')}}/{{$product->sDuongDan2}}" />
                                         </a>
                                     </div><!-- /.single-product-gallery-item -->
                                     <div class="single-product-gallery-item" id="slide3">
@@ -168,8 +167,6 @@
 
                                 <div class="price-container info-container m-t-30">
                                     <div class="row">
-
-
                                         <div class="col-sm-6 col-xs-6">
                                             <div class="price-box">
                                                 <span class="price">{{number_format($product->fGiaBan, 0, ',', '.')}} VNĐ</span>
@@ -199,7 +196,7 @@
 
                                 <div class="quantity-container info-container">
                                     <div class="row">
-
+                                        @if($product->iSoLuong > 0)
                                         <div class="qty">
                                             <span class="label">Số lượng :</span>
                                         </div>
@@ -219,6 +216,11 @@
                                         <div class="add-btn">
                                             <button class="btn btn-primary" id="btn-add" data-able="{{$product->ID_Product}}"><i class="fa fa-shopping-cart inner-right-vs"></i> GIỎ HÀNG</button>
                                         </div>
+                                        @else
+                                        <div class="hold-btn">
+                                            <button class="btn btn-primary" id="btn-hold"><i class="fa fa-shopping-cart inner-right-vs"></i> LIÊN HỆ</button>
+                                        </div>
+                                        @endif
                                     </div><!-- /.row -->
                                 </div><!-- /.quantity-container -->
                             </div><!-- /.product-info -->

@@ -21,7 +21,9 @@ class HomeModels extends Model
                 $query->where('cp.ID_category_parent', 'stem-tieu-hoc')
                     ->orWhere('cp.ID_category_parent', 'stem-trung-hoc-co-so')
                     ->orWhere('cp.ID_category_parent', 'stem-trung-hoc-pho-thong');
-            })->get();
+            })
+            ->where('iSoLuong','>',0)
+            ->get();
         return $products;
     }
     public function getProductFromSearch($keyword, $min_price, $max_price, $views, $order_by)
@@ -43,7 +45,7 @@ class HomeModels extends Model
         if ($order_by !== null) {
             $products->orderBy('p.fGiaBan', $order_by);
         }
-        if($views !== null){
+        if ($views !== null) {
             $products->orderBy('p.iLuotXem', 'desc');
         }
         $result = $products->paginate(8)->withQueryString();
@@ -234,20 +236,73 @@ class HomeModels extends Model
                 'sTrangThai' => 'cho_duyet'
             ]
         ]);
+
+        $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
+        $views=DB::table('product')->where('ID_Product', $id_product)->value('iLuotXem');
+        // dd($so_luong);
+        DB::table('product')
+            ->where('ID_Product', $id_product)
+            ->update([
+                'iSoLuong' => $so_luong - $quantity,
+                'iLuotXem'=>$views+1
+            ]);
     }
     public function updateCart($id_order_detail, $id_product, $quantity)
     {
+        $cart = $this->checkProducts($id_order_detail, $id_product);
+        $products = $this->getItemWithID($id_product);
+
+        $new_cart_quantity = $cart->iSoLuong + $quantity;
+        $new_product_quantity = $products->iSoLuong - $quantity;
+        // dd($new_cart_quantity);
         DB::table('order_detail')
             ->where('ID_order_detail', $id_order_detail)
             ->where('ID_Product', $id_product)
-            ->update(['iSoLuong' => $quantity]);
+            ->update(['iSoLuong' => $new_cart_quantity]);
+        $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
+        DB::table('product')
+            ->where('ID_Product', $id_product)
+            ->update([
+                'iSoLuong' => $new_product_quantity
+            ]);
+    }
+    public function updateCartWithButton($id_order_detail, $id_product, $quantity)
+    {
+        $cart = $this->checkProducts($id_order_detail, $id_product);
+        $products = $this->getItemWithID($id_product);
+
+        $new_cart_quantity = $quantity;
+        if ($new_cart_quantity > $cart->iSoLuong) {
+            $new_product_quantity = $products->iSoLuong - 1;
+        } else {
+            $new_product_quantity = $products->iSoLuong + 1;
+        }
+        DB::table('order_detail')
+            ->where('ID_order_detail', $id_order_detail)
+            ->where('ID_Product', $id_product)
+            ->update(['iSoLuong' => $new_cart_quantity]);
+        DB::table('product')
+            ->where('ID_Product', $id_product)
+            ->update([
+                'iSoLuong' => $new_product_quantity
+            ]);
     }
     public function removeFromCart($id_order_detail, $id_product)
     {
+        $cart = $this->checkProducts($id_order_detail, $id_product);
+        $products = $this->getItemWithID($id_product);
+
+        $so_luong_back = $cart->iSoLuong;
+        $so_luong_product = $products->iSoLuong + $so_luong_back;
         DB::table('order_detail')
             ->where('ID_order_detail', $id_order_detail)
             ->where('ID_Product', $id_product)
             ->delete();
+        DB::table('product')
+            ->where('ID_Product', $id_product)
+            ->update([
+                'iSoLuong' => $so_luong_product
+            ]);
     }
 
     public function addBillPayment($arr, $cus)
@@ -272,13 +327,22 @@ class HomeModels extends Model
             ->delete();
     }
 
+    public function getListBlogHome()
+    {
+        $query = DB::table('blog as b')
+            ->join('employee as e', 'b.ID_employee', '=', 'e.ID_employee')
+            ->where('b.sTrangThai', '=', 'duyet')
+            ->get();
+        // dd($query->toSql());
+        return $query;
+    }
     public function getListBlog()
     {
         $query = DB::table('blog as b')
             ->join('employee as e', 'b.ID_employee', '=', 'e.ID_employee')
             ->where('b.sTrangThai', '=', 'duyet')
-            ->paginate(2)
-            ->withQueryString();
+            ->paginate(2);
+        // dd($query->toSql());
         return $query;
     }
     public function getBlogWithId($id)

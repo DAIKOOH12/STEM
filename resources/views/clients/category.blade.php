@@ -125,9 +125,16 @@
 
                                         <div class="product-info text-left">
                                             <h3 class="name"><a href="{{route('item-detail')}}/{{$product->ID_Product}}">{{$product->sTenSanPham}}</a></h3>
-                                            <div class="product-price"> <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}}VNĐ</span> <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}}VNĐ</span> </div>
-                                            <!-- /.product-price -->
-
+                                            @if($product->iSoLuong>0)
+                                            <div class="product-price">
+                                                <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}}VNĐ</span>
+                                                <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}}VNĐ</span>
+                                            </div>
+                                            @else
+                                            <div class="product-price">
+                                                <span class="price"> Liên hệ</span>
+                                            </div>
+                                            @endif
                                         </div>
                                         <!-- /.product-info -->
                                         <div class="cart clearfix animate-effect">
@@ -177,7 +184,16 @@
                                     <div class="col col-sm-9 col-lg-9">
                                         <div class="product-info">
                                             <h3 class="name"><a href="{{route('item-detail')}}/{{$product->ID_Product}}">{{$product->sTenSanPham}}</a></h3>
-                                            <div class="product-price"> <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}} VNĐ</span> <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}} VNĐ</span> </div>
+                                            @if($product->iSoLuong>0)
+                                            <div class="product-price">
+                                                <span class="price"> {{number_format($product->fGiaBan, 0, ',', '.')}}VNĐ</span>
+                                                <span class="price-before-discount">{{number_format($product->fGiaNiemYet, 0, ',', '.')}}VNĐ</span>
+                                            </div>
+                                            @else
+                                            <div class="product-price">
+                                                <span class="price"> Liên hệ</span>
+                                            </div>
+                                            @endif
                                             <!-- /.product-price -->
                                             <div class="description m-t-10">{!! $product->sMoTa !!}</div>
                                             <div class="cart clearfix animate-effect">

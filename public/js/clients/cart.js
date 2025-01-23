@@ -23,7 +23,7 @@ $(document).ready(function () {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 var id = $(this).attr("data-able");
-                window.location.replace(`./del-cart/` + id);
+                window.location.replace(`./del-cart/` + id+'?amount=');
             }
         });
     });
