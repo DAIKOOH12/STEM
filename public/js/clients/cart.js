@@ -10,6 +10,9 @@ $(document).ready(function () {
         var row = $(this).parent(".arrows").siblings(".quantity");
         var quantity = row.val();
         var id = $(this).attr("data-able");
+        if(quantity==1){
+            return;
+        }
         quantity--;
         window.location.replace(`./update-cart/` + id + `/` + quantity);
     });

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AdminModels;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
+use App\Imports\UserImport;
+use App\Imports\ProductsImport;
 
 class AdminController extends Controller
 {
@@ -112,7 +116,19 @@ class AdminController extends Controller
         return response()->json(['message' => 'Thành công']);
     }
 
-
+    public function getImportProduct()
+    {
+        $category=$this->mAdmin->getCategories();
+        return view('admin.products.import',compact('category'));
+    }
+    public function importProducts(Request $request)
+    {
+        // dd($request->all());
+        if ($request->hasFile('file')) {
+            Excel::import(new ProductsImport($request->input('category')), $request->file('file'));
+        }
+        return response()->json(['message' => 'Thành công']);
+    }
 
     public function showListBlogs()
     {
@@ -227,14 +243,13 @@ class AdminController extends Controller
         return response()->json(['message' => 'Thành công']);
     }
 
-
     public function analysisProduct()
     {
         $luot_ban = $this->mAdmin->getTotalSale();
         $tong_tien = $this->mAdmin->getTotalValue();
         $top_sale = $this->mAdmin->getSoldProductsAmount();
-        $total_order=$this->mAdmin->totalOrders();
+        $total_order = $this->mAdmin->totalOrders();
         // dd($top_sale);
-        return view('admin.analytics.products', compact('luot_ban','tong_tien','top_sale','total_order'));
+        return view('admin.analytics.products', compact('luot_ban', 'tong_tien', 'top_sale', 'total_order'));
     }
 }

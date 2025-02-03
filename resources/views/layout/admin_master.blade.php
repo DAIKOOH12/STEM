@@ -95,7 +95,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="{{route('addproduct')}}" class="menu-link">
+                <a href="{{route('importproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Product">Nhập kho hàng</div>
                 </a>
               </li>
@@ -149,7 +149,7 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="{{route('showaddblog')}}" class="menu-link">
+                <a href="{{route('analysisproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
                 </a>
               </li>
@@ -192,7 +192,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="{{route('showaddblog')}}" class="menu-link">
+                <a href="{{route('analysisproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
                 </a>
               </li>

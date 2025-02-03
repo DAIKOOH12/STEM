@@ -55,6 +55,8 @@ RevalidateBackHistory::class])->group(function () {
     Route::post('/add-product', [AdminController::class, 'addProduct'])->name('showaddform');
     Route::post('/edit-product', [AdminController::class, 'editProduct'])->name('editproduct');
     Route::post('/del-product', [AdminController::class, 'delProduct'])->name('delproduct');
+    Route::get('/import-cell',[AdminController::class,'getImportProduct'])->name('importproduct');
+    Route::post('/import-cell',[AdminController::class,'importProducts'])->name('importproduct');
 
     //Admin-Blogs
     Route::get('/list-blogs', [AdminController::class, 'showListBlogs'])->name('showlistblog');
