@@ -40,7 +40,7 @@
 
     <div id="hero">
         <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
-            <div class="item" style="background-image: url(images/225617-lego-education.jpg);">
+            <div class="item" style="background-image: url(public/images/thumbs/makeblock-robot-kit-580x358_1.jpeg);">
             </div>
             <!-- /.item -->
 

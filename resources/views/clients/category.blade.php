@@ -104,7 +104,7 @@
         <div id="myTabContent" class="tab-content category-list">
             <div class="tab-pane active " id="grid-container">
                 <div class="category-product">
-                    <div class="row">
+                    <div class="row" style="display:flex;flex-wrap: wrap;">
                         @foreach($products as $product)
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="item">

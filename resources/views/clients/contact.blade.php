@@ -53,7 +53,7 @@
             </div>
             <div class="clearfix address">
               <span class="contact-i"><i class="fa fa-map-marker"></i></span>
-              <span class="contact-span">Đông Hồ, Phủ Lý, Hà Nam</span>
+              <span class="contact-span">Hà Nam</span>
             </div>
             <div class="clearfix phone-no">
               <span class="contact-i"><i class="fa fa-mobile"></i></span>

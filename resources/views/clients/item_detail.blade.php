@@ -256,8 +256,8 @@
                                                 <h3 class="name"><a href="{{route('item-detail')}}/{{$item->ID_Product}}">{{$item->sTenSanPham}}</a></h3>
                                                 <div class="product-price">
                                                     <span class="price">
-                                                        {{number_format($item->fGiaBan, 0, ',', '.')}} </span>
-                                                    <span class="price-before-discount">{{number_format($item->fGiaNiemYet, 0, ',', '.')}}</span>
+                                                        {{number_format($item->fGiaBan, 0, ',', '.')}} VNĐ</span>
+                                                    <span class="price-before-discount">{{number_format($item->fGiaNiemYet, 0, ',', '.')}} VNĐ</span>
 
                                                 </div><!-- /.product-price -->
 

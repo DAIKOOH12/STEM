@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-3">
                                     <ul class="links list-unstyled">
-                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="{{route('searchproduct')}}">Sản phẩm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                 <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Sắp xếp <span class="caret"></span> </button>
                                 <ul role="menu" class="dropdown-menu">
                                     <li role="presentation"><a href="{{url()->current()}}?keyword={{Request::get('keyword')}}&order_by=asc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá tăng dần</a></li>
-                                    <li role="presentation"><a href="{{url()->current()}}?keyword={{Request::get('keyword')}}&order=desc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá giảm dần</a></li>
+                                    <li role="presentation"><a href="{{url()->current()}}?keyword={{Request::get('keyword')}}&order_by=desc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá giảm dần</a></li>
                                     <li role="presentation"><a href="?keyword={{Request::get('keyword')}}&views=yes&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Lượt xem</a></li>
                                 </ul>
                             </div>
@@ -105,7 +105,7 @@
         <div id="myTabContent" class="tab-content category-list">
             <div class="tab-pane active " id="grid-container">
                 <div class="category-product">
-                    <div class="row">
+                    <div class="row" style="display:flex;flex-wrap: wrap;">
                         @foreach($products as $product)
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="item">
