@@ -1,1 +1,2 @@
 - Cách kéo code về: git pull
+- Cách chạy: Mở terminal -> Chạy lệnh "php artisan serve"
