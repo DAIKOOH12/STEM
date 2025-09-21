@@ -77,7 +77,7 @@
         </div>
         <ul class="menu-inner py-1">
           @switch(session('role'))
-          @case(session('role')==='1')
+          @case(session('role')=='1')
           <!-- Products -->
           <li class="menu-item active open">
             <a href="" class="menu-link menu-toggle">
