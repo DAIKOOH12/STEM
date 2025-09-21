@@ -127,7 +127,7 @@ class HomeModels extends Model
     {
         $user = DB::table('member as m')
             ->join('customer as c', 'm.ID_member', 'c.ID_member')
-            ->where('sEmail', '=', $email)
+            ->where('m.sEmail', '=', $email)
             ->orWhere('sTaiKhoan', '=', $account)
             ->first();
         return $user;
@@ -158,6 +158,7 @@ class HomeModels extends Model
                 'sXacMinhEmail' => 'verified',
                 'ID_quyen' => $quyen,
                 'sTaiKhoan' => $account,
+                'sEmail'=> $email,
                 'sMatKhau' => sha1($password),
                 'isLogin' => 0
             ]

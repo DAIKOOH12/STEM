@@ -72,7 +72,7 @@ class HomeController extends Controller
         $cus = session('cus_id');
         $cart = $this->mHome->getCart($cus);
         $cusInfo = $this->mHome->getCusInfo($cus);
-        // dd($cusInfo);
+        // dd($cart);
         return view('clients.cart', compact('cart', 'cusInfo'));
     }
     public function addToCart($id)
