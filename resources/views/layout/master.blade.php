@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
+    <link rel="icon" type="image/png" href="{{ url('images/logo.png') }}">
 
     <!-- Customizable CSS -->
     <link rel="stylesheet" href="{{url('css/main.css')}}">

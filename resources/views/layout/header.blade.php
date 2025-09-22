@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="{{route('homepage')}}"> <img src="{{url('images/logo.png')}}" alt="logo" style="max-height: 50px"> </a> </div>
+          <div class="logo"> <a href="{{route('homepage')}}"> <img src="{{url('images/logo.png')}}" alt="logo" style="max-height: 100px"> </a> </div>
           <!-- /.logo -->
           <!-- ============================================================= LOGO : END ============================================================= -->
         </div>
@@ -45,13 +45,13 @@
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
                   <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('categorypage')}}">Danh mục <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
+                    <!-- <ul class="dropdown-menu" role="menu">
                       <li class="menu-header">Computer</li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
-                    </ul>
+                    </ul> -->
                   </li>
                 </ul>
                 <input class="search-field" placeholder="Tìm kiếm..." id="keyword" name="keyword" />
@@ -103,17 +103,24 @@
             <div class="nav-outer">
               <ul class="nav navbar-nav">
                 <li class="active dropdown"> <a href="{{route('homepage')}}">Trang chủ</a> </li>
-                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Đồ chơi STEM <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">CÁC LOẠI HOA  <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
                   <ul class="dropdown-menu container">
                     <li>
                       <div class="yamm-content ">
                         <div class="row">
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                             <a href="{{route('categorypage')}}">
-                              <h2 class="title">STEM mầm non</h2>
+                              <h2 class="title">Hoa sinh nhật</h2>
                             </a>
                             <ul class="links">
-                              <li><a href="{{route('categorypage')}}">Mầm non</a></li>
+                              <li><a href="{{route('categorypage')}}">Hoa sinh nhật sang trọng</a></li>
+                              <li><a href="{{route('categorypage')}}">Hoa sinh nhật giá rẻ</a></li>
+                              <li><a href="{{route('categorypage')}}">Hoa sinh nhật tặng người yêu</a></li>
+                              <li><a href="{{route('categorypage')}}">Hoa sinh nhật tặng mẹ</a></li>
+                              <li><a href="{{route('categorypage')}}">Hoa sinh nhật tặng bạn</a></li>
+                              <li><a href="{{route('categorypage')}}">Lãng hoa tặng sinh nhật</a></li>
+                              <li><a href="{{route('categorypage')}}">Hoa hồng tặng sinh nhật</a></li>
+                              <li><a href="{{route('categorypage')}}">Giỏ hoa sinh nhật</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
