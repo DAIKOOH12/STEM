@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 21, 2025 at 06:16 AM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Generation Time: Sep 23, 2025 at 10:10 AM
+-- Server version: 8.4.3
+-- PHP Version: 8.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,27 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `stem`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `age`
---
-
-CREATE TABLE `age` (
-  `ID_age` int NOT NULL,
-  `sDoTuoi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sMoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `age`
---
-
-INSERT INTO `age` (`ID_age`, `sDoTuoi`, `sMoTa`) VALUES
-(1, 'Dưới 7 tuổi', 'Trẻ em mầm non'),
-(2, '7-12 tuổi', 'Trẻ em tiểu học'),
-(3, '13-18 tuổi', 'Trẻ em trung học');
 
 -- --------------------------------------------------------
 
@@ -79,10 +58,42 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`ID_category`, `sTenChuDe`, `ID_category_parent`, `sMoTa`) VALUES
-('arduino-thpt', 'Arduino THPT', 'stem-trung-hoc-pho-thong', 'Kit Arduino nâng cao'),
-('programming-thcs', 'Lập trình THCS', 'stem-trung-hoc-co-so', 'Học lập trình cơ bản'),
-('robotics-tieu-hoc', 'Robotics Tiểu học', 'stem-tieu-hoc', 'Bộ kit robotics dành cho tiểu học'),
-('science-kit-tieu-hoc', 'Bộ thí nghiệm khoa học tiểu học', 'stem-tieu-hoc', 'Bộ thí nghiệm khoa học cơ bản');
+('gio-hoa-sinh-nhat', 'Giỏ hoa tặng sinh nhật', 'hoa-sinh-nhat', NULL),
+('hoa-20/10', 'Hoa chúc mừng 20/10', 'chu-de', NULL),
+('hoa-8/3', 'Hoa chúc mừng 8/3', 'chu-de', NULL),
+('hoa-baby', 'Hoa baby', 'hoa-tuoi', NULL),
+('hoa-cam-tay', 'Hoa cưới cầm tay', 'chu-de', NULL),
+('hoa-chuc-mung', 'Hoa chúc mừng', 'chu-de', NULL),
+('Hoa-cuc-tana', 'Hoa cúc tana', 'hoa-tuoi', NULL),
+('hoa-dong-tien', 'Hoa đồng tiền', 'hoa-tuoi', NULL),
+('hoa-hong', 'Hoa hồng', 'hoa-tuoi', NULL),
+('hoa-hong-sinh-nhat', 'Hoa hồng tặng sinh nhật', 'hoa-sinh-nhat', NULL),
+('hoa-huong-duong', 'Hoa hướng dương', 'hoa-tuoi', NULL),
+('hoa-khai-truong-de-ban', 'Hoa khai trương để bàn', 'hoa-khai-truong', NULL),
+('hoa-khai-truong-gia-re', 'Kệ hoa khai trương giá rẻ', 'hoa-khai-truong', NULL),
+('hoa-ki-niem-cuoi', 'Hoa kỉ niệm cưới', 'chu-de', NULL),
+('hoa-lhd', 'Hoa lan hồ điệp', 'hoa-tuoi', NULL),
+('hoa-mau-don', 'Hoa mẫu đơn', 'hoa-tuoi', NULL),
+('hoa-sinh-nhat-ban', 'Hoa sinh nhật tặng bạn', 'hoa-sinh-nhat', NULL),
+('hoa-sinh-nhat-gia-re', 'Hoa sinh nhật giá rẻ', 'hoa-sinh-nhat', NULL),
+('hoa-sinh-nhat-me', 'Hoa sinh nhật tặng mẹ', 'hoa-sinh-nhat', NULL),
+('hoa-sinh-nhat-nguoi-yeu', 'Hoa sinh nhật tặng người yêu', 'hoa-sinh-nhat', NULL),
+('hoa-sinh-nhat-trang-trong', 'Hoa sinh nhật trang trọng', 'hoa-sinh-nhat', NULL),
+('hoa-tang-le', 'Hoa tang lễ', 'chu-de', NULL),
+('Hoa-thach-thao', 'Hoa thạch thảo', 'hoa-tuoi', NULL),
+('hoa-tinh-yeu', 'Hoa tình yêu', 'chu-de', NULL),
+('hoa-tot-nghiệp', 'Hoa tốt nghiệp', 'chu-de', NULL),
+('hoa-tulip', 'Hoa tulip', 'hoa-tuoi', NULL),
+('hoa-valentine', 'Hoa valentine', 'chu-de', NULL),
+('ke-hoa-khai-truong', 'Kệ hoa khai trương', 'hoa-khai-truong', NULL),
+('ke-khai-truong-hien-dai', 'Kệ hoa khai trương hiện đại', 'hoa-khai-truong', NULL),
+('lan-3-canh', 'Lan hồ điệp 3 cành', 'lan-ho-diep', NULL),
+('lan-5-canh', 'Lan hồ điệp 5 cành', 'lan-ho-diep', NULL),
+('lan-mini', 'Lan hồ điệp mini', 'lan-ho-diep', NULL),
+('lan-tim', 'Lan hồ điệp tím', 'lan-ho-diep', NULL),
+('lan-trang', 'Lan hồ điệp trắng', 'lan-ho-diep', NULL),
+('lan-vang', 'Lan hồ điệp vàng', 'lan-ho-diep', NULL),
+('lang-sinh-nhat', 'Lãng hoa tặng sinh nhật', 'hoa-sinh-nhat', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,9 +112,11 @@ CREATE TABLE `category_parent` (
 --
 
 INSERT INTO `category_parent` (`ID_category_parent`, `sTenChuDeParent`, `sMoTa`) VALUES
-('stem-tieu-hoc', 'STEM Tiểu học', 'Sản phẩm STEM dành cho học sinh tiểu học'),
-('stem-trung-hoc-co-so', 'STEM Trung học cơ sở', 'Sản phẩm STEM dành cho học sinh THCS'),
-('stem-trung-hoc-pho-thong', 'STEM Trung học phổ thông', 'Sản phẩm STEM dành cho học sinh THPT');
+('chu-de', 'Chủ đề', NULL),
+('hoa-khai-truong', 'Hoa khai trương', NULL),
+('hoa-sinh-nhat', 'Hoa sinh nhật', NULL),
+('hoa-tuoi', 'Hoa tươi', NULL),
+('lan-ho-diep', 'Lan hồ điệp', NULL);
 
 -- --------------------------------------------------------
 
@@ -115,19 +128,12 @@ CREATE TABLE `customer` (
   `ID_customer` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ID_member` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `dNgayTao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `sHoTen` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sSoDienThoai` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sDiaChi` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sEmail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sHoTen` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sSoDienThoai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sDiaChi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sEmail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `bIsMember` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`ID_customer`, `ID_member`, `dNgayTao`, `sHoTen`, `sSoDienThoai`, `sDiaChi`, `sEmail`, `bIsMember`) VALUES
-('id_cus_1', 'id_mem_1', '2025-09-21 05:17:30', 'Nguyễn A', '0398673207', 'Số 2B Cầu Giấy Hà Nội', '21a100100401@students.hou.edu.vn', 1);
 
 -- --------------------------------------------------------
 
@@ -155,8 +161,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`ID_employee`, `sHoTen`, `sDiaChi`, `sEmail`, `sSdt`, `sTaiKhoan`, `sMatKhau`, `ID_quyen`, `created_at`, `updated_at`, `bIsActive`, `bIsLogin`) VALUES
-('id_emp_1', 'Admin User', 'Hà Nội, Việt Nam', 'admin@stem.vn', '0123456789', 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, '2025-09-21 01:23:26', '2025-09-21 05:56:05', 0, 0),
-('id_emp_2', 'Phạm Duy Trường', 'Xuân La, Tây Hồ, Hà Nội', 'abc@gmail.com', '0398673207', 'Daikooh12', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, '2025-09-21 06:02:53', '2025-09-21 06:02:53', 1, 1);
+('admin', 'admin', '1', '', NULL, 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, '2025-09-23 10:07:11', '2025-09-23 10:07:11', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -173,27 +178,6 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gender`
---
-
-CREATE TABLE `gender` (
-  `ID_gender` int NOT NULL,
-  `sGioiTinh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sMoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `gender`
---
-
-INSERT INTO `gender` (`ID_gender`, `sGioiTinh`, `sMoTa`) VALUES
-(1, 'Nam', 'Dành cho bé trai'),
-(2, 'Nữ', 'Dành cho bé gái'),
-(3, 'Cả hai', 'Phù hợp cho cả nam và nữ');
 
 -- --------------------------------------------------------
 
@@ -215,8 +199,7 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`ID_image`, `sDuongDan1`, `sDuongDan2`, `sDuongDan3`, `sDuongDan4`, `sDuongDan5`) VALUES
-('combo-thi-nghiem', 'phong-stem-lab-1.png', 'phong-stem-lab-1.png', 'phong-stem-lab-1.png', 'phong-stem-lab-1.png', 'phong-stem-lab-1.png'),
-('robotics-kit-1', '2ff2e936dcd67fe7bd1db8bfc91baf22.jpg', '2ff2e936dcd67fe7bd1db8bfc91baf22.jpg', '2ff2e936dcd67fe7bd1db8bfc91baf22.jpg', '2ff2e936dcd67fe7bd1db8bfc91baf22.jpg', '2ff2e936dcd67fe7bd1db8bfc91baf22.jpg');
+('hoa-1', 'anh1.jpg', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -227,23 +210,16 @@ INSERT INTO `image` (`ID_image`, `sDuongDan1`, `sDuongDan2`, `sDuongDan3`, `sDuo
 CREATE TABLE `member` (
   `ID_member` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ID_quyen` int NOT NULL,
-  `sTaiKhoan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sTaiKhoan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sSdt` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sDiaChi` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sMatKhau` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `isLogin` int NOT NULL,
-  `sXacMinhEmail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sEmail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `sXacMinhEmail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sEmail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`ID_member`, `ID_quyen`, `sTaiKhoan`, `sSdt`, `sDiaChi`, `sMatKhau`, `created_at`, `updated_at`, `isLogin`, `sXacMinhEmail`, `sEmail`) VALUES
-('id_mem_1', 3, '21a100100401@students.hou.edu.vn', NULL, NULL, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-09-21 05:17:30', '2025-09-21 05:17:30', 0, 'verified', '21a100100401@students.hou.edu.vn');
 
 -- --------------------------------------------------------
 
@@ -258,13 +234,6 @@ CREATE TABLE `order_detail` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_detail`
---
-
-INSERT INTO `order_detail` (`ID_order_detail`, `ID_Product`, `iSoLuong`, `created_at`, `updated_at`) VALUES
-('id_detail_id_cus_1', 'stem_kit_001', 1, '2025-09-21 05:34:41', '2025-09-21 05:35:03');
 
 -- --------------------------------------------------------
 
@@ -335,8 +304,6 @@ CREATE TABLE `product` (
   `iLuotXem` int NOT NULL DEFAULT '0',
   `iLuotMua` int NOT NULL DEFAULT '0',
   `bIsActive` tinyint(1) NOT NULL DEFAULT '1',
-  `ID_age` int NOT NULL,
-  `ID_gender` int NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -345,9 +312,10 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ID_Product`, `sTenSanPham`, `ID_category`, `ID_image`, `fGiaNiemYet`, `fGiaBan`, `iSoLuong`, `sMoTa`, `iLuotXem`, `iLuotMua`, `bIsActive`, `ID_age`, `ID_gender`, `created_at`, `updated_at`) VALUES
-('robot_kit_001', 'Bộ Kit Robotics Lego', 'robotics-tieu-hoc', 'robotics-kit-1', '800000.00', '750000.00', 30, 'Bộ kit robotics Lego dành cho trẻ em', 0, 0, 1, 2, 3, '2025-09-21 01:23:26', '2025-09-21 01:23:26'),
-('stem_kit_001', 'Bộ Kit STEM Cơ Bản', 'science-kit-tieu-hoc', 'combo-thi-nghiem', '500000.00', '450000.00', 46, 'Bộ kit STEM cơ bản dành cho trẻ em tiểu học', 4, 0, 1, 2, 3, '2025-09-21 01:23:26', '2025-09-21 05:35:03');
+INSERT INTO `product` (`ID_Product`, `sTenSanPham`, `ID_category`, `ID_image`, `fGiaNiemYet`, `fGiaBan`, `iSoLuong`, `sMoTa`, `iLuotXem`, `iLuotMua`, `bIsActive`, `created_at`, `updated_at`) VALUES
+('bo-hoa-1464', 'Bó hoa Sunny', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 290000.00, 250000.00, 30, 'Bó Hoa Sunny được thiết kế từ\r\n\r\nHoa hướng dương: 3 cành\r\nCác loại hoa lá phụ: Sao tím', 0, 0, 1, '2025-09-23 03:10:05', '2025-09-23 03:10:05'),
+('bo-hoa-7338', 'Bó hoa may mắn', 'lang-sinh-nhat', 'hoa-1', 590000.00, 560000.00, 25, 'Giỏ hoa chúc mừng may mắn được thiết kế với hoa hướng dương và cát tường mang đến sự may mắn, tài lộc phù hợp để làm quà tặng bạn bè nhân dịp khai trương. Nếu bạn đang tìm kiếm một mẫu giỏ hoa khai trương giá rẻ thì May Mắn là sự lựa chọn hoàn hảo.\r\n\r\nGiỏ hoa chúc mừng May Mắn được thiết kế từ:\r\n\r\nHoa hướng dương: 3 cành\r\nHoa cát tường trắng: 5 cành\r\nHoa cẩm chướng trắng: 10 cành\r\nCác loại hoa lá phụ: Hoa thạch thảo trắng, lá bạc nhí', 0, 0, 1, '2025-09-23 03:11:08', '2025-09-23 03:11:08'),
+('bo-hoa-say-anh-mat', 'Say Ánh Mắt', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 190000.00, 165000.00, 20, 'Bó hoa Say Ánh Mắt được thiết kế từ:\r\n\r\nHoa thạch thảo trắng: 1 bó\r\nHoa hồng kem: 1 cành\r\nCác loại hoa lá phụ trang trí khác: Cỏ đồng tiền\r\nLưu ý:\r\n\r\n**Do được làm thủ công, nên sản phẩm ngoài thực tế sẽ có đôi chút khác biệt so với hình ảnh trên website. Tuy nhiên, Flowercorner cam kết hoa sẽ giống khoảng 80% so với hình ảnh.\r\n\r\n** Vì các loại hoa lá phụ sẽ có tùy vào thời điểm trong năm, Flowercorner đảm bảo các loại hoa chính, các loại hoa lá phụ sẽ thay đổi phù hợp giá cả và thiết kế sản phẩm.', 0, 0, 1, '2025-09-23 03:05:45', '2025-09-23 03:05:45');
 
 -- --------------------------------------------------------
 
@@ -404,21 +372,8 @@ CREATE TABLE `_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `_order`
---
-
-INSERT INTO `_order` (`ID_order`, `ID_order_detail`, `ID_customer`, `dNgayDat`, `dNgayGiaoHang`, `sTrangThai`) VALUES
-('id_order_id_cus_1', 'id_detail_id_cus_1', 'id_cus_1', '2025-09-20 17:00:00', NULL, '');
-
---
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `age`
---
-ALTER TABLE `age`
-  ADD PRIMARY KEY (`ID_age`);
 
 --
 -- Indexes for table `blog`
@@ -467,12 +422,6 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `gender`
---
-ALTER TABLE `gender`
-  ADD PRIMARY KEY (`ID_gender`);
-
---
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
@@ -518,8 +467,6 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`ID_Product`),
   ADD KEY `fk_product_category` (`ID_category`),
   ADD KEY `fk_product_image` (`ID_image`),
-  ADD KEY `fk_product_age` (`ID_age`),
-  ADD KEY `fk_product_gender` (`ID_gender`),
   ADD KEY `idx_product_category` (`ID_category`),
   ADD KEY `idx_product_price` (`fGiaBan`),
   ADD KEY `idx_product_quantity` (`iSoLuong`),
@@ -554,22 +501,10 @@ ALTER TABLE `_order`
 --
 
 --
--- AUTO_INCREMENT for table `age`
---
-ALTER TABLE `age`
-  MODIFY `ID_age` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `gender`
---
-ALTER TABLE `gender`
-  MODIFY `ID_gender` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -628,9 +563,7 @@ ALTER TABLE `order_detail`
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `fk_product_age` FOREIGN KEY (`ID_age`) REFERENCES `age` (`ID_age`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_product_category` FOREIGN KEY (`ID_category`) REFERENCES `category` (`ID_category`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_product_gender` FOREIGN KEY (`ID_gender`) REFERENCES `gender` (`ID_gender`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_product_image` FOREIGN KEY (`ID_image`) REFERENCES `image` (`ID_image`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

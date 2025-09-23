@@ -20,7 +20,6 @@ class HomeController extends Controller
         }
         $products = $this->mHome->getAllProducts();
         $blogs = $this->mHome->getListBlogHome();
-        // dd($blogs);
         return view('clients.home', compact('products', 'blogs'));
     }
 
@@ -42,9 +41,9 @@ class HomeController extends Controller
         return view('clients.search_product', compact('products', 'min_price', 'max_price'));
     }
 
-    public function category($category_parent = null, $category = null, Request $request)
+    public function categoryWithParent($category_parent = null, $category = null, Request $request)
     {
-        $products = $this->mHome->getCategoryWithID($category_parent, $category);
+        $products = $this->mHome->getCategoryWithParentID($category_parent, $category);
         $min_price = 0;
         $max_price = 9999999;
         if (!empty($request->query('min_price')) || !empty($request->query('max_price')) || !empty($request->query('order'))) {
@@ -59,6 +58,24 @@ class HomeController extends Controller
         // var_dump($products->count());
         return view('clients.category', compact('products', 'min_price', 'max_price'));
     }
+
+     public function category($category_parent = null, Request $request)
+    {
+        $products = $this->mHome->getCategoryWithID($category_parent);
+        $min_price = 0;
+        $max_price = 9999999;
+        if (!empty($request->query('min_price')) || !empty($request->query('max_price')) || !empty($request->query('order'))) {
+            $min_price = $request->query('min_price');
+            $max_price = $request->query('max_price');
+            $order = $request->query('order');
+            $products = $this->mHome->getCategoryWithFilter($category_parent, $category=null, $min_price, $max_price, $order);
+            return view('clients.category', compact('products', 'min_price', 'max_price'));
+        }
+        // dd($products);
+        var_dump($products->count());
+        return view('clients.category', compact('products', 'min_price', 'max_price'));
+    }
+
     public function itemDetail($id)
     {
         $product = $this->mHome->getItemWithID($id);

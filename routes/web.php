@@ -20,8 +20,8 @@ use App\Http\Middleware\RevalidateBackHistory;
 //Clients
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/product', [HomeController::class, 'searchProduct'])->name('searchproduct');
-Route::get('/category/{category_parent?}/{category?}', [HomeController::class, 'category'])->name('categorypage');
-Route::get('/category/{category_parent?}/{category?}', [HomeController::class, 'category'])->name('categorypage');
+Route::get('/category/{category_parent?}', [HomeController::class, 'category'])->name('categorypage');
+Route::get('/category/{category_parent?}/{category?}', [HomeController::class, 'categoryWithParent'])->name('categorypage');
 Route::get('/item-detail/{id?}', [HomeController::class, 'itemDetail'])->name('item-detail');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cartpage');
 Route::get('add-cart/{id?}/{quantity?}', [HomeController::class, 'addToCart'])->name('addtocart');

@@ -18,9 +18,9 @@ class HomeModels extends Model
             ->join('image as i', 'p.ID_image', 'i.ID_image')
             ->join('category_parent as cp', 'c.ID_category_parent', 'cp.ID_category_parent')
             ->where(function ($query) {
-                $query->where('cp.ID_category_parent', 'stem-tieu-hoc')
-                    ->orWhere('cp.ID_category_parent', 'stem-trung-hoc-co-so')
-                    ->orWhere('cp.ID_category_parent', 'stem-trung-hoc-pho-thong');
+                $query->where('cp.ID_category_parent', 'chu-de')
+                    ->orWhere('cp.ID_category_parent', 'hoa-khai-truong')
+                    ->orWhere('cp.ID_category_parent', 'hoa-sinh-nhat');
             })
             ->where('iSoLuong','>',0)
             ->get();
@@ -51,7 +51,18 @@ class HomeModels extends Model
         $result = $products->paginate(8)->withQueryString();
         return $result;
     }
-    public function getCategoryWithID($category_parent, $category)
+    public function getCategoryWithID($category_parent)
+    {
+        $products = DB::table('product as p')
+            ->select('p.*', 'c.ID_category_parent', 'i.*')
+            ->join('category as c', 'p.ID_category', 'c.ID_category')
+            ->join('image as i', 'p.ID_image', 'i.ID_image')
+            ->join('category_parent as cp', 'c.ID_category_parent', 'cp.ID_category_parent')
+            ->where('cp.ID_category_parent', "=", $category_parent);
+        $result = $products->paginate(8)->withQueryString();
+        return $result;
+    }
+    public function getCategoryWithParentID($category_parent, $category)
     {
         $products = DB::table('product as p')
             ->select('p.*', 'c.ID_category_parent', 'i.*')
