@@ -8,7 +8,7 @@
         <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Danh Mục</div>
         <nav class="yamm megamenu-horizontal">
             <ul class="nav">
-                <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-shopping-bag" aria-hidden="true"></i>ĐỒ CHƠI STEM</a>
+                <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-shopping-bag" aria-hidden="true"></i>CÁC LOẠI HOA</a>
                     <ul class="dropdown-menu mega-menu">
                         <li class="yamm-content">
                             <div class="row">
@@ -62,7 +62,7 @@
     <!-- ============================================== SCROLL TABS ============================================== -->
     <div id="product-tabs-slider" class="scroll-tabs outer-top-vs">
         <div class="more-info-tab clearfix ">
-            <h3 class="new-product-title pull-left">Đồ chơi STEM</h3>
+            <h3 class="new-product-title pull-left">CÁC LOẠI HOA</h3>
             <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
 
             </ul>

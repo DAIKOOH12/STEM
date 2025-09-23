@@ -102,15 +102,15 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class="active dropdown"> <a href="{{route('homepage')}}">Trang chủ</a> </li>
-                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">CÁC LOẠI HOA  <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
+                <li class="active dropdown"> <a href="{{route('homepage')}}">TRANG CHỦ</a> </li>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">CÁC LOẠI HOA <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
                   <ul class="dropdown-menu container">
                     <li>
                       <div class="yamm-content ">
                         <div class="row">
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                             <a href="{{route('categorypage')}}">
-                              <h2 class="title">Hoa sinh nhật</h2>
+                              <h2 class="title">HOA SINH NHẬT</h2>
                             </a>
                             <ul class="links">
                               <li><a href="{{route('categorypage')}}">Hoa sinh nhật sang trọng</a></li>
@@ -127,96 +127,62 @@
 
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                             <a href="{{route('categorypage')}}/stem-tieu-hoc">
-                              <h2 class="title">STEM tiểu học</h2>
+                              <h2 class="title">HOA KHAI TRƯƠNG</h2>
                             </a>
                             <ul class="links">
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-1">STEM Lớp 1</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-2">STEM Lớp 2</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-3">STEM Lớp 3</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-4">STEM Lớp 4</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-5">STEM Lớp 5</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-1">Hoa khai trương để bàn</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-2">Kệ hoa khai trương</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-3">Kệ hoa khai trương hiện đại</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-tieu-hoc/stem-lop-4">Hoa khai trương giá rẻ</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                             <a href="{{route('categorypage')}}/stem-trung-hoc-co-so">
-                              <h2 class="title">STEM cấp 2</h2>
+                              <h2 class="title">LAN HỒ ĐIỆP</h2>
                             </a>
                             <ul class="links">
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-6">STEM Lớp 6</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-7">STEM Lớp 7</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-8">STEM Lớp 8</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-9">STEM Lớp 9</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-6">Lan hồ điệp mini</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-7">Lan hồ điệp vàng</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-8">Lan hồ điệp trắng</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-9">Lan hồ điệp tím</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-8">Lan hồ điệp 3 cành</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-co-so/stem-lop-9">Lan hồ điệp 5 cành</a></li>
                             </ul>
                           </div>
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                             <a href="{{route('categorypage')}}/trung-hoc-pho-thong">
-                              <h2 class="title">STEM cấp 3</h2>
+                              <h2 class="title">CHỦ ĐỀ</h2>
                             </a>
                             <ul class="links">
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">STEM Lớp 10</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">STEM Lớp 11</a></li>
-                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">STEM Lớp 12</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">Hoa cưới cầm tay</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">Hoa tang lễ</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">Hoa tình yêu</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">Hoa chúc mừng</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">Hoa kỉ niệm cưới</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">Hoa valentine</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">Hoa chúc mừng 8/3</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">Hoa chúc mừng 20/10</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">Hoa tình yêu</a></li>
+                            </ul>
+                          </div>
+                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                            <a href="{{route('categorypage')}}/trung-hoc-pho-thong">
+                              <h2 class="title">HOA TƯƠI</h2>
+                            </a>
+                            <ul class="links">
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">Hoa hồng</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">Hoa baby</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">Hoa hướng dương</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">Hoa lan hồ điệp</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">Hoa tulip</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">Hoa cúc tana</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-10">Hoa thạch thảo</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-11">Hoa mẫu đơn</a></li>
+                              <li><a href="{{route('categorypage')}}/stem-trung-hoc-pho-thong/stem-lop-12">Hoa đồng tiền</a></li>
                             </ul>
                           </div>
                           <!-- /.col -->
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">STEM Robotics <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
-                  <ul class="dropdown-menu container">
-                    <li>
-                      <div class="yamm-content ">
-                        <div class="row">
-                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}/lego-education">
-                              <h2 class="title">Lego Education</h2>
-                            </a>
-                            <ul class="links">
-                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-2.0.html">Hướng dẫn Lego Wedo 2.0</a></li>
-                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-45678.html">Hướng dẫn Lego Spike Prime 45678</a></li>
-                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-9686.html">Hướng dẫn Lego 9686</a></li>
-                              <li><a href="{{route('categorypage')}}/lego-education/huong-dan-lego-spike-4534.html">Hướng dẫn Lego Spike Essential 45345</a></li>
-                            </ul>
-                          </div>
-                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}/ubitech">
-                              <h2 class="title">Ubitech</h2>
-                            </a>
-                            <ul class="links">
-                              <li><a href="{{route('categorypage')}}/ubitech/humanoid">Humanoid robot - Robot hỗ trợ AI</a></li>
-                              <li><a href="{{route('categorypage')}}/ubitech/ukit-day-hoc">Ukit dạy học STEM</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown yamm mega-menu"> <a href="{{route('categorypage')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Lập trình STEM <i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></a>
-                  <ul class="dropdown-menu container">
-                    <li>
-                      <div class="yamm-content ">
-                        <div class="row">
-                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}/lap-trinh-arduino">
-                              <h2 class="title">Lập trình Arduino</h2>
-                            </a>
-                            <ul class="links">
-                              <li><a href="{{route('categorypage')}}/lap-trinh-arduino/huong-dan-lap-trinh-arduino">Hướng dẫn lập trình Arduino</a></li>
-                            </ul>
-                          </div>
-                          <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <a href="{{route('categorypage')}}/lap-trinh-bbc">
-                              <h2 class="title">Lập trình BBC Micro:Bit</h2>
-                            </a>
-                            <ul class="links">
-                              <li><a href="{{route('categorypage')}}/ubitech/humanoid">Humanoid robot - Robot hỗ trợ AI</a></li>
-                              <li><a href="{{route('categorypage')}}/ubitech/ukit-day-hoc">Ukit dạy học STEM</a></li>
-                            </ul>
-                          </div>
                         </div>
                       </div>
                     </li>
@@ -225,7 +191,7 @@
                 <li class="dropdown yamm mega-menu">
                   <a href="{{route('blogpage')}}" class="dropdown-toggle">Blogs</a>
                 </li>
-                <li class="dropdown yamm mega-menu"> <a href="{{route('contactpage')}}" data-hover="dropdown" class="dropdown-toggle">Liên hệ</a>
+                <li class="dropdown yamm mega-menu"> <a href="{{route('contactpage')}}" data-hover="dropdown" class="dropdown-toggle">Đặt hoa</a>
                 </li>
               </ul>
               <!-- /.navbar-nav -->

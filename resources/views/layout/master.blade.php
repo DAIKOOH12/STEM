@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
-    <title>Bán đồ chơi cho trẻ em STEM</title>
+    <title>Cửa hàng bán hoa tươi</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">

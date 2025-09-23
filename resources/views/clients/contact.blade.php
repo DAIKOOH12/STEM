@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-8 contact-form">
             <div class="col-md-12 contact-title">
-              <h4>Liên hệ</h4>
+              <h4>Đặt hoa theo yêu cầu</h4>
             </div>
             <div class="col-md-4 ">
               <form class="register-form" role="form">
@@ -38,7 +38,7 @@
             <div class="col-md-12">
               <form class="register-form" role="form">
                 <div class="form-group">
-                  <label class="info-title" for="exampleInputComments">Góp ý của bạn <span>*</span></label>
+                  <label class="info-title" for="exampleInputComments">Mô tả về sản phẩm mong muốn <span>*</span></label>
                   <textarea class="form-control unicase-form-control" id="exampleInputComments"></textarea>
                 </div>
               </form>

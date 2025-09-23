@@ -6,6 +6,11 @@
         <div class="row">
             <div class="blog-page">
                 <div class="col-xs-12 col-sm-9 col-md-9 rht-col">
+                    @if(count($blogs)==0)
+                    <div class="blog-post  wow fadeInUp" style="margin-bottom:15px">
+                        <p>Không có bài viết nào.</p>
+                    </div>
+                    @endif
                     @foreach($blogs as $blog)
                     <div class="blog-post  wow fadeInUp" style="margin-bottom:15px">
                         <a href="{{route('detailblog')}}/{{$blog->ID_blog}}"><img class="img-responsive" src="{{url('images/blogs')}}/{{$blog->sDuongDan1}}" alt="" style="max-width:300px"></a>
