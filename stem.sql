@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 23, 2025 at 10:21 AM
--- Server version: 8.4.3
--- PHP Version: 8.3.16
+-- Generation Time: Sep 24, 2025 at 01:28 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,6 +39,16 @@ CREATE TABLE `blog` (
   `dCreateAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `dUpdateAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`ID_blog`, `sTieuDe`, `ID_category`, `sDuongDan1`, `sNoiDung`, `sTomTat`, `ID_employee`, `sTrangThai`, `dCreateAt`, `dUpdateAt`) VALUES
+('id_blog_1', 'Ý nghĩa và thông điệp của các loài hoa trong tình yêu và cuộc sống', 'hoa-sinh-nhat-nguoi-yeu', '1758636514_MẪU-HOA-20-10.jpg', '<ul><li class=\"ql-align-justify\">Hoa hồng: Hoa hồng được coi là biểu tượng của tình yêu và lãng mạn. Màu sắc của hoa hồng cũng có ý nghĩa riêng, chẳng hạn như hoa hồng đỏ thể hiện tình yêu chân thành và đam mê, hoa hồng trắng thể hiện tình yêu trong sạch và tôn trọng.</li><li class=\"ql-align-justify\">Hoa cẩm tú cầu: Hoa cẩm tú cầu thường được coi là biểu tượng của tình yêu vĩnh cửu và trung thành. Nó thể hiện tình yêu mạnh mẽ và sự đoàn kết.</li><li class=\"ql-align-justify\">Hoa baby’s breath (hoa ngọc lan tây): Hoa baby’s breath thường được sử dụng như là hoa phụ trang trí trong bó hoa. Nó thể hiện sự trong trắng và thuần khiết trong tình yêu.</li><li class=\"ql-align-justify\">Hoa hoa huệ: Hoa hoa huệ có nhiều màu sắc và mỗi màu có ý nghĩa khác nhau. Chẳng hạn, hoa huệ trắng thể hiện sự trong sáng và thuần khiết, hoa huệ hồng thể hiện sự ngọt ngào và lãng mạn.</li><li class=\"ql-align-justify\">Hoa tulip: Hoa tulip có ý nghĩa của tình yêu chân thành và lòng tin. Màu sắc của hoa tulip cũng mang ý nghĩa riêng, chẳng hạn như tulip đỏ thể hiện tình yêu đích thực, tulip vàng thể hiện tình yêu hạnh phúc và tulip trắng thể hiện tình yêu thuần khiết.</li></ul><p><br></p>', 'Hoa là món quà quý giá mà thiên nhiên ban tặng cho con người. Ngoài việc làm đẹp cho cuộc sống, mỗi loài hoa còn mang trong mình ý nghĩa sâu sắc, giúp con người truyền đạt những thông điệp trong tình yêu và cuộc sống. Kodo sẽ giúp bạn khám phá ý nghĩa các loài hoa và cách chúng có thể truyền tải những thông điệp đúng trong những dịp đặc biệt.', 'id_emp_1', 'duyet', '2025-09-23 07:08:34', '2025-09-23 07:53:30'),
+('id_blog_2', 'Top 20 loài hoa đẹp nhất thế giới, có 1 loại mọc đầy ở Việt Nam', 'hoa-tinh-yeu', '1758639529_top-20-loai-hoa-dep-nhat-the-gioi-co-1-loai-moc-day-o-viet-nam-202107231833227986.jpg', '<h4><strong>Hoa lan</strong></h4><p class=\"ql-align-justify\"><a href=\"https://www.bachhoaxanh.com/kinh-nghiem-hay/y-nghia-cua-hoa-lan-ngay-tet-co-truyen-viet-nam-1307628\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(0, 100, 194);\">Hoa lan</a>&nbsp;không còn xa lạ nữa đúng không nào. Một cái tên quen thuộc dù là có yêu hoa, thích hoa hay không thì hẳn đều biết đến hoa lan. Hiện nay có khoảng 22.000 loài hoa lan với nhiều giống khác nhau.</p><p class=\"ql-align-justify\">Lan có mùi thơm đặc trưng, dễ chịu và rất được ưa chuộng trong thiết kế và trang trí nhà cửa. Bởi nó mang vẻ đẹp sang trọng, tao nhã. Mỗi một loài hoa lan đều có một nét đẹp riêng. Có nhiều người cho rằng lan khó ra hoa, nhưng còn gì trân trọng bằng sau bao ngày chăm bón, cây cũng ra hoa. Đúng không nào?</p><h4><strong>Hoa anh đào</strong></h4><p class=\"ql-align-justify\">Hoa anh đào có lẽ không còn xa lạ với mọi người đúng không nào. Là biểu tượng của đất nước Nhật Bản, hoa anh đào mỏng manh tượng trưng cho sắc đẹp và sự trong trắng. Dù lớn lên trong thời tiết giá lạnh nhưng vẫn giữ nguyên vẻ đẹp của từng cánh hoa.</p><p class=\"ql-align-justify\">Khi nở, hoa chỉ sung sức nhất trong khoảng 7 đến 15 ngày, nhưng nó luôn mang một nét đẹp đến ngỡ ngàng, thích thú.</p><h4><strong>Hoa thiên điểu</strong></h4><p class=\"ql-align-justify\">Hoa thiên điểu còn biết đến với cái tên hoa chim thiên đường. Thông thường hoa nở vào mùa xuân, khi mà cây cối đâm chồi nảy lộc cũng chính là lúc thiên điểu khoe sức sống mạnh mẽ, vẻ đẹp tuyệt vời của mình.</p><p class=\"ql-align-justify\">Hoa có dạng chú chim xinh đẹp, đầy màu sắc, mang ý nghĩa của tình yêu vĩnh hằng. Đôi tình nhân nguyện bên nhau mãi cho đến cùng trời cuối đất. Vẻ ngoài kiêu sa, lộng lẫy, mang ý nghĩa tuyệt vời, hoa thiên điểu rất xứng nằm top 20 loài hoa đẹp nhất thế giới đúng không nào?</p><p><br></p>', 'Nếu bạn là người yêu thích những loài hoa, vậy thì nhất định không được bỏ qua top 20 loài hoa đẹp nhất thế giới, có một loại mọc đầy ở Việt Nam. Là nam hay nữ, là trai hay gái thì hẳn ai cũng thích nét đẹp của những loại hoa. Từ màu sắc cho đến hình dạng bên ngoài, mỗi loài hoa đều có một ý nghĩa nhất định. Hôm nay Bách hoá XANH mời bạn cùng điểm qua top 20 loài hoa đẹp nhất thế giới. Thử xem bạn đã biết được bao nhiêu loài rồi nhé! Nào sẵn sàng chưa? Cùng bắt đầu ngay nhé!', 'id_emp_1', 'duyet', '2025-09-23 07:58:49', '2025-09-23 07:59:03'),
+('id_blog_3', 'Hoa Cẩm Chướng', 'hoa-tinh-yeu', '1758639765_cac-loai-hoa-1.jpg', '<p><span style=\"color: rgb(58, 58, 58);\">Việc đi thăm người ốm không chỉ là phép lịch sự mà còn là cách động viên tinh thần, giúp họ nhanh chóng hồi phục. Một giỏ hoa tươi kết hợp trái cây vừa mang lại năng lượng tích cực, vừa thiết thực cho sức khỏe, vì thế ngày càng được nhiều người lựa chọn. Bài viết dưới đây sẽ giúp bạn hiểu rõ hơn về việc chọn loại hoa hay nên tặng loại trái cây như thế nào sẽ phù hợp với người bệnh.</span></p><p>Tặng quà thăm bệnh từ lâu đã trở thành nét văn hóa đẹp, thể hiện sự quan tâm, động viên và chia sẻ với người thân, bạn bè. Thay vì chỉ tặng hoa tươi, nhiều người hiện nay lựa chọn giỏ hoa kết hợp trái cây bởi những lý do sau:</p><p>- Mang ý nghĩa tinh thần: Hoa tươi đem lại sự lạc quan, tinh thần tích cực, giúp người bệnh cảm thấy thoải mái hơn.</p><p>- Thiết thực và bổ dưỡng: Trái cây cung cấp vitamin, khoáng chất, hỗ trợ hồi phục sức khỏe nhanh hơn.</p><p>- Sang trọng và tinh tế: Một giỏ hoa – trái cây vừa đẹp mắt, vừa hữu dụng, thể hiện sự chu đáo của người tặng.</p>', 'Các loài hoa là biểu tượng của vẻ đẹp tự nhiên và đa dạng tuyệt vời trên hành tinh chúng ta. Từ hoa mặt trời tươi sáng đến hoa hồng quyến rũ, từ hoa lan tinh tế đến hoa cẩm tú cầu nổi bật, thế giới hoa hồng hấp dẫn chúng ta với một màu sắc và hình dáng độc đáo.', 'id_emp_1', 'duyet', '2025-09-23 08:02:45', '2025-09-23 08:02:54'),
+('id_blog_4', 'Chọn hoa Lan hồ điệp cho ngày tết ! Cách chăm sóc lan hồ điệp để tươi lâu!', 'hoa-chuc-mung', '1758640162_z6240978430438_c76228ea5ea01bc36560fd091f1de320.jpg', '<h2>Tại sao nên chọn Lan hồ điệp cho ngày Tết</h2><h3>Vẻ đẹp sang trọng và tinh tế</h3><p>Lan hồ điệp được mệnh danh là \"nữ hoàng của các loài hoa lan\" nhờ vào:&nbsp;</p><p>- Hình dáng cánh hoa: Những cánh hoa tròn đầy, xếp đều đặn như cánh bướm bay, mang lại cảm giác mềm mại, duyên dáng</p><p>- Màu sắc đa dạng: Lan hồ điệp có nhiều màu sắc đẹp mắt như trắng, vàng, tím, đỏ, hồng, phù hợp với mọi phong cách trang trí ngày Tết</p><p>- Bố cục trang trí: Chậu lan hồ điệp thường được cắm một cách tinh tế, từ đơn giản đến hoành tráng, tôn lên sự sang trọng và quý phái</p><p>Lan hồ điệp không chỉ đẹp mà còn mang trong mình nhiều ý nghĩa phong thủy:</p><p>- Tượng trưng cho sự thịnh vượng: Những cánh hoa tròn đầy và đều đặn biểu trưng cho sự viên mãn, tài lộc dồi dào</p><p>- Bền lâu: Hoa lan hồ điệp có thể giữ độ tươi từ 2-3 tháng, phù hợp với không khí kéo dài của Tết Nguyên Đán</p><p>- Sang trọng: Loài hoa này mang lại cảm giác cao cấp, làm nổi bật không gian nhà cửa.</p><p><br></p>', 'Ngày Tết không chỉ là dịp đoàn tụ gia đình mà còn là thời điểm để trang trí nhà cửa, tạo cho không gian ấm cúng và mang lại sự may mắn cho năm mới. Hoa lan hồ điệp, với vẻ đẹp thanh tao và ý nghĩa phong thủy tốt lành, là lựa chọn lý tưởng để làm bừng sáng cho không gian sống. Dưới đây là những bí quyết để chọn hoa lan hồ điệp phù hợp cho dịp Tết.', 'id_emp_1', 'duyet', '2025-09-23 08:09:22', '2025-09-23 08:09:31');
 
 -- --------------------------------------------------------
 
@@ -135,6 +145,14 @@ CREATE TABLE `customer` (
   `bIsMember` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`ID_customer`, `ID_member`, `dNgayTao`, `sHoTen`, `sSoDienThoai`, `sDiaChi`, `sEmail`, `bIsMember`) VALUES
+('id_cus_1', 'id_mem_1', '2025-09-23 16:30:25', 'Nguyễn A', '0398673207', 'Số 2B Cầu Giấy Hà Nội', 'truongdaikooh1122@gmail.com', 1),
+('id_cus_2', 'id_mem_2', '2025-09-23 16:31:18', 'truong pham', '0375145000', 'Hà Nội', 'truongbusiness1103@gmail.com', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +179,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`ID_employee`, `sHoTen`, `sDiaChi`, `sEmail`, `sSdt`, `sTaiKhoan`, `sMatKhau`, `ID_quyen`, `created_at`, `updated_at`, `bIsActive`, `bIsLogin`) VALUES
-('admin', 'admin', '1', '', NULL, 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, '2025-09-23 10:07:11', '2025-09-23 10:07:11', 1, 0);
+('id_emp_1', 'admin', '1', '', NULL, 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, '2025-09-23 10:07:11', '2025-09-23 14:08:30', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -199,7 +217,7 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`ID_image`, `sDuongDan1`, `sDuongDan2`, `sDuongDan3`, `sDuongDan4`, `sDuongDan5`) VALUES
-('hoa-1', 'anh1.jpg', NULL, NULL, NULL, NULL);
+('hoa-1', 'bo-hong-kem-dep.jpg', 'bo-hong-kem-dep.jpg', 'bo-hong-kem-dep.jpg', 'bo-hong-kem-dep.jpg', 'bo-hong-kem-dep.jpg');
 
 -- --------------------------------------------------------
 
@@ -221,6 +239,14 @@ CREATE TABLE `member` (
   `sEmail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`ID_member`, `ID_quyen`, `sTaiKhoan`, `sSdt`, `sDiaChi`, `sMatKhau`, `created_at`, `updated_at`, `isLogin`, `sXacMinhEmail`, `sEmail`) VALUES
+('id_mem_1', 3, 'Daikooh12', NULL, NULL, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-09-23 16:30:25', '2025-09-23 16:30:25', 0, 'verified', 'truongdaikooh1122@gmail.com'),
+('id_mem_2', 3, 'Daikooh', NULL, NULL, '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2025-09-23 16:31:18', '2025-09-23 16:31:18', 0, 'verified', 'truongbusiness1103@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -234,6 +260,15 @@ CREATE TABLE `order_detail` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`ID_order_detail`, `ID_Product`, `iSoLuong`, `created_at`, `updated_at`) VALUES
+('id_detail_id_cus_1', 'bo-hoa-1464', 1, '2025-09-23 16:30:56', '2025-09-23 16:30:56'),
+('id_detail_id_cus_2', 'bo-hoa-1464', 1, '2025-09-23 16:31:20', '2025-09-23 16:31:20'),
+('id_detail_id_cus_2', 'bo-hoa-say-anh-mat', 2, '2025-09-23 16:31:27', '2025-09-23 16:31:31');
 
 -- --------------------------------------------------------
 
@@ -313,34 +348,34 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ID_Product`, `sTenSanPham`, `ID_category`, `ID_image`, `fGiaNiemYet`, `fGiaBan`, `iSoLuong`, `sMoTa`, `iLuotXem`, `iLuotMua`, `bIsActive`, `created_at`, `updated_at`) VALUES
-('baby-01', 'Bó Hoa Baby Trắng Tinh Khôi', 'hoa-baby', 'hoa-1', 550000.00, 490000.00, 50, 'Một bó hoa baby trắng lớn, tượng trưng cho sự thuần khiết và tình yêu vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
-('baby-02', 'Bó Hoa Baby Hồng Dịu Dàng', 'hoa-baby', 'hoa-1', 600000.00, 540000.00, 45, 'Sắc hồng nhẹ nhàng của hoa baby mang đến cảm giác ngọt ngào và lãng mạn.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
-('baby-03', 'Bó Hoa Baby Tím Mộng Mơ', 'hoa-baby', 'hoa-1', 620000.00, 560000.00, 40, 'Bó hoa baby tím, thể hiện sự thủy chung và một tình yêu đầy mộng mơ.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
-('baby-04', 'Bó Hoa Baby Mix Cầu Vồng', 'hoa-baby', 'hoa-1', 750000.00, 680000.00, 35, 'Sự kết hợp nhiều màu sắc của hoa baby, tạo nên một bó hoa vui tươi và đầy sức sống.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
-('baby-05', 'Bó Hoa Baby và Hồng Đỏ', 'hoa-baby', 'hoa-1', 850000.00, 780000.00, 30, 'Sự kết hợp kinh điển giữa hoa baby trắng và hoa hồng đỏ, một biểu tượng của tình yêu nồng cháy và thuần khiết.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
-('bo-hoa-1464', 'Bó hoa Sunny', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 290000.00, 250000.00, 30, 'Bó Hoa Sunny được thiết kế từ\r\n\r\nHoa hướng dương: 3 cành\r\nCác loại hoa lá phụ: Sao tím', 0, 0, 1, '2025-09-23 03:10:05', '2025-09-23 03:10:05'),
-('bo-hoa-7338', 'Bó hoa may mắn', 'lang-sinh-nhat', 'hoa-1', 590000.00, 560000.00, 25, 'Giỏ hoa chúc mừng may mắn được thiết kế với hoa hướng dương và cát tường mang đến sự may mắn, tài lộc phù hợp để làm quà tặng bạn bè nhân dịp khai trương. Nếu bạn đang tìm kiếm một mẫu giỏ hoa khai trương giá rẻ thì May Mắn là sự lựa chọn hoàn hảo.\r\n\r\nGiỏ hoa chúc mừng May Mắn được thiết kế từ:\r\n\r\nHoa hướng dương: 3 cành\r\nHoa cát tường trắng: 5 cành\r\nHoa cẩm chướng trắng: 10 cành\r\nCác loại hoa lá phụ: Hoa thạch thảo trắng, lá bạc nhí', 0, 0, 1, '2025-09-23 03:11:08', '2025-09-23 03:11:08'),
-('bo-hoa-say-anh-mat', 'Say Ánh Mắt', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 190000.00, 165000.00, 20, 'Bó hoa Say Ánh Mắt được thiết kế từ:\r\n\r\nHoa thạch thảo trắng: 1 bó\r\nHoa hồng kem: 1 cành\r\nCác loại hoa lá phụ trang trí khác: Cỏ đồng tiền\r\nLưu ý:\r\n\r\n**Do được làm thủ công, nên sản phẩm ngoài thực tế sẽ có đôi chút khác biệt so với hình ảnh trên website. Tuy nhiên, Flowercorner cam kết hoa sẽ giống khoảng 80% so với hình ảnh.\r\n\r\n** Vì các loại hoa lá phụ sẽ có tùy vào thời điểm trong năm, Flowercorner đảm bảo các loại hoa chính, các loại hoa lá phụ sẽ thay đổi phù hợp giá cả và thiết kế sản phẩm.', 0, 0, 1, '2025-09-23 03:05:45', '2025-09-23 03:05:45'),
-('ghsn-01', 'Giỏ Hoa Tươi Sáng', 'gio-hoa-sinh-nhat', 'hoa-1', 850000.00, 790000.00, 20, 'Giỏ hoa hồng kết hợp với cẩm chướng và baby, mang lại vẻ đẹp tươi sáng và rạng rỡ, là món quà tuyệt vời cho ngày sinh nhật.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
-('ghsn-02', 'Giỏ Hoa Yêu Thương', 'gio-hoa-sinh-nhat', 'hoa-1', 950000.00, 900000.00, 15, 'Giỏ hoa mẫu đơn hồng và hoa hồng trắng, biểu tượng của tình yêu thương và sự trân trọng.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
-('ghsn-03', 'Giỏ Hoa Rực Rỡ', 'gio-hoa-sinh-nhat', 'hoa-1', 1200000.00, 1100000.00, 10, 'Sự kết hợp của hoa hướng dương, hoa hồng vàng và cúc tana tạo nên một giỏ hoa đầy sức sống và rực rỡ.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
-('ghsn-04', 'Giỏ Hoa Ngọt Ngào', 'gio-hoa-sinh-nhat', 'hoa-1', 750000.00, 690000.00, 25, 'Giỏ hoa baby trắng tinh khôi kết hợp cùng hoa thạch thảo tím mộng mơ, mang đến cảm giác ngọt ngào và lãng mạn.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
-('ghsn-05', 'Giỏ Hoa Thanh Lịch', 'gio-hoa-sinh-nhat', 'hoa-1', 1500000.00, 1450000.00, 8, 'Giỏ hoa lan hồ điệp trắng sang trọng và quý phái, là món quà sinh nhật đẳng cấp.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
-('hh-01', 'Bó Hoa Hồng Đỏ Nồng Nàn', 'hoa-hong', 'hoa-1', 650000.00, 590000.00, 30, 'Bó hoa gồm 19 bông hồng đỏ Ecuador nhập khẩu, biểu tượng cho tình yêu say đắm và nồng nàn.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
-('hh-02', 'Bó Hoa Hồng Kem Dịu Dàng', 'hoa-hong', 'hoa-1', 550000.00, 490000.00, 40, 'Bó hoa hồng kem nhẹ nhàng, tinh tế, thích hợp để tặng bạn bè, người thân trong những dịp đặc biệt.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
-('hh-03', 'Bó Hoa Hồng Tím Thủy Chung', 'hoa-hong', 'hoa-1', 700000.00, 650000.00, 25, 'Sắc tím mộng mơ của hoa hồng tím mang thông điệp về một tình yêu vĩnh cửu và lòng thủy chung son sắt.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
-('hh-04', 'Bó Hoa Hồng Mix Sắc Màu', 'hoa-hong', 'hoa-1', 800000.00, 720000.00, 22, 'Bó hoa kết hợp nhiều màu sắc của hoa hồng như đỏ, vàng, hồng, cam, tạo nên một tổng thể vui tươi và sống động.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
-('hh-05', 'Bó Hoa Hồng Juliet Quý Phái', 'hoa-hong', 'hoa-1', 1300000.00, 1200000.00, 15, 'Hồng Juliet, nữ hoàng của các loài hoa hồng, mang vẻ đẹp kiêu sa, quý phái và vô cùng cuốn hút.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
-('hty-01', 'Bó Hoa Chuyện Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', 990000.00, 900000.00, 19, 'Bó hoa baby trắng khổng lồ, tượng trưng cho một tình yêu trong sáng, thuần khiết và vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
-('hty-02', 'Bó Hoa Ngọt Ngào Bên Em', 'hoa-tinh-yeu', 'hoa-1', 780000.00, 720000.00, 28, 'Sự kết hợp giữa hoa hồng dâu và cúc tana, mang đến vẻ đẹp ngọt ngào, đáng yêu như chính người bạn yêu.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
-('hty-03', 'Bó Hoa Tulip Lời Tỏ Tình', 'hoa-tinh-yeu', 'hoa-1', 1100000.00, 990000.00, 17, 'Bó hoa tulip hồng là lời tỏ tình hoàn hảo, thể hiện sự quan tâm và tình yêu chân thành.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
-('hty-04', 'Bó Hoa Mãi Mãi Một Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', 1500000.00, 1390000.00, 11, 'Bó hoa 99 bông hồng đỏ thắm, thay cho lời hứa về một tình yêu vĩnh cửu, không bao giờ phai nhạt.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
-('hty-05', 'Bó Hoa Hướng Dương Tình Yêu Tỏa Nắng', 'hoa-tinh-yeu', 'hoa-1', 500000.00, 450000.00, 35, 'Hoa hướng dương luôn hướng về phía mặt trời, cũng như tình yêu của anh luôn hướng về phía em.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
-('khkt-01', 'Kệ Hoa Phát Tài Phát Lộc', 'ke-hoa-khai-truong', 'hoa-1', 1800000.00, 1690000.00, 12, 'Kệ hoa khai trương với tông màu đỏ và vàng chủ đạo từ hoa đồng tiền và hoa hướng dương, mang ý nghĩa may mắn, phát tài phát lộc.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
-('khkt-02', 'Kệ Hoa Vạn Sự Như Ý', 'ke-hoa-khai-truong', 'hoa-1', 2200000.00, 2000000.00, 10, 'Kệ hoa kết hợp lan hồ điệp, hoa hồng môn đỏ và hoa ly vàng, tượng trưng cho sự thành công và vạn sự như ý.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
-('khkt-03', 'Kệ Hoa Khai Trương Hồng Phát', 'ke-hoa-khai-truong', 'hoa-1', 1500000.00, 1350000.00, 18, 'Kệ hoa được thiết kế hiện đại với hoa hồng đỏ, cẩm tú cầu xanh và các loại lá phụ, mang lại thông điệp về sự phát triển và thịnh vượng.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
-('khkt-04', 'Kệ Hoa Thành Công Vươn Xa', 'ke-hoa-khai-truong', 'hoa-1', 2800000.00, 2600000.00, 7, 'Kệ hoa 2 tầng hoành tráng với hoa lan vũ nữ, hoa thiên điểu, thể hiện ý chí vươn lên và bay cao, bay xa.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
-('khkt-05', 'Kệ Hoa Tấn Tài Tấn Lộc', 'ke-hoa-khai-truong', 'hoa-1', 1900000.00, 1750000.00, 14, 'Sự kết hợp giữa hoa cúc mẫu đơn xanh và hoa hồng vàng, mang lại may mắn về tiền tài và lộc lá cho gia chủ.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46');
+('baby-01', 'Bó Hoa Baby Trắng Tinh Khôi', 'hoa-baby', 'hoa-1', '550000.00', '490000.00', 50, 'Một bó hoa baby trắng lớn, tượng trưng cho sự thuần khiết và tình yêu vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
+('baby-02', 'Bó Hoa Baby Hồng Dịu Dàng', 'hoa-baby', 'hoa-1', '600000.00', '540000.00', 45, 'Sắc hồng nhẹ nhàng của hoa baby mang đến cảm giác ngọt ngào và lãng mạn.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
+('baby-03', 'Bó Hoa Baby Tím Mộng Mơ', 'hoa-baby', 'hoa-1', '620000.00', '560000.00', 40, 'Bó hoa baby tím, thể hiện sự thủy chung và một tình yêu đầy mộng mơ.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
+('baby-04', 'Bó Hoa Baby Mix Cầu Vồng', 'hoa-baby', 'hoa-1', '750000.00', '680000.00', 35, 'Sự kết hợp nhiều màu sắc của hoa baby, tạo nên một bó hoa vui tươi và đầy sức sống.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
+('baby-05', 'Bó Hoa Baby và Hồng Đỏ', 'hoa-baby', 'hoa-1', '850000.00', '780000.00', 30, 'Sự kết hợp kinh điển giữa hoa baby trắng và hoa hồng đỏ, một biểu tượng của tình yêu nồng cháy và thuần khiết.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-23 10:19:22'),
+('bo-hoa-1464', 'Bó hoa Sunny', 'hoa-sinh-nhat-trang-trong', 'hoa-1', '290000.00', '250000.00', 21, 'Bó Hoa Sunny được thiết kế từ\r\n\r\nHoa hướng dương: 3 cành\r\nCác loại hoa lá phụ: Sao tím', 9, 0, 1, '2025-09-23 03:10:05', '2025-09-23 16:31:20'),
+('bo-hoa-7338', 'Bó hoa may mắn', 'lang-sinh-nhat', 'hoa-1', '590000.00', '560000.00', 25, 'Giỏ hoa chúc mừng may mắn được thiết kế với hoa hướng dương và cát tường mang đến sự may mắn, tài lộc phù hợp để làm quà tặng bạn bè nhân dịp khai trương. Nếu bạn đang tìm kiếm một mẫu giỏ hoa khai trương giá rẻ thì May Mắn là sự lựa chọn hoàn hảo.\r\n\r\nGiỏ hoa chúc mừng May Mắn được thiết kế từ:\r\n\r\nHoa hướng dương: 3 cành\r\nHoa cát tường trắng: 5 cành\r\nHoa cẩm chướng trắng: 10 cành\r\nCác loại hoa lá phụ: Hoa thạch thảo trắng, lá bạc nhí', 0, 0, 1, '2025-09-23 03:11:08', '2025-09-23 03:11:08'),
+('bo-hoa-say-anh-mat', 'Say Ánh Mắt', 'hoa-sinh-nhat-trang-trong', 'hoa-1', '190000.00', '165000.00', 18, 'Bó hoa Say Ánh Mắt được thiết kế từ:\r\n\r\nHoa thạch thảo trắng: 1 bó\r\nHoa hồng kem: 1 cành\r\nCác loại hoa lá phụ trang trí khác: Cỏ đồng tiền\r\nLưu ý:\r\n\r\n**Do được làm thủ công, nên sản phẩm ngoài thực tế sẽ có đôi chút khác biệt so với hình ảnh trên website. Tuy nhiên, Flowercorner cam kết hoa sẽ giống khoảng 80% so với hình ảnh.\r\n\r\n** Vì các loại hoa lá phụ sẽ có tùy vào thời điểm trong năm, Flowercorner đảm bảo các loại hoa chính, các loại hoa lá phụ sẽ thay đổi phù hợp giá cả và thiết kế sản phẩm.', 1, 0, 1, '2025-09-23 03:05:45', '2025-09-23 16:31:31'),
+('ghsn-01', 'Giỏ Hoa Tươi Sáng', 'gio-hoa-sinh-nhat', 'hoa-1', '850000.00', '790000.00', 20, 'Giỏ hoa hồng kết hợp với cẩm chướng và baby, mang lại vẻ đẹp tươi sáng và rạng rỡ, là món quà tuyệt vời cho ngày sinh nhật.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
+('ghsn-02', 'Giỏ Hoa Yêu Thương', 'gio-hoa-sinh-nhat', 'hoa-1', '950000.00', '900000.00', 15, 'Giỏ hoa mẫu đơn hồng và hoa hồng trắng, biểu tượng của tình yêu thương và sự trân trọng.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
+('ghsn-03', 'Giỏ Hoa Rực Rỡ', 'gio-hoa-sinh-nhat', 'hoa-1', '1200000.00', '1100000.00', 10, 'Sự kết hợp của hoa hướng dương, hoa hồng vàng và cúc tana tạo nên một giỏ hoa đầy sức sống và rực rỡ.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
+('ghsn-04', 'Giỏ Hoa Ngọt Ngào', 'gio-hoa-sinh-nhat', 'hoa-1', '750000.00', '690000.00', 25, 'Giỏ hoa baby trắng tinh khôi kết hợp cùng hoa thạch thảo tím mộng mơ, mang đến cảm giác ngọt ngào và lãng mạn.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
+('ghsn-05', 'Giỏ Hoa Thanh Lịch', 'gio-hoa-sinh-nhat', 'hoa-1', '1500000.00', '1450000.00', 8, 'Giỏ hoa lan hồ điệp trắng sang trọng và quý phái, là món quà sinh nhật đẳng cấp.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-23 10:18:31'),
+('hh-01', 'Bó Hoa Hồng Đỏ Nồng Nàn', 'hoa-hong', 'hoa-1', '650000.00', '590000.00', 30, 'Bó hoa gồm 19 bông hồng đỏ Ecuador nhập khẩu, biểu tượng cho tình yêu say đắm và nồng nàn.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
+('hh-02', 'Bó Hoa Hồng Kem Dịu Dàng', 'hoa-hong', 'hoa-1', '550000.00', '490000.00', 40, 'Bó hoa hồng kem nhẹ nhàng, tinh tế, thích hợp để tặng bạn bè, người thân trong những dịp đặc biệt.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
+('hh-03', 'Bó Hoa Hồng Tím Thủy Chung', 'hoa-hong', 'hoa-1', '700000.00', '650000.00', 25, 'Sắc tím mộng mơ của hoa hồng tím mang thông điệp về một tình yêu vĩnh cửu và lòng thủy chung son sắt.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
+('hh-04', 'Bó Hoa Hồng Mix Sắc Màu', 'hoa-hong', 'hoa-1', '800000.00', '720000.00', 22, 'Bó hoa kết hợp nhiều màu sắc của hoa hồng như đỏ, vàng, hồng, cam, tạo nên một tổng thể vui tươi và sống động.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
+('hh-05', 'Bó Hoa Hồng Juliet Quý Phái', 'hoa-hong', 'hoa-1', '1300000.00', '1200000.00', 15, 'Hồng Juliet, nữ hoàng của các loài hoa hồng, mang vẻ đẹp kiêu sa, quý phái và vô cùng cuốn hút.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-23 10:19:02'),
+('hty-01', 'Bó Hoa Chuyện Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', '990000.00', '900000.00', 19, 'Bó hoa baby trắng khổng lồ, tượng trưng cho một tình yêu trong sáng, thuần khiết và vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
+('hty-02', 'Bó Hoa Ngọt Ngào Bên Em', 'hoa-tinh-yeu', 'hoa-1', '780000.00', '720000.00', 27, 'Sự kết hợp giữa hoa hồng dâu và cúc tana, mang đến vẻ đẹp ngọt ngào, đáng yêu như chính người bạn yêu.', 1, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:25:37'),
+('hty-03', 'Bó Hoa Tulip Lời Tỏ Tình', 'hoa-tinh-yeu', 'hoa-1', '1100000.00', '990000.00', 17, 'Bó hoa tulip hồng là lời tỏ tình hoàn hảo, thể hiện sự quan tâm và tình yêu chân thành.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
+('hty-04', 'Bó Hoa Mãi Mãi Một Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', '1500000.00', '1390000.00', 11, 'Bó hoa 99 bông hồng đỏ thắm, thay cho lời hứa về một tình yêu vĩnh cửu, không bao giờ phai nhạt.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
+('hty-05', 'Bó Hoa Hướng Dương Tình Yêu Tỏa Nắng', 'hoa-tinh-yeu', 'hoa-1', '500000.00', '450000.00', 35, 'Hoa hướng dương luôn hướng về phía mặt trời, cũng như tình yêu của anh luôn hướng về phía em.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-23 10:19:11'),
+('khkt-01', 'Kệ Hoa Phát Tài Phát Lộc', 'ke-hoa-khai-truong', 'hoa-1', '1800000.00', '1690000.00', 12, 'Kệ hoa khai trương với tông màu đỏ và vàng chủ đạo từ hoa đồng tiền và hoa hướng dương, mang ý nghĩa may mắn, phát tài phát lộc.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
+('khkt-02', 'Kệ Hoa Vạn Sự Như Ý', 'ke-hoa-khai-truong', 'hoa-1', '2200000.00', '2000000.00', 10, 'Kệ hoa kết hợp lan hồ điệp, hoa hồng môn đỏ và hoa ly vàng, tượng trưng cho sự thành công và vạn sự như ý.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
+('khkt-03', 'Kệ Hoa Khai Trương Hồng Phát', 'ke-hoa-khai-truong', 'hoa-1', '1500000.00', '1350000.00', 18, 'Kệ hoa được thiết kế hiện đại với hoa hồng đỏ, cẩm tú cầu xanh và các loại lá phụ, mang lại thông điệp về sự phát triển và thịnh vượng.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
+('khkt-04', 'Kệ Hoa Thành Công Vươn Xa', 'ke-hoa-khai-truong', 'hoa-1', '2800000.00', '2600000.00', 7, 'Kệ hoa 2 tầng hoành tráng với hoa lan vũ nữ, hoa thiên điểu, thể hiện ý chí vươn lên và bay cao, bay xa.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46'),
+('khkt-05', 'Kệ Hoa Tấn Tài Tấn Lộc', 'ke-hoa-khai-truong', 'hoa-1', '1900000.00', '1750000.00', 14, 'Sự kết hợp giữa hoa cúc mẫu đơn xanh và hoa hồng vàng, mang lại may mắn về tiền tài và lộc lá cho gia chủ.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-23 10:18:46');
 
 -- --------------------------------------------------------
 
@@ -395,6 +430,14 @@ CREATE TABLE `_order` (
   `dNgayGiaoHang` timestamp NULL DEFAULT NULL,
   `sTrangThai` enum('cho_xac_nhan','da_xac_nhan','dang_giao','da_giao','da_huy') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'cho_xac_nhan'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `_order`
+--
+
+INSERT INTO `_order` (`ID_order`, `ID_order_detail`, `ID_customer`, `dNgayDat`, `dNgayGiaoHang`, `sTrangThai`) VALUES
+('id_order_id_cus_1', 'id_detail_id_cus_1', 'id_cus_1', '2025-09-22 17:00:00', NULL, ''),
+('id_order_id_cus_2', 'id_detail_id_cus_2', 'id_cus_2', '2025-09-22 17:00:00', NULL, '');
 
 --
 -- Indexes for dumped tables
