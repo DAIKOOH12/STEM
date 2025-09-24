@@ -2,7 +2,6 @@
 @section('sidebar')
 <!-- ============================================== SIDEBAR ============================================== -->
 <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-
     <!-- ================================== TOP NAVIGATION ================================== -->
     <div class="side-menu animate-dropdown outer-bottom-xs">
         <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Danh Mục</div>
@@ -32,7 +31,7 @@
 </div>
 <!-- /.sidemenu-holder -->
 <!-- ============================================== SIDEBAR : END ============================================== -->
-@stop
+@endsection
 @section('content')
 <!-- ============================================== CONTENT ============================================== -->
 <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
@@ -1091,4 +1090,16 @@
 </div>
 <!-- /.logo-slider -->
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
-@stop
+@endsection
+@section('script')
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: "{{ session('success') }}",
+        showConfirmButton: false,
+        timer: 2000
+    });
+</script>
+@endif
+@endsection

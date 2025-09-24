@@ -11,18 +11,18 @@ class PaymentController extends Controller
     {
         $sum = request()->input('tongtien');
         $tenkh = request()->input('tenkh');
+        // dd(request()->all());
         $vnp_Url = env("VNP_URL");
         $vnp_Returnurl = env("VNP_RETURN_URL");
-        // dd($vnp_Returnurl);
         $vnp_TmnCode = env("VNP_TMN_CODE");
         $vnp_HashSecret = env("VNP_HASH_SECRET");
 
         $vnp_TxnRef = time(); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = "Khách hàng " . $tenkh . " thanh toán hóa đơn cửa cửa hàng STEM Shop";
+        $vnp_OrderInfo = "Khách hàng " . $tenkh . " thanh toán hóa đơn cửa cửa hàng hoa";
         $vnp_OrderType = "STEM Shop";
         $vnp_Amount = $sum * 100;
         $vnp_Locale = "vn";
-        $vnp_BankCode = "NCB";
+        $vnp_BankCode = "";
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
         $inputData = array(

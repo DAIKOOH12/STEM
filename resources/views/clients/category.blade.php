@@ -36,6 +36,7 @@
             <div class="sidebar-widget">
                 <h3 class="section-title">Bộ lọc sản phẩm</h3>
                 <form action="{{url()->current()}}">
+                    <input type="hidden" name="keyword" value="{{request()->input('keyword')}}">
                     <div class="form-group">
                         <label for="formGroupExampleInput">Từ</label>
                         <input type="text" class="form-control" name="min_price" value="{{$min_price}}" id="formGroupExampleInput" placeholder="Example input">
@@ -45,9 +46,33 @@
                         <input type="text" class="form-control" value="{{$max_price}}" name="max_price" id="formGroupExampleInput2" placeholder="Another input">
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="is_available" type="checkbox" style="transform: scale(1.5);" value="" id="check1">
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="1" {{ in_array('1', (array)request()->input('color', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="check1">
-                            Còn hàng
+                            <span style="margin: 0 10px;">Màu trắng</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="2" {{ in_array('2', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu tím</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="3" {{ in_array('3', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu vàng</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="4" {{ in_array('4', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu đỏ</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="5" {{ in_array('5', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu hồng</span>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Lọc</button>
@@ -84,9 +109,9 @@
                             <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
                                 <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Sắp xếp <span class="caret"></span> </button>
                                 <ul role="menu" class="dropdown-menu">
-                                    <li role="presentation"><a href="{{url()->current()}}?order=asc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá tăng dần</a></li>
-                                    <li role="presentation"><a href="{{url()->current()}}?order=desc&min_price={{Request::get('min_price')}}&max_price={{Request::get('max_price')}}">Giá giảm dần</a></li>
-                                    <li role="presentation"><a href="{{url()->current()}}?order=desc&sort=views">Lượt xem</a></li>
+                                    <li role="presentation"><a href="{{ request()->fullUrlWithQuery(['order_by' => 'asc']) }}">Giá tăng dần</a></li>
+                                    <li role="presentation"><a href="{{ request()->fullUrlWithQuery(['order_by' => 'desc']) }}">Giá giảm dần</a></li>
+                                    <li role="presentation"><a href="{{ request()->fullUrlWithQuery(['views' => 'yes']) }}">Lượt xem</a></li>
                                 </ul>
                             </div>
                         </div>

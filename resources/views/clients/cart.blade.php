@@ -102,8 +102,22 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <div class="cart-grand-total">
-                                        Tổng tiền<span class="inner-left-md">{{number_format($tong, 0, ',', '.')}} VNĐ</span>
+                                    <div class="cart-grand-total" style="color:black">
+                                        Tổng tiền<span class="inner-left-md" style="color: #84b943;">{{number_format($tong, 0, ',', '.')}} VNĐ</span>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="cart-grand-total" style="color:black">
+                                        Giảm giá (Sau 18h)<span class="inner-left-md" style="color: red;">{{number_format($tong*$discount, 0, ',', '.')}} VNĐ</span>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="cart-grand-total" style="color:black">
+                                        Thành tiền<span class="inner-left-md" style="color: #84b943;">{{number_format($tong-$tong*$discount, 0, ',', '.')}} VNĐ</span>
                                     </div>
                                 </th>
                             </tr>
@@ -115,7 +129,7 @@
                                         <form action="{{route('payment')}}" method="post">
                                             @csrf
                                             <input type="hidden" name="tenkh" value="{{$cusInfo->sHoTen}}">
-                                            <input type="hidden" name="tongtien" value="{{$tong}}">
+                                            <input type="hidden" name="tongtien" value="{{$tong-$tong*$discount}}">
                                             <button type="submit" name="redirect" class="btn btn-primary checkout-btn">Thanh toán</button>
                                         </form>
                                         <span class="">Thanh toán nhanh chóng!</span>

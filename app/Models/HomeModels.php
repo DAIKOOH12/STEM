@@ -26,7 +26,7 @@ class HomeModels extends Model
             ->get();
         return $products;
     }
-    public function getProductFromSearch($keyword, $min_price, $max_price, $views, $order_by)
+    public function getProductFromSearch($keyword, $min_price, $max_price, $views, $order_by, $color)
     {
         $products = DB::table('product as p')
             ->select('p.*', 'c.ID_category_parent', 'i.*')
@@ -47,6 +47,9 @@ class HomeModels extends Model
         }
         if ($views !== null) {
             $products->orderBy('p.iLuotXem', 'desc');
+        }
+        if ($color != null) {
+            $products->whereIn('p.ID_color', $color);
         }
         $result = $products->paginate(8)->withQueryString();
         return $result;
@@ -75,7 +78,7 @@ class HomeModels extends Model
         $result = $products->paginate(8)->withQueryString();
         return $result;
     }
-    public function getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order = null)
+    public function getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order = null, $color = null)
     {
         $products = DB::table('product as p')
             ->select('p.*', 'c.ID_category_parent', 'i.*')
@@ -96,6 +99,9 @@ class HomeModels extends Model
         }
         if ($order !== null) {
             $products->orderBy('p.fGiaBan', $order);
+        }
+        if ($color != null) {
+            $products->whereIn('p.ID_color', $color);
         }
         $result = $products->paginate(8)->withQueryString();
         return $result;
@@ -163,7 +169,7 @@ class HomeModels extends Model
     }
     public function signUp($account, $password, $quyen, $hoten, $sdt, $email, $diachi)
     {
-        $id_mem='id_mem_' . $this->getAllMem() + 1;
+        $id_mem = 'id_mem_' . $this->getAllMem() + 1;
         DB::table('member')->insert([
             [
                 'ID_member' => $id_mem,
@@ -175,7 +181,7 @@ class HomeModels extends Model
                 'isLogin' => 0
             ]
         ]);
-        $id_cus = 'id_cus_'.$this->getAllCus() + 1;
+        $id_cus = 'id_cus_' . $this->getAllCus() + 1;
         DB::table('customer')->insert([
             [
                 'ID_customer' => $id_cus,

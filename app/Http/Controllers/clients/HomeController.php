@@ -11,6 +11,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->mHome = new HomeModels();
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
     }
     public function index()
     {
@@ -18,6 +19,7 @@ class HomeController extends Controller
             $countcart = $this->mHome->countCart(session('cus_id'));
             session(['count' => $countcart->tongso]);
         }
+        // session()->forget('success');
         $products = $this->mHome->getAllProducts();
         $blogs = $this->mHome->getListBlogHome();
         return view('clients.home', compact('products', 'blogs'));
@@ -28,6 +30,8 @@ class HomeController extends Controller
         $key_word = request()->input('keyword');
         $min_price = request()->input('min_price');
         $max_price = request()->input('max_price');
+        $color_filter = request()->input('color');
+        // dd($color_filter);
         $views = request()->input('views');
         $order_by = request()->input('order_by');
         if ($min_price == null) {
@@ -36,7 +40,7 @@ class HomeController extends Controller
         if ($max_price == null) {
             $max_price = 9999999;
         }
-        $products = $this->mHome->getProductFromSearch($key_word, $min_price, $max_price, $views, $order_by);
+        $products = $this->mHome->getProductFromSearch($key_word, $min_price, $max_price, $views, $order_by, $color_filter);
         // dd($products);
         return view('clients.search_product', compact('products', 'min_price', 'max_price'));
     }
@@ -46,12 +50,13 @@ class HomeController extends Controller
         $products = $this->mHome->getCategoryWithParentID($category_parent, $category);
         $min_price = 0;
         $max_price = 9999999;
+        $color_filter = request()->input('color');
         if (!empty($request->query('min_price')) || !empty($request->query('max_price')) || !empty($request->query('order'))) {
             $min_price = $request->query('min_price');
             $max_price = $request->query('max_price');
-            $order = $request->query('order');
-            $products = $this->mHome->getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order);
-            // dd($products);
+            $order = $request->query('order_by');
+            $products = $this->mHome->getCategoryWithFilter($category_parent, $category, $min_price, $max_price, $order, $color_filter);
+            // dd($order);
             return view('clients.category', compact('products', 'min_price', 'max_price'));
         }
         // dd($products);
@@ -59,16 +64,17 @@ class HomeController extends Controller
         return view('clients.category', compact('products', 'min_price', 'max_price'));
     }
 
-     public function category($category_parent = null, Request $request)
+    public function category($category_parent = null, Request $request)
     {
         $products = $this->mHome->getCategoryWithID($category_parent);
         $min_price = 0;
         $max_price = 9999999;
+        $color_filter = request()->input('color');
         if (!empty($request->query('min_price')) || !empty($request->query('max_price')) || !empty($request->query('order'))) {
             $min_price = $request->query('min_price');
             $max_price = $request->query('max_price');
-            $order = $request->query('order');
-            $products = $this->mHome->getCategoryWithFilter($category_parent, $category=null, $min_price, $max_price, $order);
+            $order = $request->query('order_by');
+            $products = $this->mHome->getCategoryWithFilter($category_parent, $category = null, $min_price, $max_price, $order, $color_filter);
             return view('clients.category', compact('products', 'min_price', 'max_price'));
         }
         // dd($products);
@@ -87,12 +93,17 @@ class HomeController extends Controller
     public function cart()
     {
         $cus = session('cus_id');
-        if($cus == null){
+        if ($cus == null) {
             return redirect()->route('accountpage');
         }
         $cart = $this->mHome->getCart($cus);
         $cusInfo = $this->mHome->getCusInfo($cus);
-        return view('clients.cart', compact('cart', 'cusInfo'));
+        $discount = 0;
+        if (now()->format('H') > 9) {
+            $discount = 0.3;
+        }
+        // dd(now()->format('H'));
+        return view('clients.cart', compact('cart', 'cusInfo', 'discount'));
     }
     public function addToCart($id)
     {
@@ -147,10 +158,12 @@ class HomeController extends Controller
 
     public function paidBill()
     {
+        // dd(request()->all());
         $cus = session('cus_id');
 
         $this->mHome->addBillPayment(request()->all(), $cus);
-
+        session(['success'=>'Thanh toán thành công! Cảm ơn bạn đã mua hàng.']);
+        // dd(session()->all());
         return redirect()->route('homepage');
     }
 }
