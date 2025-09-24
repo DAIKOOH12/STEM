@@ -20,7 +20,7 @@ class AccountController extends Controller
     {
         $account = $request->input('account');
         $password = $request->input('password');
-        $member = $this->mHome->singIn($account, $password);
+        $member = $this->mHome->signIn($account, $password);
         // dd($member);
         if ($member == null) {
             session()->flash('message', 'Tài khoản hoặc mật khẩu không đúng');
@@ -40,10 +40,10 @@ class AccountController extends Controller
         $diachi=$request->input('diachi');
         $checkUser=$this->mHome->checkAccount($email,$account);
         if($checkUser!=null){
-            $this->mHome->singUp($account,$password,3);
+            $this->mHome->signUp($account,$password,3);
         }
         else{
-            $this->mHome->singUp($account,$password,3,$name,$phone,$email,$diachi);
+            $this->mHome->signUp($account,$password,3,$name,$phone,$email,$diachi);
             
             return redirect()->route('homepage');
         }

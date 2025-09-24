@@ -69,7 +69,6 @@
                                         <div class="shopping-cart-btn">
                                             <span class="">
                                                 <a href="{{route('homepage')}}" class="btn btn-upper btn-primary outer-left-xs">Tiếp tục mua sắm</a>
-                                                <button class="btn btn-upper btn-primary pull-right outer-right-xs">Cập nhật giỏ hàng</button>
                                             </span>
                                         </div><!-- /.shopping-cart-btn -->
                                     </td>
@@ -82,7 +81,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" colspan="4">Địa chỉ nhận hàng</th>
+                                <th scope="col" colspan="4">Thông tin khách hàng</th>
                             </tr>
                         </thead>
                         <tbody>

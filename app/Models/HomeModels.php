@@ -22,7 +22,7 @@ class HomeModels extends Model
                     ->orWhere('cp.ID_category_parent', 'hoa-khai-truong')
                     ->orWhere('cp.ID_category_parent', 'hoa-sinh-nhat');
             })
-            ->where('iSoLuong','>',0)
+            ->where('iSoLuong', '>', 0)
             ->get();
         return $products;
     }
@@ -126,7 +126,7 @@ class HomeModels extends Model
             ->where('p.ID_category', '=', $id_category)->get();
         return $product;
     }
-    public function singIn($account, $password)
+    public function signIn($account, $password)
     {
         $user = DB::table('member as m')
             ->join('customer as c', 'm.ID_member', 'c.ID_member')
@@ -161,22 +161,24 @@ class HomeModels extends Model
             ->first();
         return $cus;
     }
-    public function singUp($account, $password, $quyen, $hoten, $sdt, $email, $diachi)
+    public function signUp($account, $password, $quyen, $hoten, $sdt, $email, $diachi)
     {
+        $id_mem='id_mem_' . $this->getAllMem() + 1;
         DB::table('member')->insert([
             [
-                'ID_member' => 'id_mem_' . $this->getAllMem() + 1,
+                'ID_member' => $id_mem,
                 'sXacMinhEmail' => 'verified',
                 'ID_quyen' => $quyen,
                 'sTaiKhoan' => $account,
-                'sEmail'=> $email,
+                'sEmail' => $email,
                 'sMatKhau' => sha1($password),
                 'isLogin' => 0
             ]
         ]);
+        $id_cus = 'id_cus_'.$this->getAllCus() + 1;
         DB::table('customer')->insert([
             [
-                'ID_customer' => 'id_cus_' . $this->getAllCus() + 1,
+                'ID_customer' => $id_cus,
                 'sHoTen' => $hoten,
                 'sSoDienThoai' => $sdt,
                 'sDiaChi' => $diachi,
@@ -185,7 +187,7 @@ class HomeModels extends Model
                 'ID_member' => 'id_mem_' . $this->getAllMem()
             ]
         ]);
-        session(['mem_id' => 'id_mem_' . $this->getAllMem() + 1, 'mem_name' => $hoten, 'cus_id' => 'id_cus_' . $this->getAllCus() + 1]);
+        session(['mem_id' => $id_mem, 'mem_name' => $hoten, 'cus_id' => $id_cus]);
         session()->save();
     }
     public function countCart($idCustomer)
@@ -250,13 +252,13 @@ class HomeModels extends Model
         ]);
 
         $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
-        $views=DB::table('product')->where('ID_Product', $id_product)->value('iLuotXem');
+        $views = DB::table('product')->where('ID_Product', $id_product)->value('iLuotXem');
         // dd($so_luong);
         DB::table('product')
             ->where('ID_Product', $id_product)
             ->update([
                 'iSoLuong' => $so_luong - $quantity,
-                'iLuotXem'=>$views+1
+                'iLuotXem' => $views + 1
             ]);
     }
     public function updateCart($id_order_detail, $id_product, $quantity)
@@ -321,7 +323,7 @@ class HomeModels extends Model
     {
         // dd($arr);
         $data['vnp_Txnref'] = $arr['vnp_TxnRef'];
-        $data['vnp_Amount'] = $arr['vnp_Amount']/100;
+        $data['vnp_Amount'] = $arr['vnp_Amount'] / 100;
         $data['vnp_BankCode'] = $arr['vnp_BankCode'];
         $data['vnp_CardType'] = $arr['vnp_CardType'];
         $data['vnp_OrderInfo'] = $arr['vnp_OrderInfo'];

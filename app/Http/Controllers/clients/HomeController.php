@@ -87,9 +87,11 @@ class HomeController extends Controller
     public function cart()
     {
         $cus = session('cus_id');
+        if($cus == null){
+            return redirect()->route('accountpage');
+        }
         $cart = $this->mHome->getCart($cus);
         $cusInfo = $this->mHome->getCusInfo($cus);
-        // dd($cart);
         return view('clients.cart', compact('cart', 'cusInfo'));
     }
     public function addToCart($id)
@@ -98,7 +100,7 @@ class HomeController extends Controller
         $id_product = $id;
         $cus = session('cus_id');
         $order = $this->mHome->checkProducts('id_detail_' . $cus, $id_product);
-        // dd($new_quantity);
+        // dd($cus);
         if ($order == null) {
             $this->mHome->addToCart('id_detail_' . $cus, $id_product, 'id_order_' . $cus, $cus, date('Y-m-d'), $new_quantity);
         } else {

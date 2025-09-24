@@ -46,9 +46,33 @@
                         <input type="text" class="form-control" value="{{$max_price}}" name="max_price" id="formGroupExampleInput2" placeholder="Another input">
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="is_available" type="checkbox" style="transform: scale(1.5);" value="" id="check1">
+                        <input class="form-check-input" name="color" type="radio" style="transform: scale(1.5);" value="trắng" id="check1">
                         <label class="form-check-label" for="check1">
-                            Còn hàng
+                            <span style="margin: 0 10px;">Màu trắng</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color" type="radio" style="transform: scale(1.5);" value="tím" id="check1">
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu tím</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color" type="radio" style="transform: scale(1.5);" value="vàng" id="check1">
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu vàng</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color" type="radio" style="transform: scale(1.5);" value="đỏ" id="check1">
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu đỏ</span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="color" type="radio" style="transform: scale(1.5);" value="hồng" id="check1">
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu hồng</span>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Lọc</button>
