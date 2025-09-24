@@ -1100,6 +1100,7 @@
         showConfirmButton: false,
         timer: 2000
     });
+    fetch("{{ route('clear-success-session') }}", {method: "POST", headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}});
 </script>
 @endif
 @endsection

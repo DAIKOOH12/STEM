@@ -35,16 +35,22 @@ Route::post('/account', [AccountController::class, 'signIn'])->name('signin');
 Route::post('/signup', [AccountController::class, 'signUp'])->name('signup');
 Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
+Route::post('/clear-success-session', function () {
+    session()->forget('success');
+    return response()->json(['status' => 'ok']);
+})->name('clear-success-session');
 
-Route::middleware(['preventBackHistory',
-RevalidateBackHistory::class])->group(function () {
+Route::middleware([
+    'preventBackHistory',
+    RevalidateBackHistory::class
+])->group(function () {
     //Admin Role
     Route::get('/admin/login', [AdminController::class, 'signInForm'])->name('loginpage');
     Route::post('/admin/login', [AdminController::class, 'signIn'])->name('adminsignin');
     Route::get('/admin/signout', [AdminController::class, 'signOut'])->name('adminsingout');
     Route::get('/list-employee', [AdminController::class, 'getListEmployee'])->name('listemployee');
-    Route::post('/updagte-employee',[AdminController::class,'updateEmployee'])->name('updateemployee');
-    Route::post('/del-employee',[AdminController::class,'delEmployee'])->name('delemployee');
+    Route::post('/updagte-employee', [AdminController::class, 'updateEmployee'])->name('updateemployee');
+    Route::post('/del-employee', [AdminController::class, 'delEmployee'])->name('delemployee');
     Route::get('/add-employee', [AdminController::class, 'getAddEmployee'])->name('addemployee');
     Route::post('/add-employee', [AdminController::class, 'addEmployee'])->name('addemployee');
 
@@ -55,8 +61,8 @@ RevalidateBackHistory::class])->group(function () {
     Route::post('/add-product', [AdminController::class, 'addProduct'])->name('showaddform');
     Route::post('/edit-product', [AdminController::class, 'editProduct'])->name('editproduct');
     Route::post('/del-product', [AdminController::class, 'delProduct'])->name('delproduct');
-    Route::get('/import-cell',[AdminController::class,'getImportProduct'])->name('importproduct');
-    Route::post('/import-cell',[AdminController::class,'importProducts'])->name('importproduct');
+    Route::get('/import-cell', [AdminController::class, 'getImportProduct'])->name('importproduct');
+    Route::post('/import-cell', [AdminController::class, 'importProducts'])->name('importproduct');
 
     //Admin-Blogs
     Route::get('/list-blogs', [AdminController::class, 'showListBlogs'])->name('showlistblog');
@@ -67,8 +73,7 @@ RevalidateBackHistory::class])->group(function () {
     Route::post('/edit-blog-category', [AdminController::class, 'updateBlogCategory'])->name('editblogcategory');
 
     //Admin-Analysis
-    Route::get('/analysis-product',[AdminController::class,'analysisProduct'])->name('analysisproduct');
-
+    Route::get('/analysis-product', [AdminController::class, 'analysisProduct'])->name('analysisproduct');
 });
 //VNPay Payment
 Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');
