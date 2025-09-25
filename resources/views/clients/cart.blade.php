@@ -56,6 +56,7 @@
                                     <td class="cart-product-grand-total"><span class="cart-grand-total-price">
                                             @php
                                             $thanhtien=$item->fGiaBan * $item->iSoLuong;
+                                            $thanhtien=$thanhtien - ($thanhtien * $item->sale_off);
                                             $tong+=$thanhtien;
                                             @endphp
                                             {{number_format($thanhtien, 0, ',', '.')}} VNĐ

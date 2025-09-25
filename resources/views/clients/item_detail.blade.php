@@ -136,6 +136,7 @@
                                                 <div class="reviews">
                                                     <a href="#" class="lnk"><i class="fa-solid fa-eye"></i> Lượt xem ({{$product->iLuotXem}})</a>
                                                     <a href="#" class="lnk"><i class="fa-solid fa-ticket"></i> Đã bán ({{$product->iLuotMua}})</a>
+                                                    <a href="#" class="lnk"><i class="fa-solid fa-calendar-days"></i> Hạn sử dụng: {{$product->sHanSuDung}} ngày</a>
                                                 </div>
                                             </div>
                                         </div>

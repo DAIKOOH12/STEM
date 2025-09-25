@@ -35,6 +35,7 @@ Route::post('/account', [AccountController::class, 'signIn'])->name('signin');
 Route::post('/signup', [AccountController::class, 'signUp'])->name('signup');
 Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
+Route::post('/custome-order', [HomeController::class, 'customeOrder'])->name('customorder');
 Route::post('/clear-success-session', function () {
     session()->forget('success');
     return response()->json(['status' => 'ok']);
