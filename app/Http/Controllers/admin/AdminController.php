@@ -65,17 +65,18 @@ class AdminController extends Controller
     {
         $products = $this->mAdmin->getListProducts();
         $category = $this->mAdmin->getCategories();
-        $age = $this->mAdmin->getAge();
-        $gender = $this->mAdmin->getGender();
+        $colors = $this->mAdmin->getColors();
+        $date = $this->mAdmin->getDate();
         // dd($products);
-        return view('admin.products.list', compact('products', 'category', 'age', 'gender'));
+        return view('admin.products.list', compact('products', 'category','colors','date'));
     }
     public function getAddView(Request $request)
     {
         $category = $this->mAdmin->getCategories();
-        $age = $this->mAdmin->getAge();
-        $gender = $this->mAdmin->getGender();
-        return view('admin.products.add', compact('category', 'age', 'gender'));
+        $colors = $this->mAdmin->getColors();
+        $date = $this->mAdmin->getDate();
+        // dd($date);
+        return view('admin.products.add', compact('category', 'colors', 'date'));
     }
     public function addProduct(Request $request)
     {
@@ -85,12 +86,13 @@ class AdminController extends Controller
         $productSalePrice = $request->input('product-sale-price');
         $productQuantity = $request->input('product-quantity');
         $productDescription = $request->input('product-description');
-        $productAge = $request->input('product-age');
-        $productGender = $request->input('product-gender');
+        $productColor = $request->input('product-color');
+        $productDate = $request->input('product-date');
 
-        $this->mAdmin->addProduct($productName, $productOldPrice, $productSalePrice, $productCategory, $productAge, $productGender, $productQuantity, $productDescription);
-        session()->flash('message', 'Thêm thành công');
         // dd($request->all());
+
+        $this->mAdmin->addProduct($productName, $productOldPrice, $productSalePrice, $productCategory, $productQuantity, $productColor, $productDate, $productDescription);
+        session()->flash('message', 'Thêm thành công');
         return redirect()->route('addproduct');
     }
     public function editProduct(Request $request)
@@ -102,10 +104,10 @@ class AdminController extends Controller
         $productSalePrice = $request->input('product-sale-price');
         $productQuantity = $request->input('product-quantity');
         $productDescription = $request->input('product-description');
-        $productAge = $request->input('product-age');
-        $productGender = $request->input('product-gender');
+        $productColor = $request->input('product-color');
+        $productDate = $request->input('product-date');
 
-        $this->mAdmin->updateProduct($productID, $productName, $productOldPrice, $productSalePrice, $productCategory, $productAge, $productGender, $productQuantity, $productDescription);
+        $this->mAdmin->updateProduct($productID, $productName, $productOldPrice, $productSalePrice, $productCategory, $productColor, $productDate, $productQuantity, $productDescription);
 
         return response()->json(['message' => 'Thành công']);
     }
@@ -118,8 +120,8 @@ class AdminController extends Controller
 
     public function getImportProduct()
     {
-        $category=$this->mAdmin->getCategories();
-        return view('admin.products.import',compact('category'));
+        $category = $this->mAdmin->getCategories();
+        return view('admin.products.import', compact('category'));
     }
     public function importProducts(Request $request)
     {
@@ -251,5 +253,19 @@ class AdminController extends Controller
         $total_order = $this->mAdmin->totalOrders();
         // dd($top_sale);
         return view('admin.analytics.products', compact('luot_ban', 'tong_tien', 'top_sale', 'total_order'));
+    }
+    public function listCustomOrder()
+    {
+        $orders = $this->mAdmin->getCustomOrders();
+        // dd($orders);
+        return view('admin.products.order', compact('orders'));
+    }
+
+    public function confirmOrder(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $this->mAdmin->confirmOrder($data['id']);
+        return response()->json(['message' => 'Thành công','data'=>$data]);
     }
 }

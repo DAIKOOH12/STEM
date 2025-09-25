@@ -22,8 +22,8 @@ class AdminModels extends Model
         $query = DB::table('product as p')
             ->join('category as c', 'p.ID_category', 'c.ID_category')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
-            ->join('age as a', 'p.ID_age', 'a.ID_age')
-            ->join('gender as g', 'p.ID_gender', 'g.ID_gender')
+            ->join('color as co', 'p.ID_color', 'co.ID_color')
+            ->join('date as d', 'p.ID_date', 'd.ID_date')
             ->get();
         return $query;
     }
@@ -32,46 +32,46 @@ class AdminModels extends Model
         $query = DB::table('category')->get();
         return $query;
     }
-    public function getAge()
+    public function getColors()
     {
-        $query = DB::table('age')->get();
+        $query = DB::table('color')->get();
         return $query;
     }
-    public function getGender()
+    public function getDate()
     {
-        $query = DB::table('gender')->get();
+        $query = DB::table('date')->get();
         return $query;
     }
-    public function addProduct($name, $old_price, $sale_price, $category, $age, $gender, $quantity, $description)
+    public function addProduct($name, $old_price, $sale_price, $category, $quantity, $color, $date, $description)
     {
         DB::table('product')
             ->insert([
                 'ID_Product' => 'ab' . count(DB::table('product')->get()),
                 'sTenSanPham' => $name,
                 'ID_category' => $category,
-                'ID_image' => 'combo-thi-nghiem',
+                'ID_image' => 'hoa-1',
                 'fGiaNiemYet' => $old_price,
                 'fGiaBan' => $sale_price,
                 'iSoLuong' => $quantity,
+                'ID_color' => $color,
+                'ID_date' => $date,
                 'sMoTa' => $description,
-                'ID_age' => $age,
-                'ID_gender' => $gender
             ]);
     }
-    public function updateProduct($id, $name, $old_price, $sale_price, $category, $age, $gender, $quantity, $description)
+    public function updateProduct($id, $name, $old_price, $sale_price, $category, $color, $date, $quantity, $description)
     {
         DB::table('product')
             ->where('ID_Product', '=', $id)
             ->update([
                 'sTenSanPham' => $name,
                 'ID_category' => $category,
-                'ID_image' => 'combo-thi-nghiem',
+                'ID_image' => 'hoa-1',
                 'fGiaNiemYet' => $old_price,
                 'fGiaBan' => $sale_price,
                 'iSoLuong' => $quantity,
                 'sMoTa' => $description,
-                'ID_age' => $age,
-                'ID_gender' => $gender
+                'ID_color' => $color,
+                'ID_date' => $date
             ]);
     }
     public function delProduct($id)
@@ -158,8 +158,9 @@ class AdminModels extends Model
         return $query;
     }
 
-    public function addEmployee($data){
-        $data['ID_employee']="id_emp_".count($this->getListEmployee())+1;
+    public function addEmployee($data)
+    {
+        $data['ID_employee'] = "id_emp_" . count($this->getListEmployee()) + 1;
         // dd($data);
         DB::table('employee')->insert($data);
     }
@@ -174,31 +175,45 @@ class AdminModels extends Model
             ->update($data);
     }
 
-    public function delEmployee($data){
+    public function delEmployee($data)
+    {
         DB::table('employee')
-        ->where('ID_employee', '=', $data['ID_employee'])
-        ->delete();
+            ->where('ID_employee', '=', $data['ID_employee'])
+            ->delete();
     }
-    public function getTotalValue(){
-        $query=DB::table('payments')->sum('vnp_Amount');
+    public function getTotalValue()
+    {
+        $query = DB::table('payments')->sum('vnp_Amount');
         return $query;
     }
-    public function getTotalSale(){
-        $query=DB::table('product')->sum('iLuotMua');
+    public function getTotalSale()
+    {
+        $query = DB::table('product')->sum('iLuotMua');
         return $query;
     }
-    public function totalOrders(){
-        $query=DB::table('order_detail')->sum('iSoLuong');
+    public function totalOrders()
+    {
+        $query = DB::table('order_detail')->sum('iSoLuong');
         return $query;
     }
-    public function getSoldProductsAmount(){
+    public function getSoldProductsAmount()
+    {
         $query = DB::table('product as p')
             ->join('category as c', 'p.ID_category', 'c.ID_category')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
-            ->join('age as a', 'p.ID_age', 'a.ID_age')
-            ->join('gender as g', 'p.ID_gender', 'g.ID_gender')
-            ->orderBy('p.iLuotMua','desc')->limit(3)
+            ->orderBy('p.iLuotMua', 'desc')->limit(3)
             ->get();
         return $query;
+    }
+    public function getCustomOrders()
+    {
+        $query = DB::table('custom_order')->get();
+        return $query;
+    }
+    public function confirmOrder($id)
+    {
+        DB::table('custom_order')
+            ->where('ID_cus_order', '=', $id)
+            ->update(['sTrangThai' => 'done']);
     }
 }

@@ -100,8 +100,8 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="{{route('analysisproduct')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="Add-Product">Thống kê hàng tồn</div>
+                <a href="{{route('listcustomorder')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Product">Danh sách đặt hàng</div>
                 </a>
               </li>
             </ul>

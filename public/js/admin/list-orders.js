@@ -1,4 +1,4 @@
-new DataTable("#product-table", {
+new DataTable("#order-table", {
     lengthMenu: [5, 10, 25, 50, { label: "Tất cả", value: -1 }],
     language: {
         processing: "Đang xử lý...",
@@ -247,122 +247,33 @@ new DataTable("#product-table", {
         thousands: ".",
     },
 });
-//Modal
-$(".edit-product").click(function () {
-    var row = $(this).parent("td");
-    var productId = row.siblings(".name").attr("data-able");
-    var productName = row.siblings(".name");
-    var productCategory = row.siblings(".category");
-    var productOldPrice = row.siblings(".old-price");
-    var productSalePrice = row.siblings(".sale-price");
-    var productQuantity = row.siblings(".quantity");
-    var productDescription = row.siblings(".description");
-    var productColor = row.siblings(".color");
-    var productDate = row.siblings(".date");
 
-    // console.log(productCategory);
-
-    $("#exampleModal").modal("show");
-    $("#product-name").val(productName.text());
-    $("#product-category").val(productCategory.attr("data-able"));
-    $("#product-old-price").val(productOldPrice.text());
-    $("#product-sale-price").val(productSalePrice.text());
-    $("#product-quantity").val(productQuantity.text());
-    $("#product-description").val(productDescription.text());
-    $("#product-color").val(productColor.attr("data-able"));
-    $("#product-date").val(productDate.attr("data-able"));
-
-    $("#btn-save")
-        .off("click")
-        .on("click", function () {
-            // console.log($("#token").val());
-
-            var new_name = $("#product-name").val();
-            var new_category = $("#product-category").val();
-            var new_category_text = $(
-                "#product-category option:selected"
-            ).text();
-            var new_old_price = $("#product-old-price").val();
-            var new_sale_price = $("#product-sale-price").val();
-            var new_quantity = $("#product-quantity").val();
-            var new_description = $("#product-description").val();
-            var new_color = $("#product-color").val();
-            var new_color_text = $("#product-color option:selected").text();
-            var new_date = $("#product-date").val();
-            var new_date_text = $("#product-date option:selected").text();
-
-            var data = new FormData();
-            data.append("product-id", productId);
-            data.append("product-name", $("#product-name").val());
-            data.append("product-category", $("#product-category").val());
-            data.append("product-old-price", $("#product-old-price").val());
-            data.append("product-sale-price", $("#product-sale-price").val());
-            data.append("product-quantity", $("#product-quantity").val());
-            data.append("product-description", $("#product-description").val());
-            data.append("product-color", $("#product-color").val());
-            data.append("product-date", $("#product-date").val());
-            // console.log(data);
-
-            fetch("./edit-product", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                body: data,
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    productName.text(new_name);
-                    productCategory.text(new_category_text);
-                    productCategory.attr("data-able", new_category);
-                    productOldPrice.text(new_old_price);
-                    productSalePrice.text(new_sale_price);
-                    productQuantity.text(new_quantity);
-                    productDescription.text(new_description);
-                    productColor.text(new_color_text);
-                    productColor.attr("data-able", new_color);
-                    productDate.text(new_date_text);
-                    productDate.attr("data-able", new_date);
-                    $("#exampleModal").modal("hide");
-                    toastr.success("Cập nhật thành công!");
+var trangthai = $('#trangthai').text();
+if (trangthai === "Đã xử lý") {
+    $('.confirm-order').prop('disabled', true);
+}
+else {
+    $(".confirm-order").off("click").on("click", function () {
+        var id = $(this).parent().parent().find(".name").attr("data-able");
+        var data = new FormData();
+        data.append("id", id);
+        fetch("./confirm-order", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            body: data,
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                $('#trangthai').text("Đã xử lý");
+                $('.confirm-order').prop('disabled', true);
+                Swal.fire({
+                    icon: "success",
+                    title: "Đơn hàng đã được xử lý!",
                 });
-        });
-});
-
-$(".del-product").off("click").on("click", function () {
-    Swal.fire({
-        title: "Bạn có chắc muốn xóa sản phẩm này?",
-        showDenyButton: true,
-        confirmButtonText: "Có",
-        denyButtonText: `Không`,
-    }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            var row = $(this).parent("td");
-            var productId=row.siblings(".name").attr("data-able");
-
-            var data = new FormData();
-            data.append("product-id", productId);
-
-            fetch("./del-product", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                body: data,
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    row.parent("tr").remove();
-                    toastr.success("Xóa sản phẩm thành công!");
-                })
-                .catch((error) => {
-                    toastr.error("Không thể xóa sản phẩm này!");
-                });
-        }
+            });
     });
-});
+}
