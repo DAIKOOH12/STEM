@@ -99,7 +99,7 @@ class HomeController extends Controller
         $cart = $this->mHome->getCart($cus);
         $cusInfo = $this->mHome->getCusInfo($cus);
         $discount = 0;
-        if (now()->format('H') > 9) {
+        if (now()->format('H') > 21) {
             $discount = 0.3;
         }
         // dd(now()->format('H'));
