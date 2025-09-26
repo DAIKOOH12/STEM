@@ -35,6 +35,7 @@ Route::post('/account', [AccountController::class, 'signIn'])->name('signin');
 Route::post('/signup', [AccountController::class, 'signUp'])->name('signup');
 Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
+Route::post('/custome-order', [HomeController::class, 'customeOrder'])->name('customorder');
 Route::post('/clear-success-session', function () {
     session()->forget('success');
     return response()->json(['status' => 'ok']);
@@ -58,8 +59,10 @@ Route::middleware([
     Route::get('/admin', [AdminController::class, 'index'])->name('adminpage');
     Route::get('/list-products', [AdminController::class, 'getListProducts'])->name('listproducts');
     Route::get('/add-product', [AdminController::class, 'getAddView'])->name('addproduct');
+    Route::get('/list-custom-order', [AdminController::class, 'listCustomOrder'])->name('listcustomorder');
     Route::post('/add-product', [AdminController::class, 'addProduct'])->name('showaddform');
     Route::post('/edit-product', [AdminController::class, 'editProduct'])->name('editproduct');
+    Route::post('/confirm-order', [AdminController::class, 'confirmOrder'])->name('confirmorder');
     Route::post('/del-product', [AdminController::class, 'delProduct'])->name('delproduct');
     Route::get('/import-cell', [AdminController::class, 'getImportProduct'])->name('importproduct');
     Route::post('/import-cell', [AdminController::class, 'importProducts'])->name('importproduct');

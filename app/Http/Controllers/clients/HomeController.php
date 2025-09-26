@@ -5,6 +5,7 @@ namespace App\Http\Controllers\clients;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HomeModels;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -87,7 +88,6 @@ class HomeController extends Controller
         $product = $this->mHome->getItemWithID($id);
         $hotDeal = $this->mHome->getHotDeals();
         $productCate = $this->mHome->getProductsWithCategory($product->ID_category);
-        // dd($product);
         return view('clients.item_detail', compact('product', 'hotDeal', 'productCate'));
     }
     public function cart()
@@ -102,7 +102,57 @@ class HomeController extends Controller
         if (now()->format('H') > 21) {
             $discount = 0.3;
         }
-        // dd(now()->format('H'));
+        $hoursLeft = 0;
+        $i = 0;
+        foreach ($cart as $item) {
+            $cart[$i]->sale_off = 0;
+            if ($item->ID_date == 1) {
+                $created = Carbon::parse($item->created_at);
+                $expired = $created->copy()->addDay();
+                $hoursLeft = Carbon::now()->diffInHours($expired, false);
+                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                    $cart[$i]->sale_off = 0.15;
+                }
+                $i++;
+            }
+            if ($item->ID_date == 2) {
+                $created = Carbon::parse($item->created_at);
+                $expired = $created->copy()->addDay(3);
+                $hoursLeft = Carbon::now()->diffInHours($expired, false);
+                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                    $cart[$i]->sale_off = 0.15;
+                }
+                $i++;
+            }
+            if ($item->ID_date == 3) {
+                $created = Carbon::parse($item->created_at);
+                $expired = $created->copy()->addDay(7);
+                $hoursLeft = Carbon::now()->diffInHours($expired, false);
+                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                    $cart[$i]->sale_off = 0.15;
+                }
+                $i++;
+            }
+            if ($item->ID_date == 4) {
+                $created = Carbon::parse($item->created_at);
+                $expired = $created->copy()->addDay(180);
+                $hoursLeft = Carbon::now()->diffInHours($expired, false);
+                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                    $cart[$i]->sale_off = 0.15;
+                }
+                $i++;
+            }
+            if ($item->ID_date == 5) {
+                $created = Carbon::parse($item->created_at);
+                $expired = $created->copy()->addDay(365);
+                $hoursLeft = Carbon::now()->diffInHours($expired, false);
+                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                    $cart[$i]->sale_off = 0.15;
+                }
+                $i++;
+            }
+        }
+        // dd($cart);
         return view('clients.cart', compact('cart', 'cusInfo', 'discount'));
     }
     public function addToCart($id)
@@ -162,8 +212,15 @@ class HomeController extends Controller
         $cus = session('cus_id');
 
         $this->mHome->addBillPayment(request()->all(), $cus);
-        session(['success'=>'Thanh toán thành công! Cảm ơn bạn đã mua hàng.']);
+        session(['success' => 'Thanh toán thành công! Cảm ơn bạn đã mua hàng.']);
         // dd(session()->all());
         return redirect()->route('homepage');
+    }
+    public function customeOrder(Request $request)
+    {
+        $current_user = $this->mHome->getCusInfo(session('cus_id'));
+        $this->mHome->addCustomOrder($request->all(), $current_user);
+        session(['success' => 'Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.']);
+        return redirect()->route('contactpage');
     }
 }

@@ -14,13 +14,13 @@
                     <th>Hình ảnh 3</th>
                     <th>Hình ảnh 4</th>
                     <th>Hình ảnh 5</th>
+                    <th>Màu sắc</th>
+                    <th>Hạn sử dụng</th>
                     <th>Giá niêm yết</th>
                     <th>Giá bán</th>
                     <th>Số lượng</th>
                     <th>Mô tả</th>
                     <th>Trạng thái</th>
-                    <th>Lứa tuổi</th>
-                    <th>Giới tính</th>
                     <th>Tác vụ</th>
                 </tr>
             </thead>
@@ -34,13 +34,13 @@
                     <td><img src="{{url('images/thumbs/'.$item->sDuongDan3)}}" alt="" style="height:100px"></td>
                     <td><img src="{{url('images/thumbs/'.$item->sDuongDan3)}}" alt="" style="height:100px"></td>
                     <td><img src="{{url('images/thumbs/'.$item->sDuongDan4)}}" alt="" style="height:100px"></td>
+                    <td class="color" data-able="{{$item->ID_color}}">{{$item->sTenMau}}</td>
+                    <td class="date" data-able="{{$item->ID_date}}">{{$item->sHanSuDung}}</td>
                     <td class="old-price">{{$item->fGiaNiemYet}}</td>
                     <td class="sale-price">{{$item->fGiaBan}}</td>
                     <td class="quantity">{{$item->iSoLuong}}</td>
                     <td class="text-collapse description">{{$item->sMoTa}}</td>
                     <td class="status">{{$item->bIsActive?'Còn hàng':'Hết hàng'}}</td>
-                    <td class="age" data-able="{{$item->ID_age}}">{{$item->sDoTuoi}}</td>
-                    <td class="gender" data-able="{{$item->ID_gender}}">{{$item->sGioiTinh}}</td>
                     <td>
                         <button class="btn btn-info edit-product"><i class="fa-solid fa-wrench" style="color: #fff;"></i></button>
                         <button class="btn btn-danger del-product"><i class="fa-solid fa-trash" style="color: #fff;"></i></button>
@@ -72,6 +72,22 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Màu sắc</label>
+                        <select class="form-control form-control-lg" id="product-color">
+                            @foreach($colors as $c)
+                            <option value="{{$c->ID_color}}">{{$c->sTenMau}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Hạn sử dụng (Ngày)</label>
+                        <select class="form-control form-control-lg" id="product-date">
+                            @foreach($date as $d)
+                            <option value="{{$d->ID_date}}">{{$d->sHanSuDung}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Giá niêm yết</label>
                         <input type="text" class="form-control" id="product-old-price">
                     </div>
@@ -86,22 +102,6 @@
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Mô tả</label>
                         <textarea class="form-control" id="product-description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Lứa tuổi</label>
-                        <select class="form-control form-control-lg" id="product-age">
-                            @foreach($age as $age_item)
-                            <option value="{{$age_item->ID_age}}">{{$age_item->sDoTuoi}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Giới tính</label>
-                        <select class="form-control form-control-lg" id="product-gender">
-                            @foreach($gender as $gender_item)
-                            <option value="{{$gender_item->ID_gender}}">{{$gender_item->sGioiTinh}}</option>
-                            @endforeach
-                        </select>
                     </div>
                     <input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
                 </form>

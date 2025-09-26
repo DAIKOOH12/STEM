@@ -110,8 +110,9 @@ class HomeModels extends Model
     public function getItemWithID($id)
     {
         $product = DB::table('product as p')
-            ->select('p.*', 'i.*')
+            ->select('p.*', 'i.*', 'd.*')
             ->join('image as i', 'p.ID_image', 'i.ID_image')
+            ->join('date as d', 'p.ID_date', 'd.ID_date')
             ->where('ID_product', '=', $id)->first();
         return $product;
     }
@@ -220,13 +221,18 @@ class HomeModels extends Model
                 'p.sTenSanPham',
                 'p.iLuotXem',
                 'p.ID_Product',
-                'i.sDuongDan1'
+                'i.sDuongDan1',
+                'd.sHanSuDung',
+                'p.created_at',
+                'p.updated_at',
+                'p.ID_date'
             )
             ->join('customer as c', 'o.ID_customer', '=', 'c.ID_customer')
             ->join('member as m', 'c.ID_member', '=', 'm.ID_member')
             ->join('order_detail as od', 'o.ID_order_detail', '=', 'od.ID_order_detail')
             ->join('product as p', 'od.ID_product', '=', 'p.ID_Product')
             ->join('image as i', 'p.ID_image', '=', 'i.ID_image')
+            ->join('date as d', 'p.ID_date', '=', 'd.ID_date')
             ->where('od.ID_order_detail', '=', 'id_detail_' . $idCustomer)
             ->get();
         return $query;
@@ -240,6 +246,16 @@ class HomeModels extends Model
     }
     public function addToCart($id_order_detail, $id_product, $id_order, $id_cus, $ngaydat, $quantity)
     {
+        $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
+        $views = DB::table('product')->where('ID_Product', $id_product)->value('iLuotXem');
+        $luot_mua = DB::table('product')->where('ID_Product', $id_product)->value('iLuotMua');
+        $is_active = 1;
+        if ($so_luong - $quantity < 0) {
+            $quantity = $so_luong;
+        }
+        if ($so_luong - $quantity == 0) {
+            $is_active = 0;
+        }
         DB::table('order_detail')->insertOrIgnore([
             [
                 'ID_order_detail' => $id_order_detail,
@@ -256,15 +272,14 @@ class HomeModels extends Model
                 'sTrangThai' => 'cho_duyet'
             ]
         ]);
-
-        $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
-        $views = DB::table('product')->where('ID_Product', $id_product)->value('iLuotXem');
         // dd($so_luong);
         DB::table('product')
             ->where('ID_Product', $id_product)
             ->update([
                 'iSoLuong' => $so_luong - $quantity,
-                'iLuotXem' => $views + 1
+                'iLuotXem' => $views + 1,
+                'iLuotMua' => $luot_mua + 1,
+                'bIsActive' => $is_active
             ]);
     }
     public function updateCart($id_order_detail, $id_product, $quantity)
@@ -274,12 +289,12 @@ class HomeModels extends Model
 
         $new_cart_quantity = $cart->iSoLuong + $quantity;
         $new_product_quantity = $products->iSoLuong - $quantity;
+        $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
         // dd($new_cart_quantity);
         DB::table('order_detail')
             ->where('ID_order_detail', $id_order_detail)
             ->where('ID_Product', $id_product)
             ->update(['iSoLuong' => $new_cart_quantity]);
-        $so_luong = DB::table('product')->where('ID_Product', $id_product)->value('iSoLuong');
         DB::table('product')
             ->where('ID_Product', $id_product)
             ->update([
@@ -291,12 +306,34 @@ class HomeModels extends Model
         $cart = $this->checkProducts($id_order_detail, $id_product);
         $products = $this->getItemWithID($id_product);
 
-        $new_cart_quantity = $quantity;
-        if ($new_cart_quantity > $cart->iSoLuong) {
-            $new_product_quantity = $products->iSoLuong - 1;
-        } else {
-            $new_product_quantity = $products->iSoLuong + 1;
+
+        $is_active = 0;
+        $products_quantity = $products->iSoLuong;
+        $new_product_quantity = $products->iSoLuong;
+        $new_cart_quantity = $cart->iSoLuong;
+
+        // dd($quantity);
+
+        if ($products_quantity == 0) {
+            $new_cart_quantity = $cart->iSoLuong;
+            $new_product_quantity = $products->iSoLuong;
+            if ($quantity < $cart->iSoLuong) {
+                $new_cart_quantity = $quantity;
+                $new_product_quantity = $products_quantity + 1;
+                $is_active = 1;
+            }
+        } else if ($products_quantity > 0) {
+            if ($quantity > $cart->iSoLuong) {
+                $new_cart_quantity = $quantity;
+                $new_product_quantity = $products_quantity - 1;
+            } else {
+                $new_cart_quantity = $quantity;
+                $new_product_quantity = $products_quantity + 1;
+                $is_active = 1;
+            }
         }
+
+        // dd($new_cart_quantity);
         DB::table('order_detail')
             ->where('ID_order_detail', $id_order_detail)
             ->where('ID_Product', $id_product)
@@ -304,7 +341,8 @@ class HomeModels extends Model
         DB::table('product')
             ->where('ID_Product', $id_product)
             ->update([
-                'iSoLuong' => $new_product_quantity
+                'iSoLuong' => $new_product_quantity,
+                'bIsActive' => $is_active
             ]);
     }
     public function removeFromCart($id_order_detail, $id_product)
@@ -321,7 +359,8 @@ class HomeModels extends Model
         DB::table('product')
             ->where('ID_Product', $id_product)
             ->update([
-                'iSoLuong' => $so_luong_product
+                'iSoLuong' => $so_luong_product,
+                'bIsActive' => 1
             ]);
     }
 
@@ -372,5 +411,38 @@ class HomeModels extends Model
             ->where('b.ID_blog', '=', $id)
             ->get();
         return $query;
+    }
+    public function addCustomOrder($arr,$user)
+    {
+        // dd($user);
+        $customer_id = $arr['ID_customer'];
+        if ($customer_id == null) {
+            $customer_id = 'khach';
+            DB::table('custom_order')->insert([
+                [
+                    'ID_cus_order' => DB::table('custom_order')->count() + 1,
+                    'sHoTen' => $arr['hoten'],
+                    'iSoLuong' => $arr['soluong'],
+                    'sSoDienThoai' => $arr['sodienthoai'],
+                    'sMoTa' => $arr['mota'],
+                    'iSoLuong' => $arr['soluong'],
+                    'sTrangThai' => "cho",
+                    'ID_customer' => $customer_id
+                ]
+            ]);
+        } else {
+            DB::table('custom_order')->insert([
+                [
+                    'ID_cus_order' => DB::table('custom_order')->count() + 1,
+                    'sHoTen' => $user->sHoTen,
+                    'iSoLuong' => $arr['soluong'],
+                    'sSoDienThoai' => $user->sSoDienThoai,
+                    'sMoTa' => $arr['mota'],
+                    'iSoLuong' => $arr['soluong'],
+                    'sTrangThai' => "cho",
+                    'ID_customer' => $customer_id
+                ]
+            ]);
+        }
     }
 }

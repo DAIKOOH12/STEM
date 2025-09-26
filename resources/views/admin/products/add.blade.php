@@ -31,6 +31,26 @@
                         </div>
                     </div>
                     <div class="row mb-6">
+                        <label class="col-sm-2 col-form-label" for="product-category">Loại màu</label>
+                        <div class="col-sm-10">
+                            <select class="form-control form-control-lg" id="product-category" name="product-color">
+                                @foreach($colors as $col)
+                                <option value="{{$col->ID_color}}">{{$col->sTenMau}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-6">
+                        <label class="col-sm-2 col-form-label" for="product-category">Hạn sử dụng</label>
+                        <div class="col-sm-10">
+                            <select class="form-control form-control-lg" id="product-category" name="product-date">
+                                @foreach($date as $da)
+                                <option value="{{$da->ID_date}}">{{$da->sHanSuDung}} ngày</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-6">
                         <label class="col-sm-2 col-form-label" for="product-old-price">Giá niêm yết</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="product-old-price" name="product-old-price" placeholder="9999999" />
@@ -57,26 +77,6 @@
                                 class="form-control"
                                 placeholder="Nhập mô tả....."
                                 aria-describedby="basic-icon-default-message2"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-age">Độ tuổi</label>
-                        <div class="col-sm-10">
-                            <select class="form-control form-control-lg" id="product-age" name="product-age">
-                                @foreach($age as $age_item)
-                                <option value="{{$age_item->ID_age}}">{{$age_item->sDoTuoi}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="product-gender">Giới tính</label>
-                        <div class="col-sm-10">
-                            <select class="form-control form-control-lg" id="product-gender" name="product-gender">
-                                @foreach($gender as $gender_item)
-                                <option value="{{$gender_item->ID_gender}}">{{$gender_item->sGioiTinh}}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                     <div class="row justify-content-end">

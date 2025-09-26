@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 24, 2025 at 11:19 AM
+-- Generation Time: Sep 25, 2025 at 10:55 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -178,6 +178,29 @@ INSERT INTO `customer` (`ID_customer`, `ID_member`, `dNgayTao`, `sHoTen`, `sSoDi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `custom_order`
+--
+
+CREATE TABLE `custom_order` (
+  `ID_cus_order` int NOT NULL,
+  `ID_customer` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `iSoLuong` int NOT NULL,
+  `sMoTa` text NOT NULL,
+  `sTrangThai` varchar(100) NOT NULL,
+  `sSoDienThoai` varchar(50) NOT NULL,
+  `sHoTen` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `custom_order`
+--
+
+INSERT INTO `custom_order` (`ID_cus_order`, `ID_customer`, `iSoLuong`, `sMoTa`, `sTrangThai`, `sSoDienThoai`, `sHoTen`) VALUES
+(1, 'khach', 2, 'Hoa hồng, 15 bông, gói hồng', 'done', '01234567679', 'Nguyễn Văn A');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `date`
 --
 
@@ -194,8 +217,8 @@ INSERT INTO `date` (`ID_date`, `sHanSuDung`) VALUES
 (1, 1),
 (2, 3),
 (3, 7),
-(4, 6),
-(5, 12);
+(4, 180),
+(5, 365);
 
 -- --------------------------------------------------------
 
@@ -305,6 +328,13 @@ CREATE TABLE `order_detail` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`ID_order_detail`, `ID_Product`, `iSoLuong`, `created_at`, `updated_at`) VALUES
+('id_detail_id_cus_2', 'bo-hoa-say-anh-mat', 1, '2025-09-25 05:26:42', '2025-09-25 05:26:42');
+
 -- --------------------------------------------------------
 
 --
@@ -339,6 +369,13 @@ CREATE TABLE `payments` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`vnp_TxnRef`, `vnp_Amount`, `vnp_OrderInfo`, `vnp_TmnCode`, `vnp_ResponseCode`, `vnp_TransactionNo`, `vnp_BankCode`, `vnp_CardType`, `vnp_TransactionStatus`, `vnp_PayDate`, `vnp_SecureHash`, `ID_order`, `created_at`, `updated_at`) VALUES
+('1758777753', 5697300.00, 'Khách hàng truong pham thanh toán hóa đơn cửa cửa hàng hoa', 'ZC1TJFAF', '00', '15180841', 'NCB', 'ATM', 0, '20250925122429', 'a3f575d57f4209f1d6c54c9be19207b11949a65f09768573f72d9281e0007ecec0bf3371b54eb2832ccf56b06d389ddae5576530f21d07e6335d7c68bae356e9', 'id_order_id_cus_2', '2025-09-25 05:23:02', '2025-09-25 05:23:02');
 
 -- --------------------------------------------------------
 
@@ -389,24 +426,23 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`ID_Product`, `sTenSanPham`, `ID_category`, `ID_image`, `ID_color`, `ID_date`, `fGiaNiemYet`, `fGiaBan`, `iSoLuong`, `sMoTa`, `iLuotXem`, `iLuotMua`, `bIsActive`, `created_at`, `updated_at`) VALUES
 ('baby-01', 'Bó Hoa Baby Trắng Tinh Khôi', 'hoa-baby', 'hoa-1', 2, 1, 550000.00, 490000.00, 50, 'Một bó hoa baby trắng lớn, tượng trưng cho sự thuần khiết và tình yêu vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-24 11:14:32'),
-('baby-02', 'Bó Hoa Baby Hồng Dịu Dàng', 'hoa-baby', 'hoa-1', 2, 1, 600000.00, 540000.00, 44, 'Sắc hồng nhẹ nhàng của hoa baby mang đến cảm giác ngọt ngào và lãng mạn.', 1, 0, 1, '2025-09-23 10:19:22', '2025-09-24 11:14:40'),
+('baby-02', 'Bó Hoa Baby Hồng Dịu Dàng', 'hoa-baby', 'hoa-1', 3, 1, 600000.00, 540000.00, 43, NULL, 2, 1, 1, '2025-09-24 10:19:22', '2025-09-25 10:14:25'),
 ('baby-03', 'Bó Hoa Baby Tím Mộng Mơ', 'hoa-baby', 'hoa-1', 5, 1, 620000.00, 560000.00, 40, 'Bó hoa baby tím, thể hiện sự thủy chung và một tình yêu đầy mộng mơ.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-24 11:14:42'),
 ('baby-04', 'Bó Hoa Baby Mix Cầu Vồng', 'hoa-baby', 'hoa-1', 4, 1, 750000.00, 680000.00, 35, 'Sự kết hợp nhiều màu sắc của hoa baby, tạo nên một bó hoa vui tươi và đầy sức sống.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-24 11:14:45'),
 ('baby-05', 'Bó Hoa Baby và Hồng Đỏ', 'hoa-baby', 'hoa-1', 1, 1, 850000.00, 780000.00, 30, 'Sự kết hợp kinh điển giữa hoa baby trắng và hoa hồng đỏ, một biểu tượng của tình yêu nồng cháy và thuần khiết.', 0, 0, 1, '2025-09-23 10:19:22', '2025-09-24 11:14:47'),
-('bo-hoa-1464', 'Bó hoa Sunny', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 5, 3, 290000.00, 250000.00, 10, 'Bó Hoa Sunny được thiết kế từ\r\n\r\nHoa hướng dương: 3 cành\r\nCác loại hoa lá phụ: Sao tím', 15, 0, 1, '2025-09-23 03:10:05', '2025-09-24 11:15:13'),
-('bo-hoa-7338', 'Bó hoa may mắn', 'lang-sinh-nhat', 'hoa-1', 1, 3, 590000.00, 560000.00, 23, 'Giỏ hoa chúc mừng may mắn được thiết kế với hoa hướng dương và cát tường mang đến sự may mắn, tài lộc phù hợp để làm quà tặng bạn bè nhân dịp khai trương. Nếu bạn đang tìm kiếm một mẫu giỏ hoa khai trương giá rẻ thì May Mắn là sự lựa chọn hoàn hảo.\r\n\r\nGiỏ hoa chúc mừng May Mắn được thiết kế từ:\r\n\r\nHoa hướng dương: 3 cành\r\nHoa cát tường trắng: 5 cành\r\nHoa cẩm chướng trắng: 10 cành\r\nCác loại hoa lá phụ: Hoa thạch thảo trắng, lá bạc nhí', 2, 0, 1, '2025-09-23 03:11:08', '2025-09-24 11:16:07'),
-('bo-hoa-say-anh-mat', 'Say Ánh Mắt', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 1, 3, 190000.00, 165000.00, 16, 'Bó hoa Say Ánh Mắt được thiết kế từ:\r\n\r\nHoa thạch thảo trắng: 1 bó\r\nHoa hồng kem: 1 cành\r\nCác loại hoa lá phụ trang trí khác: Cỏ đồng tiền\r\nLưu ý:\r\n\r\n**Do được làm thủ công, nên sản phẩm ngoài thực tế sẽ có đôi chút khác biệt so với hình ảnh trên website. Tuy nhiên, Flowercorner cam kết hoa sẽ giống khoảng 80% so với hình ảnh.\r\n\r\n** Vì các loại hoa lá phụ sẽ có tùy vào thời điểm trong năm, Flowercorner đảm bảo các loại hoa chính, các loại hoa lá phụ sẽ thay đổi phù hợp giá cả và thiết kế sản phẩm.', 4, 0, 1, '2025-09-23 03:05:45', '2025-09-24 11:15:15'),
-('ghsn-01', 'Giỏ Hoa Tươi Sáng', 'gio-hoa-sinh-nhat', 'hoa-1', 4, 2, 850000.00, 790000.00, 19, 'Giỏ hoa hồng kết hợp với cẩm chướng và baby, mang lại vẻ đẹp tươi sáng và rạng rỡ, là món quà tuyệt vời cho ngày sinh nhật.', 1, 0, 1, '2025-09-23 10:18:31', '2025-09-24 11:13:54'),
-('ghsn-02', 'Giỏ Hoa Yêu Thương', 'gio-hoa-sinh-nhat', 'hoa-1', 2, 2, 950000.00, 900000.00, 15, 'Giỏ hoa mẫu đơn hồng và hoa hồng trắng, biểu tượng của tình yêu thương và sự trân trọng.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-24 11:14:19'),
+('bo-hoa-1464', 'Bó hoa Sunny', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 5, 3, 290000.00, 250000.00, 10, 'Bó Hoa Sunny được thiết kế từ\r\n\r\nHoa hướng dương: 3 cành\r\nCác loại hoa lá phụ: Sao tím', 16, 1, 1, '2025-09-23 03:10:05', '2025-09-25 02:32:13'),
+('bo-hoa-7338', 'Bó hoa may mắn', 'lang-sinh-nhat', 'hoa-1', 1, 3, 590000.00, 560000.00, 22, 'Giỏ hoa chúc mừng may mắn được thiết kế với hoa hướng dương và cát tường mang đến sự may mắn, tài lộc phù hợp để làm quà tặng bạn bè nhân dịp khai trương. Nếu bạn đang tìm kiếm một mẫu giỏ hoa khai trương giá rẻ thì May Mắn là sự lựa chọn hoàn hảo.\r\n\r\nGiỏ hoa chúc mừng May Mắn được thiết kế từ:\r\n\r\nHoa hướng dương: 3 cành\r\nHoa cát tường trắng: 5 cành\r\nHoa cẩm chướng trắng: 10 cành\r\nCác loại hoa lá phụ: Hoa thạch thảo trắng, lá bạc nhí', 3, 1, 1, '2025-09-23 03:11:08', '2025-09-25 04:09:46'),
+('bo-hoa-say-anh-mat', 'Say Ánh Mắt', 'hoa-sinh-nhat-trang-trong', 'hoa-1', 1, 3, 190000.00, 165000.00, 15, 'Bó hoa Say Ánh Mắt được thiết kế từ:\r\n\r\nHoa thạch thảo trắng: 1 bó\r\nHoa hồng kem: 1 cành\r\nCác loại hoa lá phụ trang trí khác: Cỏ đồng tiền\r\nLưu ý:\r\n\r\n**Do được làm thủ công, nên sản phẩm ngoài thực tế sẽ có đôi chút khác biệt so với hình ảnh trên website. Tuy nhiên, Flowercorner cam kết hoa sẽ giống khoảng 80% so với hình ảnh.\r\n\r\n** Vì các loại hoa lá phụ sẽ có tùy vào thời điểm trong năm, Flowercorner đảm bảo các loại hoa chính, các loại hoa lá phụ sẽ thay đổi phù hợp giá cả và thiết kế sản phẩm.', 6, 2, 1, '2025-09-23 03:05:45', '2025-09-25 05:26:42'),
+('ghsn-02', 'Giỏ Hoa Yêu Thương', 'gio-hoa-sinh-nhat', 'hoa-1', 2, 2, 950000.00, 900000.00, 1, 'Giỏ hoa mẫu đơn hồng và hoa hồng trắng, biểu tượng của tình yêu thương và sự trân trọng.', 4, 4, 1, '2025-09-23 10:18:31', '2025-09-25 05:23:33'),
 ('ghsn-03', 'Giỏ Hoa Rực Rỡ', 'gio-hoa-sinh-nhat', 'hoa-1', 3, 2, 1200000.00, 1100000.00, 9, 'Sự kết hợp của hoa hướng dương, hoa hồng vàng và cúc tana tạo nên một giỏ hoa đầy sức sống và rực rỡ.', 1, 0, 1, '2025-09-23 10:18:31', '2025-09-24 11:14:23'),
 ('ghsn-04', 'Giỏ Hoa Ngọt Ngào', 'gio-hoa-sinh-nhat', 'hoa-1', 1, 2, 750000.00, 690000.00, 25, 'Giỏ hoa baby trắng tinh khôi kết hợp cùng hoa thạch thảo tím mộng mơ, mang đến cảm giác ngọt ngào và lãng mạn.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-24 11:14:25'),
 ('ghsn-05', 'Giỏ Hoa Thanh Lịch', 'gio-hoa-sinh-nhat', 'hoa-1', 2, 2, 1500000.00, 1450000.00, 8, 'Giỏ hoa lan hồ điệp trắng sang trọng và quý phái, là món quà sinh nhật đẳng cấp.', 0, 0, 1, '2025-09-23 10:18:31', '2025-09-24 11:14:28'),
-('hh-01', 'Bó Hoa Hồng Đỏ Nồng Nàn', 'hoa-hong', 'hoa-1', 2, 1, 650000.00, 590000.00, 30, 'Bó hoa gồm 19 bông hồng đỏ Ecuador nhập khẩu, biểu tượng cho tình yêu say đắm và nồng nàn.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-24 11:14:54'),
+('hh-01', 'Bó Hoa Hồng Đỏ Nồng Nàn', 'hoa-hong', 'hoa-1', 2, 1, 650000.00, 590000.00, 1, 'Bó hoa gồm 19 bông hồng đỏ Ecuador nhập khẩu, biểu tượng cho tình yêu say đắm và nồng nàn.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-25 05:23:38'),
 ('hh-02', 'Bó Hoa Hồng Kem Dịu Dàng', 'hoa-hong', 'hoa-1', 1, 1, 550000.00, 490000.00, 40, 'Bó hoa hồng kem nhẹ nhàng, tinh tế, thích hợp để tặng bạn bè, người thân trong những dịp đặc biệt.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-24 11:14:56'),
-('hh-03', 'Bó Hoa Hồng Tím Thủy Chung', 'hoa-hong', 'hoa-1', 3, 1, 700000.00, 650000.00, 25, 'Sắc tím mộng mơ của hoa hồng tím mang thông điệp về một tình yêu vĩnh cửu và lòng thủy chung son sắt.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-24 11:14:59'),
+('hh-03', 'Bó Hoa Hồng Tím Thủy Chung', 'hoa-hong', 'hoa-1', 3, 1, 700000.00, 650000.00, 25, 'Sắc tím mộng mơ của hoa hồng tím mang thông điệp về một tình yêu vĩnh cửu và lòng thủy chung son sắt.', 1, 1, 1, '2025-09-23 10:19:02', '2025-09-25 04:06:28'),
 ('hh-04', 'Bó Hoa Hồng Mix Sắc Màu', 'hoa-hong', 'hoa-1', 1, 1, 800000.00, 720000.00, 22, 'Bó hoa kết hợp nhiều màu sắc của hoa hồng như đỏ, vàng, hồng, cam, tạo nên một tổng thể vui tươi và sống động.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-24 11:15:06'),
 ('hh-05', 'Bó Hoa Hồng Juliet Quý Phái', 'hoa-hong', 'hoa-1', 2, 1, 1300000.00, 1200000.00, 15, 'Hồng Juliet, nữ hoàng của các loài hoa hồng, mang vẻ đẹp kiêu sa, quý phái và vô cùng cuốn hút.', 0, 0, 1, '2025-09-23 10:19:02', '2025-09-24 11:15:10'),
-('hty-01', 'Bó Hoa Chuyện Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', 4, 4, 990000.00, 900000.00, 19, 'Bó hoa baby trắng khổng lồ, tượng trưng cho một tình yêu trong sáng, thuần khiết và vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-24 11:15:28'),
+('hty-01', 'Bó Hoa Chuyện Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', 4, 4, 990000.00, 900000.00, 19, 'Bó hoa baby trắng khổng lồ, tượng trưng cho một tình yêu trong sáng, thuần khiết và vĩnh cửu.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-25 11:15:28'),
 ('hty-02', 'Bó Hoa Ngọt Ngào Bên Em', 'hoa-tinh-yeu', 'hoa-1', 4, 4, 780000.00, 720000.00, 25, 'Sự kết hợp giữa hoa hồng dâu và cúc tana, mang đến vẻ đẹp ngọt ngào, đáng yêu như chính người bạn yêu.', 3, 0, 1, '2025-09-23 10:19:11', '2025-09-24 11:15:30'),
 ('hty-03', 'Bó Hoa Tulip Lời Tỏ Tình', 'hoa-tinh-yeu', 'hoa-1', 2, 4, 1100000.00, 990000.00, 17, 'Bó hoa tulip hồng là lời tỏ tình hoàn hảo, thể hiện sự quan tâm và tình yêu chân thành.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-24 11:15:33'),
 ('hty-04', 'Bó Hoa Mãi Mãi Một Tình Yêu', 'hoa-tinh-yeu', 'hoa-1', 1, 4, 1500000.00, 1390000.00, 11, 'Bó hoa 99 bông hồng đỏ thắm, thay cho lời hứa về một tình yêu vĩnh cửu, không bao giờ phai nhạt.', 0, 0, 1, '2025-09-23 10:19:11', '2025-09-24 11:15:36'),
@@ -414,7 +450,7 @@ INSERT INTO `product` (`ID_Product`, `sTenSanPham`, `ID_category`, `ID_image`, `
 ('khkt-01', 'Kệ Hoa Phát Tài Phát Lộc', 'ke-hoa-khai-truong', 'hoa-1', 3, 4, 1800000.00, 1690000.00, 12, 'Kệ hoa khai trương với tông màu đỏ và vàng chủ đạo từ hoa đồng tiền và hoa hướng dương, mang ý nghĩa may mắn, phát tài phát lộc.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-24 11:15:45'),
 ('khkt-02', 'Kệ Hoa Vạn Sự Như Ý', 'ke-hoa-khai-truong', 'hoa-1', 1, 4, 2200000.00, 2000000.00, 10, 'Kệ hoa kết hợp lan hồ điệp, hoa hồng môn đỏ và hoa ly vàng, tượng trưng cho sự thành công và vạn sự như ý.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-24 11:15:47'),
 ('khkt-03', 'Kệ Hoa Khai Trương Hồng Phát', 'ke-hoa-khai-truong', 'hoa-1', 2, 4, 1500000.00, 1350000.00, 18, 'Kệ hoa được thiết kế hiện đại với hoa hồng đỏ, cẩm tú cầu xanh và các loại lá phụ, mang lại thông điệp về sự phát triển và thịnh vượng.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-24 11:15:49'),
-('khkt-04', 'Kệ Hoa Thành Công Vươn Xa', 'ke-hoa-khai-truong', 'hoa-1', 2, 5, 2800000.00, 2600000.00, 7, 'Kệ hoa 2 tầng hoành tráng với hoa lan vũ nữ, hoa thiên điểu, thể hiện ý chí vươn lên và bay cao, bay xa.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-24 11:16:00'),
+('khkt-04', 'Kệ Hoa Thành Công Vươn Xa', 'ke-hoa-khai-truong', 'hoa-1', 2, 5, 2800000.00, 2600000.00, 5, 'Kệ hoa 2 tầng hoành tráng với hoa lan vũ nữ, hoa thiên điểu, thể hiện ý chí vươn lên và bay cao, bay xa.', 1, 1, 1, '2024-09-25 10:18:46', '2025-09-25 05:23:40'),
 ('khkt-05', 'Kệ Hoa Tấn Tài Tấn Lộc', 'ke-hoa-khai-truong', 'hoa-1', 1, 5, 1900000.00, 1750000.00, 14, 'Sự kết hợp giữa hoa cúc mẫu đơn xanh và hoa hồng vàng, mang lại may mắn về tiền tài và lộc lá cho gia chủ.', 0, 0, 1, '2025-09-23 10:18:46', '2025-09-24 11:16:04');
 
 -- --------------------------------------------------------
@@ -472,6 +508,13 @@ CREATE TABLE `_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `_order`
+--
+
+INSERT INTO `_order` (`ID_order`, `ID_order_detail`, `ID_customer`, `dNgayDat`, `dNgayGiaoHang`, `sTrangThai`) VALUES
+('id_order_id_cus_2', 'id_detail_id_cus_2', 'id_cus_2', '2025-09-24 17:00:00', NULL, '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -510,6 +553,13 @@ ALTER TABLE `color`
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`ID_customer`),
   ADD KEY `fk_customer_member` (`ID_member`);
+
+--
+-- Indexes for table `custom_order`
+--
+ALTER TABLE `custom_order`
+  ADD PRIMARY KEY (`ID_cus_order`),
+  ADD KEY `ID_customer` (`ID_customer`);
 
 --
 -- Indexes for table `date`
