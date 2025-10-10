@@ -268,4 +268,9 @@ class AdminController extends Controller
         $this->mAdmin->confirmOrder($data['id']);
         return response()->json(['message' => 'Thành công','data'=>$data]);
     }
+    public function listPayments(){
+        $payments = $this->mAdmin->getPayments();
+        // dd($payments);
+        return view('admin.analytics.list_payment',compact('payments'));
+    }
 }

@@ -10,7 +10,7 @@
             <div class="alert alert-success">{{session('message')}}</div>
             @endif
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Thêm sản phẩm</h5>
+                <h5 class="mb-0">Thêm bài viết</h5>
             </div>
             <div class="card-body">
                 <form action="{{route('addblog')}}" method="POST" id="formblog" enctype="multipart/form-data">

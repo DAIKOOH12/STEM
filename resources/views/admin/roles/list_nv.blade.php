@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="card" style="padding:10px">
-    <h5 class="card-header">Danh sách bài viết</h5>
+    <h5 class="card-header">Danh sách nhân viên</h5>
     <div class="table-responsive text-nowrap">
         <table class="table" id="employee-table">
             <thead>

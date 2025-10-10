@@ -94,11 +94,11 @@
                   <div class="text-truncate" data-i18n="Add-Product">Thêm sản phẩm</div>
                 </a>
               </li>
-              <li class="menu-item">
+              <!-- <li class="menu-item">
                 <a href="{{route('importproduct')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Product">Nhập kho hàng</div>
                 </a>
-              </li>
+              </li> -->
               <li class="menu-item">
                 <a href="{{route('listcustomorder')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Product">Danh sách đặt hàng</div>
@@ -154,7 +154,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="{{route('showaddblog')}}" class="menu-link">
+                <a href="{{route('listpayments')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Blog">Quản lí hóa đơn</div>
                 </a>
               </li>

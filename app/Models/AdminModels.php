@@ -216,4 +216,12 @@ class AdminModels extends Model
             ->where('ID_cus_order', '=', $id)
             ->update(['sTrangThai' => 'done']);
     }
+    public function getPayments(){
+        $query = DB::table('payments as p')
+            ->join('_order as o','o.ID_order','=','p.ID_order')
+            ->join('customer as c','c.ID_customer','=','o.ID_customer')
+            ->orderBy('p.vnp_PayDate','desc')
+            ->get();
+        return $query;
+    }
 }

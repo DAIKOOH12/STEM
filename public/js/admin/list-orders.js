@@ -257,6 +257,9 @@ else {
         var id = $(this).parent().parent().find(".name").attr("data-able");
         var data = new FormData();
         data.append("id", id);
+
+        var confirmButton = $(this);
+
         fetch("./confirm-order", {
             method: "POST",
             headers: {
@@ -269,7 +272,7 @@ else {
             .then((response) => response.json())
             .then((response) => {
                 $('#trangthai').text("Đã xử lý");
-                $('.confirm-order').prop('disabled', true);
+                confirmButton.prop('disabled', true);
                 Swal.fire({
                     icon: "success",
                     title: "Đơn hàng đã được xử lý!",

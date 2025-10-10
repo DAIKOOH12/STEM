@@ -77,6 +77,7 @@ Route::middleware([
 
     //Admin-Analysis
     Route::get('/analysis-product', [AdminController::class, 'analysisProduct'])->name('analysisproduct');
+    Route::get('/list-payments', [AdminController::class, 'listPayments'])->name('listpayments');
 });
 //VNPay Payment
 Route::post('/payment', [PaymentController::class, 'vn_payment'])->name('payment');
