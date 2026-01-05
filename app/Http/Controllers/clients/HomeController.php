@@ -152,7 +152,8 @@ class HomeController extends Controller
                 $i++;
             }
         }
-        $rank = $this->getRanking()->rank;
+        $rank = $this->getRanking()['rank'];
+        // dd($this->getRanking());
         return view('clients.cart', compact('cart', 'cusInfo', 'discount', 'rank'));
     }
     public function addToCart($id)

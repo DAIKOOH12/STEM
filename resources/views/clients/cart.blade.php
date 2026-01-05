@@ -132,6 +132,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <img src="{{url('images/rank.jpg')}}" style="max-width: 700px;" alt="">
                 </div><!-- /.estimate-ship-tax -->
 
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
