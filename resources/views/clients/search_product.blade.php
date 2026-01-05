@@ -6,7 +6,7 @@
         <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Danh Mục</div>
         <nav class="yamm megamenu-horizontal">
             <ul class="nav">
-                <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-shopping-bag" aria-hidden="true"></i>CÁC LOẠI HOA</a>
+                <li class="dropdown menu-item"> <a href="{{route('searchproduct')}}" class="dropdown-toggle"><i class="icon fa fa-shopping-bag" aria-hidden="true"></i>CÁC LOẠI HOA</a>
                     <ul class="dropdown-menu mega-menu">
                         <li class="yamm-content">
                             <div class="row">

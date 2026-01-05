@@ -44,7 +44,7 @@
             <form action="{{route('searchproduct')}}">
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
-                  <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('categorypage')}}">Danh mục <b class="caret"></b></a>
+                  <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('categorypage')}}">FLORA</a>
                     <!-- <ul class="dropdown-menu" role="menu">
                       <li class="menu-header">Computer</li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
@@ -152,7 +152,7 @@
                           </div>
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                             <a href="{{route('categorypage')}}/chu-de">
-                              <h2 class="title">CHỦ ĐỀ</h2>
+                              <h2 class="title">HOA THEO CHỦ ĐỀ</h2>
                             </a>
                             <ul class="links">
                               <li><a href="{{route('categorypage')}}/chu-de/hoa-cam-tay">Hoa cưới cầm tay</a></li>

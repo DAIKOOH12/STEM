@@ -301,6 +301,10 @@ class HomeModels extends Model
                 'iSoLuong' => $new_product_quantity
             ]);
     }
+    public function checkQuantity($id_product){
+        $isOut= DB::table('product')->where('ID_Product',$id_product)->value('iSoLuong');
+        return $isOut;
+    }
     public function updateCartWithButton($id_order_detail, $id_product, $quantity)
     {
         $cart = $this->checkProducts($id_order_detail, $id_product);
@@ -444,5 +448,10 @@ class HomeModels extends Model
                 ]
             ]);
         }
+    }
+
+    public function getRanking($id){
+        $query = DB::table('payments')->where('ID_order', '=', $id)->get();
+        return $query;
     }
 }

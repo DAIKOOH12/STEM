@@ -36,10 +36,16 @@ Route::post('/signup', [AccountController::class, 'signUp'])->name('signup');
 Route::get('/signin', [AccountController::class, 'signOut'])->name('signout');
 Route::get('/paid-bill', [HomeController::class, 'paidBill'])->name('paidbill');
 Route::post('/custome-order', [HomeController::class, 'customeOrder'])->name('customorder');
+Route::get('/rankings', [HomeController::class, 'getRanking'])->name('rankingspage');
 Route::post('/clear-success-session', function () {
     session()->forget('success');
     return response()->json(['status' => 'ok']);
 })->name('clear-success-session');
+
+Route::get('/clear-error-session', function () {
+    session()->forget('error');
+    return redirect()->route('cartpage');
+})->name('clear-error-session');
 
 Route::middleware([
     'preventBackHistory',

@@ -1,8 +1,15 @@
 @extends('layout.master')
 
 @section('content')
+
 <div class="body-content outer-top-xs">
     <div class="container">
+        @if (session('error'))
+        <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
+            {{ session('error') }}
+            <button class="btn close" type="button"><a href="{{ route('clear-error-session') }}" class="btn btn-sm btn-light ms-3" style="float:right;"><i class="fa-solid fa-x"></i></a></button>
+        </div>
+        @endif
         <div class="row ">
             @if(count($cart)>0)
             <div class="shopping-cart">
@@ -89,7 +96,39 @@
                             <tr>
                                 <th scope="row">{{$cusInfo->sHoTen}} ({{$cusInfo->sSoDienThoai}})</th>
                                 <td colspan="2">{{$cusInfo->sDiaChi}}</td>
-                                <td><button class="btn btn-info">Thay đổi</button></td>
+                                <td colspan="2">HẠNG:
+                                    @php
+                                    $disRanking=0;
+                                    @endphp
+                                    @if ($rank=="hat")
+                                    {{ 'HẠT' }}
+                                    @endif
+                                    @if ($rank=="mam")
+                                    {{ 'MẦM' }}
+                                    @php
+                                    $disRanking=0.01;
+                                    @endphp
+                                    @endif
+                                    @if ($rank=="choi")
+                                    {{ 'CHỒI' }}
+                                    @php
+                                    $disRanking=0.02;
+                                    @endphp
+                                    @endif
+                                    @if ($rank=="la")
+                                    {{ 'LÁ' }}
+                                    @php
+                                    $disRanking=0.05;
+                                    @endphp
+                                    @endif
+                                    @if ($rank=="hoa")
+                                    {{ 'HOA' }}
+                                    @php
+                                    $disRanking=0.1;
+                                    @endphp
+                                    @endif
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -104,21 +143,28 @@
                             <tr>
                                 <th>
                                     <div class="cart-grand-total" style="color:black">
-                                        Tổng tiền<span class="inner-left-md" style="color: #84b943;">{{number_format($tong, 0, ',', '.')}} VNĐ</span>
+                                        <span class="inner-right-md">Tổng tiền</span><span class="inner-left-md" style="color: #84b943;">{{number_format($tong, 0, ',', '.')}} VNĐ</span>
                                     </div>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
                                     <div class="cart-grand-total" style="color:black">
-                                        Giảm giá (Sau 18h)<span class="inner-left-md" style="color: red;">{{number_format($tong*$discount, 0, ',', '.')}} VNĐ</span>
+                                        <span class="inner-right-md">Hạng ({{ $disRanking*100 }}%)</span><span class="inner-left-md" style="color: red;">{{number_format($tong*$disRanking, 0, ',', '.')}} VNĐ</span>
                                     </div>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
                                     <div class="cart-grand-total" style="color:black">
-                                        Thành tiền<span class="inner-left-md" style="color: #84b943;">{{number_format($tong-$tong*$discount, 0, ',', '.')}} VNĐ</span>
+                                        <span class="inner-right-md">Giảm giá (Sau 18h)</span><span class="inner-left-md" style="color: red;">{{number_format($tong*$discount, 0, ',', '.')}} VNĐ</span>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <div class="cart-grand-total" style="color:black">
+                                        <span class="inner-right-md">Thành tiền</span><span class="inner-left-md" style="color: #84b943;">{{number_format($tong-$tong*$discount-$tong*$disRanking, 0, ',', '.')}} VNĐ</span>
                                     </div>
                                 </th>
                             </tr>

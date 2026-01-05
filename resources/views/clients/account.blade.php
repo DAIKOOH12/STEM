@@ -12,10 +12,6 @@
                     @endif
                     <h4 class="">Đăng nhập</h4>
                     <p class="">Xin chào! Hãy đăng nhập tài khoản của bạn.</p>
-                    <div class="social-sign-in outer-top-xs">
-                        <a href="#" class="facebook-sign-in"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i></i> Đăng nhập bằng facebook</a>
-                        <a href="#" class="twitter-sign-in"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i> Đăng nhập bằng twitter</a>
-                    </div>
                     <form class="register-form outer-top-xs" role="form" method="post" action="{{route('signin')}}">
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Tài khoản <span>*</span></label>

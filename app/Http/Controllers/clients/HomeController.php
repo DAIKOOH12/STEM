@@ -99,7 +99,7 @@ class HomeController extends Controller
         $cart = $this->mHome->getCart($cus);
         $cusInfo = $this->mHome->getCusInfo($cus);
         $discount = 0;
-        if (now()->format('H') > 21) {
+        if (now()->format('H') > 17) {
             $discount = 0.3;
         }
         $hoursLeft = 0;
@@ -152,8 +152,8 @@ class HomeController extends Controller
                 $i++;
             }
         }
-        // dd($cart);
-        return view('clients.cart', compact('cart', 'cusInfo', 'discount'));
+        $rank = $this->getRanking()->rank;
+        return view('clients.cart', compact('cart', 'cusInfo', 'discount', 'rank'));
     }
     public function addToCart($id)
     {
@@ -175,7 +175,11 @@ class HomeController extends Controller
     {
         // $quantity = 1;
         $cus = session('cus_id');
-        // dd($quantity);
+        $count = $this->mHome->checkQuantity($id);
+        if ($count == 0) {
+            session(['error' => 'Số lượng sản phẩm đã hết']);
+            return redirect()->route('cartpage');
+        }
         $this->mHome->updateCartWithButton('id_detail_' . $cus, $id, $quantity);
         return redirect()->route('cartpage');
     }
@@ -222,5 +226,33 @@ class HomeController extends Controller
         $this->mHome->addCustomOrder($request->all(), $current_user);
         session(['success' => 'Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.']);
         return redirect()->route('contactpage');
+    }
+
+    public function getRanking()
+    {
+        $id_order = 'id_order_' . session('cus_id');
+        $rankings = $this->mHome->getRanking($id_order);
+        $total = 0;
+        foreach ($rankings as $ranking) {
+            $total += $ranking->vnp_Amount;
+        }
+        $rank = "hat";
+        if ($total >= 500000) {
+            $rank = 'mam';
+        }
+        if ($total >= 1200000) {
+            $rank = 'choi';
+        }
+        if ($total >= 2000000) {
+            $rank = 'la';
+        }
+        if ($total >= 5000000) {
+            $rank = 'hoa';
+        }
+
+        return [
+            'rank' => $rank,
+            'total' => $total
+        ];;
     }
 }

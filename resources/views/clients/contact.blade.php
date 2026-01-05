@@ -9,7 +9,7 @@
           <h4>Đặt hoa theo yêu cầu</h4>
         </div>
         <form class="register-form" role="form" method="POST" action="{{ route('customorder') }}">
-          <div class="col-md-4 ">
+          <div class="col-md-3 ">
             <div class="form-group">
               <label class="info-title" for="exampleInputName">Họ tên <span>*</span></label>
               <input type="text" name="hoten" class="form-control unicase-form-control text-input" id="exampleInputName"
@@ -18,18 +18,25 @@
                 <input type="hidden" name="ID_customer" value="{{ session('cus_id') }}">
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="info-title" for="exampleInputEmail1">Số điện thoại <span>*</span></label>
               <input type="text" name="sodienthoai" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
                 placeholder="Số điện thoại" required>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="info-title" for="exampleInputTitle">Số lượng <span>*</span></label>
               <input type="number" name="soluong" class="form-control unicase-form-control text-input" id="exampleInputTitle"
                 placeholder="0" required>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="info-title" for="exampleInputTitle">Địa chỉ <span>*</span></label>
+              <input type="text" name="diachi" class="form-control unicase-form-control text-input" id="exampleInputTitle"
+                placeholder="Địa chỉ" required>
             </div>
           </div>
           <div class="col-md-12">
