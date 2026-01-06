@@ -77,7 +77,7 @@
         </div>
         <ul class="menu-inner py-1">
           @switch(session('role'))
-          @case(session('role')=='1')
+          @case(session('role')==1||session('role')==2)
           <!-- Products -->
           <li class="menu-item active open">
             <a href="" class="menu-link menu-toggle">
@@ -161,7 +161,7 @@
             </ul>
           </li>
           @break
-          @case(session('role')==='2')
+          @case(session('role')==3)
           <!-- Blog -->
           <li class="menu-item">
             <a href="" class="menu-link menu-toggle">
@@ -180,31 +180,8 @@
               </li>
             </ul>
           </li>
-          <!-- Analytics -->
-          <li class="menu-item">
-            <a href="" class="menu-link menu-toggle">
-              <div class="text-truncate" data-i18n="Dashboards">Báo cáo & Thống kê</div>
-            </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="{{route('showlistblog')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="List-Blog">Thống kê hàng tồn</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="{{route('analysisproduct')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="Add-Blog">Thống kê doanh thu</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="{{route('showaddblog')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="Add-Blog">Quản lí hóa đơn</div>
-                </a>
-              </li>
-            </ul>
-          </li>
           @break
-          @case(session('role')==='4')
+          @case(session('role')==4)
           <!-- Products -->
           <li class="menu-item active open">
             <a href="" class="menu-link menu-toggle">
