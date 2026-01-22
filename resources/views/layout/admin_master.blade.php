@@ -198,16 +198,7 @@
                   <div class="text-truncate" data-i18n="Add-Product">Thêm sản phẩm</div>
                 </a>
               </li>
-              <li class="menu-item">
-                <a href="{{route('addproduct')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="Add-Product">Nhập kho hàng</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="{{route('addproduct')}}" class="menu-link">
-                  <div class="text-truncate" data-i18n="Add-Product">Thống kê hàng tồn</div>
-                </a>
-              </li>
+              
             </ul>
           </li>
           @break

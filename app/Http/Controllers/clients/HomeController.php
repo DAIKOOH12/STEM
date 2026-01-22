@@ -136,8 +136,8 @@ class HomeController extends Controller
             if ($item->ID_date == 4) {
                 $created = Carbon::parse($item->created_at);
                 $expired = $created->copy()->addDay(180);
-                $hoursLeft = Carbon::now()->diffInHours($expired, false);
-                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                $dayLeft = Carbon::now()->diffInDays($expired, false);
+                if ($dayLeft <= 2  && $dayLeft > 0) {
                     $cart[$i]->sale_off = 0.15;
                 }
                 $i++;
@@ -145,8 +145,8 @@ class HomeController extends Controller
             if ($item->ID_date == 5) {
                 $created = Carbon::parse($item->created_at);
                 $expired = $created->copy()->addDay(365);
-                $hoursLeft = Carbon::now()->diffInHours($expired, false);
-                if ($hoursLeft <= 10  && $hoursLeft > 0) {
+                $dayLeft = Carbon::now()->diffInDays($expired, false);
+                if ($dayLeft <= 14   && $dayLeft > 0) {
                     $cart[$i]->sale_off = 0.15;
                 }
                 $i++;

@@ -46,33 +46,38 @@
                         <input type="text" class="form-control" value="{{$max_price}}" name="max_price" id="formGroupExampleInput2" placeholder="Another input">
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="1" {{ in_array('1', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.6);" value="1" {{ in_array('1', (array)request()->input('color', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="check1">
                             <span style="margin: 0 10px;">Màu trắng</span>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="2"  {{ in_array('2', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.6);" value="2"  {{ in_array('2', (array)request()->input('color', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="check1">
                             <span style="margin: 0 10px;">Màu tím</span>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="3"  {{ in_array('3', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.6);" value="3"  {{ in_array('3', (array)request()->input('color', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="check1">
                             <span style="margin: 0 10px;">Màu vàng</span>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="4"  {{ in_array('4', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.6);" value="4"  {{ in_array('4', (array)request()->input('color', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="check1">
                             <span style="margin: 0 10px;">Màu đỏ</span>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.5);" value="5" {{ in_array('5', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.6);" value="5" {{ in_array('5', (array)request()->input('color', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="check1">
                             <span style="margin: 0 10px;">Màu hồng</span>
+                        </label>
+                    </div><div class="form-check">
+                        <input class="form-check-input" name="color[]" type="checkbox" style="transform: scale(1.6);" value="6" {{ in_array('5', (array)request()->input('color', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="check1">
+                            <span style="margin: 0 10px;">Màu xanh</span>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Lọc</button>

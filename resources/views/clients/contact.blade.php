@@ -56,7 +56,7 @@
         </div>
         <div class="clearfix address">
           <span class="contact-i"><i class="fa fa-map-marker"></i></span>
-          <span class="contact-span">Hà Nam</span>
+          <span class="contact-span">Hà Nội</span>
         </div>
         <div class="clearfix phone-no">
           <span class="contact-i"><i class="fa fa-mobile"></i></span>
@@ -64,7 +64,7 @@
         </div>
         <div class="clearfix email">
           <span class="contact-i"><i class="fa fa-envelope"></i></span>
-          <span class="contact-span"><a href="#">abc@gmail.com</a></span>
+          <span class="contact-span"><a href="#">flora@gmail.com</a></span>
         </div>
       </div>
     </div><!-- /.contact-page -->
