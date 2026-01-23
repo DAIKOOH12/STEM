@@ -273,4 +273,8 @@ class AdminController extends Controller
         // dd($payments);
         return view('admin.analytics.list_payment',compact('payments'));
     }
+
+    public function analysisDate(Request $request){
+        return view('admin.analytics.revenue_by_day');
+    }
 }

@@ -154,6 +154,11 @@
                 </a>
               </li>
               <li class="menu-item">
+                <a href="{{route('analysisdate')}}" class="menu-link">
+                  <div class="text-truncate" data-i18n="Add-Blog">Thống kê theo ngày</div>
+                </a>
+              </li>
+              <li class="menu-item">
                 <a href="{{route('listpayments')}}" class="menu-link">
                   <div class="text-truncate" data-i18n="Add-Blog">Quản lí hóa đơn</div>
                 </a>
