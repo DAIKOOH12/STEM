@@ -279,7 +279,7 @@ class AdminController extends Controller
     }
 
     public function getRevenueByDate(Request $request){
-        $date = $request->input('date');
+        $date = $request->query('date');
         $revenue = $this->mAdmin->getRevenueByDate($date);
         return response()->json(['revenue'=>$revenue]);
     }
