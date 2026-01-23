@@ -277,4 +277,10 @@ class AdminController extends Controller
     public function analysisDate(Request $request){
         return view('admin.analytics.revenue_by_day');
     }
+
+    public function getRevenueByDate(Request $request){
+        $date = $request->input('date');
+        $revenue = $this->mAdmin->getRevenueByDate($date);
+        return response()->json(['revenue'=>$revenue]);
+    }
 }

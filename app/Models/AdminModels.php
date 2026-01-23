@@ -216,11 +216,29 @@ class AdminModels extends Model
             ->where('ID_cus_order', '=', $id)
             ->update(['sTrangThai' => 'done']);
     }
-    public function getPayments(){
+    public function getPayments()
+    {
         $query = DB::table('payments as p')
-            ->join('_order as o','o.ID_order','=','p.ID_order')
-            ->join('customer as c','c.ID_customer','=','o.ID_customer')
-            ->orderBy('p.vnp_PayDate','desc')
+            ->join('_order as o', 'o.ID_order', '=', 'p.ID_order')
+            ->join('customer as c', 'c.ID_customer', '=', 'o.ID_customer')
+            ->orderBy('p.vnp_PayDate', 'desc')
+            ->get();
+        return $query;
+    }
+    public function getRevenueByDate($date)
+    {
+        $dateString = str_replace('-', '', $date);
+        $query = DB::table('payments as p')
+            ->join('_order as o', 'o.ID_order', '=', 'p.ID_order')
+            ->join('order_detail as od', 'od.ID_order_detail', '=', 'o.ID_order_detail')
+            ->join('product as pr', 'pr.ID_product', '=', 'od.ID_product')
+            ->whereDate('p.created_at', '=', $date)
+            ->select(
+                'p.ID_order',           // mã hóa đơn
+                'pr.sTenSanPham',       // tên sản phẩm
+                'od.iSoLuong',          // số lượng
+                'p.vnp_PayDate'         // ngày thanh toán
+            )->orderBy('p.vnp_PayDate', 'desc')
             ->get();
         return $query;
     }
